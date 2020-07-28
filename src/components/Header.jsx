@@ -7,7 +7,8 @@ import HeaderRight from './HeaderRight';
 import Container from '@material-ui/core/Container';
 
 const Header = () => {
-    const loginChecked='1';
+    const loginChecked = '1';
+
     return (
         <div className="header">
             <Container id="headerContainer" maxWidth="lg">
@@ -24,7 +25,8 @@ const Header = () => {
             </Container>
         </div>
     )
-}
+};
+
 export default Header;
 
 

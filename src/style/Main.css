@@ -1,0 +1,12 @@
+.mainWrap {
+    display: flex;
+    flex-direction: column;
+    height: 90vh;
+    justify-content: space-between;
+    border-bottom: 0.5px solid black;
+}
+
+.keyWordBoxWrap{
+    border-bottom: 0.5px solid black;
+
+}
