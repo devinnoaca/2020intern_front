@@ -1,0 +1,35 @@
+.myPageW {
+    display: flex;
+}
+
+.myProfileCW {
+    margin-top: 3.0rem;
+    width: 33%;
+    min-width: 20rem;
+    padding: 20px;
+    border: 1px solid black;
+}
+
+.userImage {
+    padding-bottom: 1.5rem;
+    text-align: center;
+    border-bottom: solid 1px rgba(0,0,0,0.09);
+}
+
+.userProfile {
+    padding: 1.5rem 0 1.5rem 0;
+    border-bottom: solid 1px rgba(0,0,0,0.09);
+}
+
+.userCareer {
+    padding: 1.5rem 0 1.5rem 0;
+    border-bottom: solid 1px rgba(0,0,0,0.09);
+}
+
+.myKeywordCW {
+    margin-top: 3.0rem;
+    min-width: 40rem;
+    width: 66%;
+    border: 1px solid black;
+}
+
