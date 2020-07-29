@@ -6,6 +6,8 @@ import { Main, Intro, MyPage } from 'pages';
 import Header from '../components/Header';
 import UserProvider from 'provider/UserProvider';
 
+import { Container } from '@material-ui/core';
+
 const App = () => {
   return (
     <>
