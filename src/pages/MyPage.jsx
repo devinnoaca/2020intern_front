@@ -27,7 +27,7 @@ const MyPage = () => {
         getUserProfile();
         
     }, [setUserProfile]);
-
+    
     return (
         <>
         </>
