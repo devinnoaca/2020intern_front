@@ -15,9 +15,10 @@
 }
 
 .searchKeywordBW {
-    border: 0.5px solid black;
+    display: flex;
+    align-items: center;
     height: 3rem;
-    width: 30%;
+    
 }
 
 .keywordBW {
@@ -33,8 +34,15 @@
 .mentorListCW{
     border: 0.5px solid black;
     margin-top: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
 }
 
 .MuiAutocomplete-endAdornment {
     display: none;
+}
+
+.mentorListBW {
 }
