@@ -1,16 +1,39 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 
+import Api from 'api/Api';
 import image from 'style/logo192.png';
 import UserContext from 'context/UserContext';
 
 const MyProfileC = () => {
-    const { userProfile } = useContext(UserContext);
+    const { userProfile, setUserProfile } = useContext(UserContext);
 
     console.log('MyProfileC start');
 
-    // const makeCareer = userProfile.career.map((career, index) => {
-    //     return <div key={index}>{career}</div>;
-    // });
+    const makeCareer = userProfile.career.map((career, index) => {
+        return <div key={index}>{career}</div>;
+    });
+
+    useEffect(() => {
+        console.log('MyProfileC useEffect');
+        const getUserProfile = async () => {
+            await Api
+                .getUserProfile()
+                .then((res) => {
+                    setUserProfile({
+                        usn: res.data.usn,
+                        name: res.data.name,
+                        email: res.data.email,
+                        password: res.data.password,
+                        description: res.data.description,
+                        company: res.data.company,
+                        career: res.data.career,
+                    });
+                });
+        };
+
+        getUserProfile();
+
+    }, [setUserProfile]);
 
     return (
         <div className="myProfileCW">
@@ -24,7 +47,7 @@ const MyProfileC = () => {
                 <div>{userProfile.description}</div>
             </div>
             <div className="userCareer">
-                {/* {makeCareer} */}
+                {makeCareer}
             </div>
         </div>
     );

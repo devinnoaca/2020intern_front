@@ -6,6 +6,7 @@ import { Main, Intro, MyPage } from 'pages';
 import Header from '../components/Header';
 import UserProvider from 'provider/UserProvider';
 import KeywordProvider from 'provider/KeywordProvider';
+import UserKeywordProvider from 'provider/UserKeywordProvider';
 
 import Container from '@material-ui/core/Container';
 
@@ -16,9 +17,12 @@ const App = () => {
       <Container className="App">
         <UserProvider>
           <KeywordProvider>
-            <Route exact path='/' component={Intro} />
-            <Route exact path='/main' component={Main} />
-            <Route exact path='/mypage' component={MyPage} />
+            <UserKeywordProvider>
+              <Route exact path='/' component={Intro} />
+              <Route exact path='/main' component={Main} />
+
+              <Route exact path='/mypage' component={MyPage} />
+            </UserKeywordProvider>
           </KeywordProvider>
         </UserProvider>
       </Container>
