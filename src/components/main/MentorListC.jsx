@@ -1,9 +1,13 @@
 import React from 'react';
 
+import 'style/Main.css';
+import MentorListB from 'components/MentorListB';
+
 const MentorListC = () => {
     return (
         <div className="mentorListCW">
-            아래 컴포넌트
+            <MentorListB />
+            <div>pagination</div>
         </div>
     );
 };
