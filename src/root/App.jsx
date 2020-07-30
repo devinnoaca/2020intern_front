@@ -9,8 +9,6 @@ import KeywordProvider from 'provider/KeywordProvider';
 
 import Container from '@material-ui/core/Container';
 
-import { Container } from '@material-ui/core';
-
 const App = () => {
   return (
     <>

@@ -1,12 +1,15 @@
 import React from 'react';
 
 import "style/Main.css";
-import LimitTags from "components/LimitTags"
+import ChipsArray from "components/ChipsArray"
 
 const PickedKeywordB = () => {
+    let funStyle = 'color:blue';
+    console.log('%cpickedkeywordC start', funStyle);
+
     return (
         <div className="pickedKeywordBW">
-            <LimitTags />
+            <ChipsArray />
         </div>
     );
 };

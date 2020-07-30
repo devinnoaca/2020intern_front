@@ -15,7 +15,7 @@ const MyProfileC = () => {
     return (
         <div className="myProfileCW">
             <div className="userImage">
-                <img src={image} />
+                <img src={image} alt="" />
             </div>
             <div className="userProfile">
                 <div>{userProfile.name}</div>

@@ -22,6 +22,14 @@ app.use('/user/1/inform', (req, res) => {
     });
 });
 
+app.use('/user/1/keyword', (req, res) => {
+    res.json({
+        usn: 1,
+        allkeyword: ['java_개발', 'javascript_개발', 'python_개발'],
+        recommendkeyword: ['java_개발', 'javascript_개발', 'python_개발'],
+    });
+});
+
 app.use('/keyword', (req, res) => {
     res.json({
         keywordList: [
