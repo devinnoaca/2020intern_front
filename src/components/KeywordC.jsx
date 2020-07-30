@@ -34,13 +34,12 @@ const KeywordC = () => {
         };
 
         getUserKeyword();
+        console.log('KeywordC useEffect');
     }, [setCheckedKeywordList]);
+
+
     console.log("키워드컨테이너에서 바뀌었는지"+checkedKeywordList);
     
-
-    
-    
-
     return (
         <div className="keyWordCW">
             <SearchKeywordB />

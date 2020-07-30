@@ -59,14 +59,14 @@ export default function VerticalTabs() {
     const classes = useStyles();
     const [value, setValue] = React.useState(0);
 
-    const { keywordList, setCheckedKeywordList, checkedKeywordList } = useContext(KeywordContext);
+    const { keywordList, checkedKeywordList, setCheckedKeywordList  } = useContext(KeywordContext);
+
+    console.log('VertivalTapbs start');
     
     const handleClick = (keyword2) => {
         return (() => {
             console.log("클릭은됬다");
-            checkedKeywordList.push(keyword2);
-            console.log(checkedKeywordList);
-            setCheckedKeywordList(checkedKeywordList);
+            setCheckedKeywordList([...checkedKeywordList,keyword2]);
         });
     };
 
