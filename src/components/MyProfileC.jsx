@@ -8,9 +8,9 @@ const MyProfileC = () => {
 
     console.log('MyProfileC start');
 
-    const makeCareer = userProfile.career.map((career, index) => {
-        return <div key={index}>{career}</div>;
-    });
+    // const makeCareer = userProfile.career.map((career, index) => {
+    //     return <div key={index}>{career}</div>;
+    // });
 
     return (
         <div className="myProfileCW">
@@ -24,7 +24,7 @@ const MyProfileC = () => {
                 <div>{userProfile.description}</div>
             </div>
             <div className="userCareer">
-                {makeCareer}
+                {/* {makeCareer} */}
             </div>
         </div>
     );

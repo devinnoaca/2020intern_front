@@ -36,13 +36,10 @@ export default function ChipsArray() {
             console.log(checkedKeywordList);
         })
     };
-    console.log(checkedKeywordList);
-    
 
     return (
         <Paper component="ul" className={classes.root}>
             {checkedKeywordList.map((data) => {
-                console.log(checkedKeywordList);
                 return (
                     <li key={data}>
                         <Chip
