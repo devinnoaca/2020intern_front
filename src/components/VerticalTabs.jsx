@@ -59,7 +59,16 @@ export default function VerticalTabs() {
     const classes = useStyles();
     const [value, setValue] = React.useState(0);
 
-    const { keywordList } = useContext(KeywordContext);
+    const { keywordList, setCheckedKeywordList, checkedKeywordList } = useContext(KeywordContext);
+    
+    const handleClick = (keyword2) => {
+        return (() => {
+            console.log("클릭은됬다");
+            checkedKeywordList.push(keyword2);
+            console.log(checkedKeywordList);
+            setCheckedKeywordList(checkedKeywordList);
+        });
+    };
 
     const makeCategory = keywordList.map((category, index)=>{
         return (
@@ -70,14 +79,15 @@ export default function VerticalTabs() {
     const makeKeyword = keywordList.map((keyword, index) => {
         return (
             <TabPanel key={index} value={value} index={index}>
-                {keyword.keyword.map((keyword2, index2) => {
+                {keyword.keyword.map((keyword2) => {
                     return (
-                        <Chip key={index2} label={keyword2} />
+                        <Chip key={keyword2} label={keyword2} onClick={handleClick(keyword2)} />
                     )
                 })}
             </TabPanel>
         );
     });
+
     const handleChange = (event, newValue) => {
         setValue(newValue);
     };
