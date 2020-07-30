@@ -6,4 +6,12 @@ export default {
     getUserProfile() {
         return axios.get('/user/1/inform');
     },
+
+    getKeyword(){
+        return axios.get('/keyword');
+    },
+
+    getUserKeyword(){
+        return axios.get('/user/1/keyword');
+    },
 };

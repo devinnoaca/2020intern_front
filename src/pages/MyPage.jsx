@@ -32,7 +32,7 @@ const MyPage = () => {
         getUserProfile();
 
     }, [setUserProfile]);
-
+    
     return (
         <div className="myPageW">
             <MyProfileC></MyProfileC>

@@ -1,12 +1,40 @@
-.mainWrap {
+.mainW {
     display: flex;
     flex-direction: column;
-    height: 90vh;
     justify-content: space-between;
-    border-bottom: 0.5px solid black;
 }
 
-.keyWordBoxWrap{
-    border-bottom: 0.5px solid black;
+.keyWordCW{
+    border: 0.5px solid black;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    min-width: 1000px;
+    align-items: center;
+    
+}
 
+.searchKeywordBW {
+    border: 0.5px solid black;
+    height: 3rem;
+    width: 30%;
+}
+
+.keywordBW {
+    border: 0.5px solid black;
+    width: 100%;
+}
+
+.pickedKeywordBW {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+
+.mentorListCW{
+    border: 0.5px solid black;
+    margin-top: 1rem;
+}
+
+.MuiAutocomplete-endAdornment {
+    display: none;
 }
