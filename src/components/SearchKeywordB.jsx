@@ -5,7 +5,7 @@ import 'style/Main.css'
 const SearchKeywordB = () => {
     return (
         <div className="searchKeywordBW">
-            <div>키워드 서치박스</div>
+            <h1>관심있는 키워드를 선택하고 멘토를 찾아보세요</h1>
         </div>
     );
 };
