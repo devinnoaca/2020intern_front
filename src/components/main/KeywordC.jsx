@@ -1,9 +1,9 @@
 import React, { useEffect, useContext } from 'react';
 
 import Api from 'api/Api';
-import SearchKeywordB from 'components/SearchKeywordB';
-import KeywordB from 'components/KeywordB';
-import PickedKeywordB from 'components/PickedKeywordB';
+import SearchKeywordB from 'components/main/SearchKeywordB';
+import KeywordB from 'components/main/KeywordB';
+import PickedKeywordB from 'components/main/PickedKeywordB';
 import KeywordContext from 'context/KeywordContext';
 
 const KeywordC = () => {
@@ -29,7 +29,7 @@ const KeywordC = () => {
             await Api
                 .getUserKeyword()
                 .then((res) => {
-                    setCheckedKeywordList(res.data.recommendkeyword);
+                    setCheckedKeywordList(res.data.recommendKeyword);
                 });
         };
 

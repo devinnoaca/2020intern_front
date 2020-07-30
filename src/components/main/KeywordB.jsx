@@ -1,7 +1,7 @@
 import React from 'react';
 
 import 'style/Main.css'
-import VerticalTabs from './VerticalTabs';
+import VerticalTabs from 'components/main/VerticalTabs';
 
 const KeywordB = () => {
     console.log('KeywordB start');

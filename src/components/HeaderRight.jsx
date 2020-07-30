@@ -30,7 +30,7 @@ const HeaderRight = () => {
             </Badge>
             <div className="dropdown">
                 <IconButton color="primary" onClick={dropdown} className="dropbtn">
-                    <Avatar src="/broken-image.jpg" />
+                    <Avatar />
                 </IconButton>
                 <div id="myDropdown" className="dropdown-content">
                     <Link to='/login'><div>내 요청목록</div></Link>

@@ -3,6 +3,8 @@
 }
 
 .myProfileCW {
+    display: flex;
+    flex-direction: column;
     margin-top: 3.0rem;
     width: 33%;
     min-width: 20rem;
