@@ -17,9 +17,9 @@ app.use('/user/1/inform', (req, res) => {
     });
 });
 
-app.use('/getMentorList', (req, res) => {
+app.use('/mentorList', (req, res) => {
     res.json({
-        MentorList: [
+        mentorList: [
             {
                 usn: 1,
                 name: '이지훈',
@@ -28,39 +28,58 @@ app.use('/getMentorList', (req, res) => {
                 password: 'jihun311',
                 description: '국민대학교 4학년 이지훈입니다.',
                 company: '국민대학교',
-                career : [
-                    '크래프톤 CD (現)',
-                    '넷마블엔투 PD (前)',
-                    '플레로 게임즈 PD (前)',
-                ],
+                career: ['log분석기 개발', '육군 만기 전역', '솔로 9개월차'],
+
             },
             {
                 usn: 2,
-                name: '이지훈',
+                name: '박종민',
                 imageUrl: 'asdfasdf',
                 email: 'wlgnssla311@gmail.com',
                 password: 'jihun311',
                 description: '국민대학교 4학년 이지훈입니다.',
                 company: '국민대학교',
-                career: [
-                    '크래프톤 CD (現)',
-                    '넷마블엔투 PD (前)',
-                    '플레로 게임즈 PD (前)',
-                ],
-            }, 
+                career: ['log분석기 개발', '육군 만기 전역', '솔로 9개월차'],
+            },
             {
                 usn: 3,
-                name: '이지훈',
+                name: '송성재',
                 imageUrl: 'asdfasdf',
                 email: 'wlgnssla311@gmail.com',
                 password: 'jihun311',
                 description: '국민대학교 4학년 이지훈입니다.',
                 company: '국민대학교',
-                career: [
-                    '크래프톤 CD (現)',
-                    '넷마블엔투 PD (前)',
-                    '플레로 게임즈 PD (前)',
-                ],
+                career: ['log분석기 개발', '육군 만기 전역', '솔로 9개월차'],
+            },
+            {
+                usn: 4,
+                name: '이인평',
+                imageUrl: 'asdfasdf',
+                email: 'wlgnssla311@gmail.com',
+                password: 'jihun311',
+                description: '국민대학교 4학년 이지훈입니다.',
+                company: '국민대학교',
+                career: ['log분석기 개발', '육군 만기 전역', '솔로 9개월차'],
+            },
+            {
+                usn: 5,
+                name: '이정현',
+                imageUrl: 'asdfasdf',
+                email: 'wlgnssla311@gmail.com',
+                password: 'jihun311',
+                description: '국민대학교 4학년 이지훈입니다.',
+                company: '국민대학교',
+                career: ['log분석기 개발', '육군 만기 전역', '솔로 9개월차'],
+            },
+            {
+                usn: 6,
+                name: '이진구',
+                imageUrl: 'asdfasdf',
+                email: 'wlgnssla311@gmail.com',
+                password: 'jihun311',
+                description: '국민대학교 4학년 이지훈입니다.',
+                company: '국민대학교',
+                career: ['log분석기 개발', '육군 만기 전역', '솔로 9개월차'],
             },
         ],
     });
@@ -71,24 +90,36 @@ app.use('/user/1/keyword', (req, res) => {
         usn: 1,
         allKeyword: [
             {
-                keywordId: 1, keywordName: 'a', catergoryName: 1,
+                keywordId: 1,
+                keywordName: 'a',
+                categoryName: '개발/프로그래밍',
             },
             {
-                keywordId: 2, keywordName: 'b', catergoryName: 2,
+                keywordId: 2,
+                keywordName: 'b',
+                categoryName: '디자인',
             },
             {
-                keywordId: 3, keywordName: 'c', catergoryName: 3,
+                keywordId: 3,
+                keywordName: 'c',
+                categoryName: '데이터',
             },
         ],
         recommendKeyword: [
             {
-                keywordId: 1, keywordName: 'qwe', catergoryName: 1,
+                keywordId: 1,
+                keywordName: 'qwe',
+                categoryName: '업무 스킬',
             },
             {
-                keywordId: 2, keywordName: 'asd', catergoryName: 2,
+                keywordId: 2,
+                keywordName: 'asd',
+                categoryName: '업무 스킬',
             },
             {
-                keywordId: 3, keywordName: 'zxcs', catergoryName: 3,
+                keywordId: 3,
+                keywordName: 'zxcs',
+                categoryName: '업무 스킬',
             },
         ],
     });
@@ -97,30 +128,90 @@ app.use('/user/1/keyword', (req, res) => {
 app.use('/user/1/career', (req, res) => {
     res.json({
         usn: 1,
-        career : ['log분석기 개발','육군 만기 전역', '솔로 9개월차'],
+        career: ['log분석기 개발', '육군 만기 전역', '솔로 9개월차'],
     });
 });
 
 app.use('/keyword', (req, res) => {
     res.json({
-        keywordList: [
+        allCategory: [
             {
-                category: '1',
-                keyword: ['java_개발', 'javascript_개발', 'python_개발']
+                categoryId: 1,
+                categoryName: '개발/프로그래밍',
+                keywordList: [
+                    {
+                        keywordId: 1,
+                        keywordName: 'java',
+                        categoryName: '개발/프로그래밍',
+                    }, {
+                        keywordId: 2,
+                        keywordName: 'javascript',
+                        categoryName: '개발/프로그래밍',
+                    }, {
+                        keywordId: 3,
+                        keywordName: 'javascript',
+                        categoryName: '개발/프로그래밍',
+                    },
+                ],
             },
             {
-                category: '디자인',
-                keyword: ['html_디자인', 'CSS_디자인', 'SCSS_디자인']
+                categoryId: 2,
+                categoryName: '디자인',
+                keywordList: [
+                    {
+                        keywordId: 4,
+                        keywordName: 'HTML',
+                        categoryName: '디자인',
+                    }, {
+                        keywordId: 5,
+                        keywordName: 'CSS',
+                        categoryName: '디자인',
+                    }, {
+                        keywordId: 6,
+                        keywordName: 'javascript',
+                        categoryName: '디자인',
+                    },
+                ],
             },
             {
-                category: '데이터사이언스',
-                keyword: ['MongoDB_데이터사이언스', 'MySQL_데이터사이언스', 'MariaDB_데이터사이언스', 'SQL_데이터사이언스', 'RDBMS_데이터사이언스', 'Oracle_데이터사이언스', 'R_데이터사이언스']
+                categoryId: 3,
+                categoryName: '데이터 사이언스',
+                keywordList: [
+                    {
+                        keywordId: 7,
+                        keywordName: 'python',
+                        categoryName: '데이터 사이언스',
+                    }, {
+                        keywordId: 8,
+                        keywordName: 'mysql',
+                        categoryName: '데이터 사이언스',
+                    }, {
+                        keywordId: 9,
+                        keywordName: 'oracle',
+                        categoryName: '데이터 사이언스',
+                    },
+                ],
             },
             {
-                category: '업무스킬',
-                keyword: ['프로젝트관리_업무스킬', '데이터분석_업무스킬', '정보보안_업무스킬', 'VBA_업무스킬']
-            },
-        ],
+                categoryId: 4,
+                categoryName: '업무 스킬',
+                keywordList: [
+                    {
+                        keywordId: 10,
+                        keywordName: 'java',
+                        categoryName: '업무 스킬',
+                    }, {
+                        keywordId: 11,
+                        keywordName: 'javascript',
+                        categoryName: '업무 스킬',
+                    }, {
+                        keywordId: 12,
+                        keywordName: 'python',
+                        categoryName: '업무 스킬',
+                    },
+                ]
+            }
+        ]
     });
 });
 

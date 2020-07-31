@@ -7,7 +7,7 @@ import PickedKeywordB from 'components/main/PickedKeywordB';
 import KeywordContext from 'context/KeywordContext';
 
 const KeywordC = () => {
-    const { setKeywordList, setCheckedKeywordList, checkedKeywordList } = useContext(KeywordContext);
+    const { setKeywordList, setCheckedKeywordList } = useContext(KeywordContext);
 
     let funStyle = 'color:blue';
     console.log('%ckeywordC start', funStyle);
@@ -17,29 +17,31 @@ const KeywordC = () => {
             await Api
                 .getKeyword()
                 .then((res) => {
-                    setKeywordList(res.data.keywordList);
+                    setKeywordList(res.data.allCategory);
+                    console.log("전체 카테고리,키워드 : ", res.data.allCategory);
+                    
                 });
         };
        
         getKeyword();
+        console.log('KeywordC getKeyword useEffect');
     }, [setKeywordList]);
 
     useEffect(() => {
-        const getUserKeyword = async () => {
+        const getUserRecommendKeyword = async () => {
             await Api
                 .getUserKeyword()
                 .then((res) => {
                     setCheckedKeywordList(res.data.recommendKeyword);
+                    console.log("유저 추천 키워드 :", res.data.recommendKeyword);
+                    
                 });
         };
 
-        getUserKeyword();
-        console.log('KeywordC useEffect');
+        getUserRecommendKeyword();
+        console.log('KeywordC getUserKeyword useEffect');
     }, [setCheckedKeywordList]);
 
-
-    console.log("키워드컨테이너에서 바뀌었는지"+checkedKeywordList);
-    
     return (
         <div className="keyWordCW">
             <SearchKeywordB />
