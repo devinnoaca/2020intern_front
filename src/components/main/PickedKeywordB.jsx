@@ -1,7 +1,7 @@
 import React from 'react';
 
 import "style/Main.css";
-import ChipsArray from "components/ChipsArray"
+import ChipsArray from "components/main/ChipsArray"
 
 const PickedKeywordB = () => {
     let funStyle = 'color:blue';

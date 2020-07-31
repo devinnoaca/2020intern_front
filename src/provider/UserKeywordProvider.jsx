@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import UserKeywordContext from 'context/UserKeywordContext';
 
 const UserKeywordProvider = ({ children }) => {
-    const [allKeyword, setAllKeyword] = useState('');
-    const [recommendKeyword, setrecommendKeyword] = useState('');
+    const [allKeyword, setAllKeyword] = useState([]);
+    const [recommendKeyword, setrecommendKeyword] = useState([]);
 
     const userKeyword = {
         allKeyword, setAllKeyword, 

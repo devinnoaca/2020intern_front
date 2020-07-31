@@ -2,8 +2,8 @@ import React  from 'react';
 
 import 'style/MyPage.css';
 
-import MyKeywordC from 'components/MyKeywordC';
-import MyProfileC from 'components/MyProfileC';
+import MyKeywordC from 'components/mypage/MyKeywordC';
+import MyProfileC from 'components/mypage/MyProfileC';
 
 const MyPage = () => {
     console.log('MyPage start');

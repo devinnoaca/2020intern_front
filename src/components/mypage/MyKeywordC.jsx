@@ -1,7 +1,7 @@
 import React, { useEffect, useContext } from 'react';
 
 import Api from 'api/Api';
-import MyKeywordB from 'components/MyKeywordB';
+import MyKeywordB from 'components/mypage/MyKeywordB';
 import UserKeywordContext from 'context/UserKeywordContext';
 
 const MyKeywordC = () => {
@@ -21,7 +21,8 @@ const MyKeywordC = () => {
         };
         getUserKeyword();
 
-    },[]);
+    },[setAllKeyword, setrecommendKeyword]);
+    
     return ( 
         <div className="myKeywordCW">
             <MyKeywordB keyword={allKeyword}></MyKeywordB>
