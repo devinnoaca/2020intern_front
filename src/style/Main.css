@@ -45,3 +45,8 @@
 
 .mentorListBW {
 }
+
+.mentorCard {
+    display: flex;
+    flex-direction: row;
+}

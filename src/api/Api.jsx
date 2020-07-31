@@ -21,20 +21,6 @@ export default {
     },
 
     getMentorList() {
-        return axios.post('/getMentorList', {
-            checkedKeyword: [{
-                    keywordId: 1,
-                    keywordName: 'java', 
-                    catergoryName: 1,
-                }, {
-                    keywordId: 2, 
-                    keywordName: 'java', 
-                    catergoryName: 2,
-                }, {
-                    keywordId: 3, 
-                    keywordName: 'java', 
-                    catergoryName: 3,
-                },]
-        })
+        return axios.get('/mentorList');
     }
 };
