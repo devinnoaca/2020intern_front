@@ -29,7 +29,7 @@ const KeywordC = () => {
             await Api
                 .getUserKeyword()
                 .then((res) => {
-                    setCheckedKeywordList(res.data.recommendkeyword);
+                    setCheckedKeywordList(res.data.recommendKeyword);
                 });
         };
 
