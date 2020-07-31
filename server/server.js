@@ -8,8 +8,8 @@ app.use(cors());
 app.use(bodyParser.json());
 app.use('/user/1/inform', (req, res) => {
     res.json({
-        usn: 1,
-        name: '이지훈',
+        USN: 1,
+        userName: '이지훈',
         email: 'wlgnssla311@gmail.com',
         password: 'jihun311',
         description: '국민대학교 4학년 이지훈입니다.',
@@ -66,8 +66,6 @@ app.use('/getMentorList', (req, res) => {
     });
 });
 
-
-
 app.use('/user/1/keyword', (req, res) => {
     res.json({
         usn: 1,
@@ -107,7 +105,7 @@ app.use('/keyword', (req, res) => {
     res.json({
         keywordList: [
             {
-                category: '개발',
+                category: '1',
                 keyword: ['java_개발', 'javascript_개발', 'python_개발']
             },
             {
@@ -125,8 +123,6 @@ app.use('/keyword', (req, res) => {
         ],
     });
 });
-
-
 
 app.listen(port, () => {
     console.log(`express is running on ${port}`);
