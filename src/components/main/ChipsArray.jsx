@@ -32,8 +32,6 @@ export default function ChipsArray() {
     const handleDelete = (chipToDelete) => {
         return (() => {
             setCheckedKeywordList((chips) => chips.filter((chip) => chip !== chipToDelete));
-            console.log(chipToDelete);
-            console.log(checkedKeywordList);
         })
     };
 
@@ -41,9 +39,9 @@ export default function ChipsArray() {
         <Paper component="ul" className={classes.root}>
             {checkedKeywordList.map((data) => {
                 return (
-                    <li key={data}>
+                    <li key={data.keywordId}>
                         <Chip
-                            label={data}
+                            label={data.keywordName}
                             onDelete={handleDelete(data)}
                             className={classes.chip}
                         />
@@ -55,4 +53,4 @@ export default function ChipsArray() {
             </IconButton>
         </Paper>
     );
-}
+};

@@ -63,27 +63,27 @@ export default function VerticalTabs() {
 
     console.log('VertivalTapbs start');
     
-    const handleClick = (keyword2) => {
+    const handleClick = (keyword) => {
         return (() => {
             console.log("클릭은됬다");
             console.log("문제의부분",checkedKeywordList);
             
-            setCheckedKeywordList([...checkedKeywordList,keyword2]);
+            setCheckedKeywordList([...checkedKeywordList,keyword]);
         });
     };
 
-    const makeCategory = keywordList.map((category, index)=>{
+    const makeCategory = keywordList.map((category,index)=>{
         return (
-            <Tab key={index} label={category.category} {...a11yProps(index)} />
+            <Tab key={index} label={category.categoryName} {...a11yProps(index)} />
         );
     });
 
-    const makeKeyword = keywordList.map((keyword, index) => {
+    const makeKeyword = keywordList.map((category, index) => {
         return (
             <TabPanel key={index} value={value} index={index}>
-                {keyword.keyword.map((keyword2) => {
+                {category.keywordList.map((keyword) => {
                     return (
-                        <Chip key={keyword2} label={keyword2} onClick={handleClick(keyword2)} />
+                        <Chip key={keyword.keywordId} label={keyword.keywordName} onClick={handleClick(keyword)} style={{margin:2}}/>
                     )
                 })}
             </TabPanel>
