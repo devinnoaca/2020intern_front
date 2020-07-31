@@ -10,11 +10,11 @@ const UserProvider = ({ children }) => {
         description: '',
         company: '',
     });
-    const [userCareer, setuserCareer] = useState([]);
+    const [userCareer, setUserCareer] = useState([]);
 
     const user = {
         userProfile, setUserProfile,
-        userCareer, setuserCareer
+        userCareer, setUserCareer
     };
 
     return (
