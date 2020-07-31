@@ -17,6 +17,57 @@ app.use('/user/1/inform', (req, res) => {
     });
 });
 
+app.use('/getMentorList', (req, res) => {
+    res.json({
+        MentorList: [
+            {
+                usn: 1,
+                name: '이지훈',
+                imageUrl: 'asdfasdf',
+                email: 'wlgnssla311@gmail.com',
+                password: 'jihun311',
+                description: '국민대학교 4학년 이지훈입니다.',
+                company: '국민대학교',
+                career : [
+                    '크래프톤 CD (現)',
+                    '넷마블엔투 PD (前)',
+                    '플레로 게임즈 PD (前)',
+                ],
+            },
+            {
+                usn: 2,
+                name: '이지훈',
+                imageUrl: 'asdfasdf',
+                email: 'wlgnssla311@gmail.com',
+                password: 'jihun311',
+                description: '국민대학교 4학년 이지훈입니다.',
+                company: '국민대학교',
+                career: [
+                    '크래프톤 CD (現)',
+                    '넷마블엔투 PD (前)',
+                    '플레로 게임즈 PD (前)',
+                ],
+            }, 
+            {
+                usn: 3,
+                name: '이지훈',
+                imageUrl: 'asdfasdf',
+                email: 'wlgnssla311@gmail.com',
+                password: 'jihun311',
+                description: '국민대학교 4학년 이지훈입니다.',
+                company: '국민대학교',
+                career: [
+                    '크래프톤 CD (現)',
+                    '넷마블엔투 PD (前)',
+                    '플레로 게임즈 PD (前)',
+                ],
+            },
+        ],
+    });
+});
+
+
+
 app.use('/user/1/keyword', (req, res) => {
     res.json({
         usn: 1,

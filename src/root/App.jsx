@@ -20,7 +20,6 @@ const App = () => {
             <UserKeywordProvider>
               <Route exact path='/' component={Intro} />
               <Route exact path='/main' component={Main} />
-
               <Route exact path='/mypage' component={MyPage} />
             </UserKeywordProvider>
           </KeywordProvider>

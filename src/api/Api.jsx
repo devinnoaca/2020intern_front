@@ -12,11 +12,29 @@ export default {
         return axios.get('/user/1/career'); 
     },
 
-    getKeyword(){
+    getKeyword() {
         return axios.get('/keyword');
     },
 
     getUserKeyword(){
         return axios.get('/user/1/keyword'); 
     },
+
+    getMentorList() {
+        return axios.post('/getMentorList', {
+            checkedKeyword: [{
+                    keywordId: 1,
+                    keywordName: 'java', 
+                    catergoryName: 1,
+                }, {
+                    keywordId: 2, 
+                    keywordName: 'java', 
+                    catergoryName: 2,
+                }, {
+                    keywordId: 3, 
+                    keywordName: 'java', 
+                    catergoryName: 3,
+                },]
+        })
+    }
 };

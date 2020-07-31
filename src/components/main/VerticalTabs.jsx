@@ -66,6 +66,8 @@ export default function VerticalTabs() {
     const handleClick = (keyword2) => {
         return (() => {
             console.log("클릭은됬다");
+            console.log("문제의부분",checkedKeywordList);
+            
             setCheckedKeywordList([...checkedKeywordList,keyword2]);
         });
     };
