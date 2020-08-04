@@ -38,7 +38,13 @@ const MyProfileC = () => {
             setEditCareer(false);
         }
     }
-    
+
+    const make = userCareer.map((career, index) => {
+        return (
+             <div key={index}>{career}</div>
+        );
+    })
+
     useEffect(() => {
         console.log('getUserProfile useEffect');
         const getUserProfile = async () => {
@@ -102,17 +108,25 @@ const MyProfileC = () => {
             <div className="userCareer">
                 {
                     (eidtCareer)
-                        ? (
+                        ? ( 
                             userCareer.map((career, index) => {
-                                return <p key={index}><input name={index} value={career} onChange={onChangeCareer} /></p>;
-                            })
+                                return (   
+                                    <p key={index}>
+                                        <input name={index} value={career} onChange={onChangeCareer} />
+                                        <button>-</button>
+                                    </p>
+                                );
+                            }) 
                         )
                         : (
                             userCareer.map((career, index) => {
-                                return <div key={index}>{career}</div>;
+                                return (
+                                    <div key={index}>{career}</div>
+                                );
                             })
-                        )
+                         )
                 }
+                <button>+</button>
                 <button onClick={changeEditCareerMode}>경력 수정</button>
             </div>
         </div>

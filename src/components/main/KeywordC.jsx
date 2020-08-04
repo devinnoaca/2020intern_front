@@ -34,7 +34,6 @@ const KeywordC = () => {
                 .then((res) => {
                     setCheckedKeywordList(res.data.recommendKeyword);
                     console.log("유저 추천 키워드 :", res.data.recommendKeyword);
-                    
                 });
         };
 
