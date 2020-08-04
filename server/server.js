@@ -201,8 +201,8 @@ app.use('/user/1/matching/2', (req, res) => {
         refuseMatchingList: [
             {
                 matchingId: 2,
-                mentor_USN: 1,
-                mentee_USN: 2,
+                mentor_USN: 3,
+                mentee_USN: 4,
                 time_req: '2019-2-3 19:00',
                 time_res: '2019-2-3 19:00',
                 state: 2,
@@ -229,8 +229,8 @@ app.use('/user/1/matching/2', (req, res) => {
             },
             {
                 matchingId: 4,
-                mentor_USN: 1,
-                mentee_USN: 2,
+                mentor_USN: 5,
+                mentee_USN: 6,
                 time_req: '2019-2-3 19:00',
                 time_res: '2019-2-3 19:00',
                 state: 2,
@@ -261,11 +261,11 @@ app.use('/user/1/matching/2', (req, res) => {
 
 app.use('/user/1/matching/0', (req, res) => {
     res.json({
-        refuseMatchingList: [
+        waitMatchingList: [
             {
                 matchingId: 2,
-                mentor_USN: 1,
-                mentee_USN: 2,
+                mentor_USN: 155,
+                mentee_USN: 222,
                 time_req: '2019-2-3 19:00',
                 time_res: null,
                 state: 0,
@@ -292,8 +292,8 @@ app.use('/user/1/matching/0', (req, res) => {
             },
             {
                 matchingId: 4,
-                mentor_USN: 1,
-                mentee_USN: 2,
+                mentor_USN: 1123,
+                mentee_USN: 2123,
                 time_req: '2019-2-3 19:00',
                 time_res: null,
                 state: 0,
