@@ -131,7 +131,198 @@ app.use('/user/1/career', (req, res) => {
     });
 });
 
-app.use('/keyword', (req, res) => {
+app.use('/user/1/matching/1', (req, res) => {
+    res.json({
+        acceptMatchingList: [
+            {
+                matchingId: 1,
+                mentor_USN: 1,
+                mentee_USN: 2,
+                time_req: '2019-2-3 19:00',
+                time_res: '2019-2-3 19:00',
+                state: 1,
+                req_reason: 'hubuh',
+                reject_message: null,
+                isChecked: true,
+                keywordList:[
+                    {
+                        matchingId: 1,
+                        keywordName: 'java',
+                        categortName: '개발',                
+                    },
+                    {
+                        matchingId: 1,
+                        keywordName: 'javascript',
+                        categortName: '개발',
+                    },
+                    {
+                        matchingId: 1,
+                        keywordName: 'mysql',
+                        categortName: '데이터베이스',
+                    },
+
+                ]
+            },
+            {
+                matchingId: 3,
+                mentor_USN: 1,
+                mentee_USN: 2,
+                time_req: '2019-2-3 19:00',
+                time_res: '2019-2-3 19:00',
+                state: 1,
+                req_reason: 'asdfasdf',
+                reject_message: null,
+                isChecked: true,
+                keywordList: [
+                    {
+                        matchingId: 3,
+                        keywordName: 'java',
+                        categortName: '개발',
+                    },
+                    {
+                        matchingId: 3,
+                        keywordName: 'javascript',
+                        categortName: '개발',
+                    },
+                    {
+                        matchingId: 3,
+                        keywordName: 'mysql',
+                        categortName: '데이터베이스',
+                    },
+
+                ]
+            },
+        ],
+    });
+});
+
+app.use('/user/1/matching/2', (req, res) => {
+    res.json({
+        refuseMatchingList: [
+            {
+                matchingId: 2,
+                mentor_USN: 1,
+                mentee_USN: 2,
+                time_req: '2019-2-3 19:00',
+                time_res: '2019-2-3 19:00',
+                state: 2,
+                req_reason: 'asdfasdf',
+                reject_message: 'asdfasdf',
+                isChecked: true,
+                keywordList: [
+                    {
+                        matchingId: 2,
+                        keywordName: 'java',
+                        categortName: '개발',
+                    },
+                    {
+                        matchingId: 2,
+                        keywordName: 'javascript',
+                        categortName: '개발',
+                    },
+                    {
+                        matchingId: 2,
+                        keywordName: 'mysql',
+                        categortName: '데이터베이스',
+                    },
+                ]
+            },
+            {
+                matchingId: 4,
+                mentor_USN: 1,
+                mentee_USN: 2,
+                time_req: '2019-2-3 19:00',
+                time_res: '2019-2-3 19:00',
+                state: 2,
+                req_reason: 'asdf',
+                reject_message: 'adsfasdf',
+                isChecked: true,
+                keywordList: [
+                    {
+                        matchingId: 4,
+                        keywordName: 'java',
+                        categortName: '개발',
+                    },
+                    {
+                        matchingId: 4,
+                        keywordName: 'javascript',
+                        categortName: '개발',
+                    },
+                    {
+                        matchingId: 4,
+                        keywordName: 'mysql',
+                        categortName: '데이터베이스',
+                    },
+                ]
+            },
+        ],
+    });
+});
+
+app.use('/user/1/matching/0', (req, res) => {
+    res.json({
+        refuseMatchingList: [
+            {
+                matchingId: 2,
+                mentor_USN: 1,
+                mentee_USN: 2,
+                time_req: '2019-2-3 19:00',
+                time_res: null,
+                state: 0,
+                req_reason: 'asdfasdf',
+                reject_message: '',
+                isChecked: true,
+                keywordList: [
+                    {
+                        matchingId: 2,
+                        keywordName: 'java',
+                        categortName: '개발',
+                    },
+                    {
+                        matchingId: 2,
+                        keywordName: 'javascript',
+                        categortName: '개발',
+                    },
+                    {
+                        matchingId: 2,
+                        keywordName: 'mysql',
+                        categortName: '데이터베이스',
+                    },
+                ]
+            },
+            {
+                matchingId: 4,
+                mentor_USN: 1,
+                mentee_USN: 2,
+                time_req: '2019-2-3 19:00',
+                time_res: null,
+                state: 0,
+                req_reason: 'asdfasdf',
+                reject_message: '',
+                isChecked: true,
+                keywordList: [
+                    {
+                        matchingId: 4,
+                        keywordName: 'java',
+                        categortName: '개발',
+                    },
+                    {
+                        matchingId: 4,
+                        keywordName: 'javascript',
+                        categortName: '개발',
+                    },
+                    {
+                        matchingId: 4,
+                        keywordName: 'mysql',
+                        categortName: '데이터베이스',
+                    },
+                ]
+            },
+        ],
+    });
+});
+
+app.use('/main/keyword', (req, res) => {
     res.json({
         allCategory: [
             {

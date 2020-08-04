@@ -33,7 +33,7 @@ const HeaderRight = () => {
                     <Avatar />
                 </IconButton>
                 <div id="myDropdown" className="dropdown-content">
-                    <Link to='/login'><div>내 요청목록</div></Link>
+                    <Link to='/mymentoring'><div>내 요청목록</div></Link>
                     <Link to='/mypage'><div>내 프로필</div></Link>
                     <Link to='/login'><div>내 계정설정</div></Link>
                     <hr/>
