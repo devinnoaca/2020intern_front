@@ -1,8 +1,8 @@
 import React from 'react';
 
-import SimpleTabs from 'components/mymentoring/SimpleTabs';
+import SimpleTabs from 'components/matching/SimpleTabs';
 
-const MyMentoring = () => {
+const Matching = () => {
     return (
         <>
         <h1>내 요청목록 페이지</h1>
@@ -11,4 +11,4 @@ const MyMentoring = () => {
     );
 };
 
-export default MyMentoring;
+export default Matching;
