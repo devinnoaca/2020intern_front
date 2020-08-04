@@ -96,10 +96,10 @@ const MyProfileC = () => {
                     )
                     : (
                         <>
-                            <div>{userProfile.name}</div>
-                            <div>{userProfile.company}</div>
-                            <div>{userProfile.email}</div>
-                            <div>{userProfile.description}</div>
+                            <div className="userName">{userProfile.name}</div>
+                            <div className="userCompany">{userProfile.company}</div>
+                            <div className="userEmail">{userProfile.email}</div>
+                            <div className="userDescription">{userProfile.description}</div>
                         </>
                     )
                 }

@@ -42,7 +42,7 @@ const KeywordC = () => {
     }, [setCheckedKeywordList]);
 
     return (
-        <div className="keyWordCW">
+        <div className="keywordCW">
             <SearchKeywordB />
             <KeywordB />
             <PickedKeywordB />
