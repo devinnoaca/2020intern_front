@@ -4,7 +4,7 @@
     justify-content: space-between;
 }
 
-.keyWordCW{
+.keywordCW{
     border: 0.5px solid black;
     display: flex;
     flex-direction: column;
