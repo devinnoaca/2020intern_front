@@ -2,12 +2,18 @@ import React from 'react';
 
 const MyKeywordB = ({ keyword }) => {
     const makeKeyword = () => {
-        if(keyword[0] === undefined) {
-            return (<div></div>);
+        if (keyword[0] === undefined) {
+            return (
+                <div></div>
+            );
         } else {
-            return (keyword.map((keyword, index) => {
-                return (<div key={index}>{keyword.keywordName}</div>);
-            }));
+            return (
+                keyword.map((keyword, index) => {
+                    return (
+                        <div key={index}>{keyword.keywordName}</div>
+                    );
+                })
+            );
         }
     };
 
