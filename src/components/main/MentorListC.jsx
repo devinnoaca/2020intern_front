@@ -5,6 +5,8 @@ import 'style/Main.css';
 import MentorListB from 'components/main/MentorListB';
 import MentorListContext from 'context/MentorListContext';
 
+import Pagination from '@material-ui/lab/Pagination';
+
 const MentorListC = () => {
     const { setMentorList } = useContext(MentorListContext);
 
@@ -25,7 +27,7 @@ const MentorListC = () => {
     return (
         <div className="mentorListCW">
             <MentorListB />
-            <div>pagination</div>
+            <Pagination count={10} size="large" className="mentorBPagination"/>
         </div>
     );
 };

@@ -29,7 +29,6 @@ app.use('/mentorList', (req, res) => {
                 description: '국민대학교 4학년 이지훈입니다.',
                 company: '국민대학교',
                 career: ['log분석기 개발', '육군 만기 전역', '솔로 9개월차'],
-
             },
             {
                 usn: 2,

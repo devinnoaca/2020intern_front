@@ -31,9 +31,10 @@
     margin-bottom: 1rem;
 }
 
-.mentorListCW{
+.mentorListCW {
     border: 0.5px solid black;
     margin-top: 1rem;
+    padding-bottom: 1rem;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -43,10 +44,24 @@
     display: none;
 }
 
-.mentorListBW {
-}
-
 .mentorCard {
     display: flex;
     flex-direction: row;
+}
+
+.mentorB {
+    display: flex;
+}
+
+.mentorBL {
+    text-align: center;
+    width: 40%;
+}
+
+.applySubmit {
+    width: 100%;
+}
+
+.mentorBPagination {
+    margin-top: 1rem;
 }

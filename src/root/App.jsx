@@ -10,7 +10,6 @@ import UserKeywordProvider from 'provider/UserKeywordProvider';
 import MentorListProvider from 'provider/MentorListProvider';
 
 import Container from '@material-ui/core/Container';
-import 'bootstrap/dist/css/bootstrap.min.css';
 
 const App = () => {
   return (
