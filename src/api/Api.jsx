@@ -13,7 +13,7 @@ export default {
     },
 
     getKeyword() {
-        return axios.get('/keyword');
+        return axios.get('/main/keyword');
     },
 
     getUserKeyword(){
@@ -22,5 +22,17 @@ export default {
 
     getMentorList() {
         return axios.get('/mentorList');
-    }
+    },
+
+    getWaitMatchingList(){
+        return axios.get('/user/1/matching/0');
+    },
+
+    getAcceptMatchingList() {
+        return axios.get('/user/1/matching/1');
+    },
+
+    getRefuseMatchingList() {
+        return axios.get('/user/1/matching/2');
+    },
 };
