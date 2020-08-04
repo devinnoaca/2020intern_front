@@ -89,34 +89,34 @@ app.use('/user/1/keyword', (req, res) => {
         usn: 1,
         allKeyword: [
             {
-                keywordId: 1,
+                keywordId: 1111,
                 keywordName: 'a',
                 categoryName: '개발/프로그래밍',
             },
             {
-                keywordId: 2,
+                keywordId: 2222,
                 keywordName: 'b',
                 categoryName: '디자인',
             },
             {
-                keywordId: 3,
+                keywordId: 3333,
                 keywordName: 'c',
                 categoryName: '데이터',
             },
         ],
         recommendKeyword: [
             {
-                keywordId: 1,
+                keywordId: 1124123,
                 keywordName: 'qwe',
                 categoryName: '업무 스킬',
             },
             {
-                keywordId: 2,
+                keywordId: 21231,
                 keywordName: 'asd',
                 categoryName: '업무 스킬',
             },
             {
-                keywordId: 3,
+                keywordId: 313231,
                 keywordName: 'zxcs',
                 categoryName: '업무 스킬',
             },
