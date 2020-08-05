@@ -3,7 +3,6 @@ import React, { useEffect, useContext } from 'react';
 import Api from 'api/Api';
 import Chip from '@material-ui/core/Chip';
 import KeywordB from 'components/main/KeywordB';
-import PickedKeywordB from 'components/main/PickedKeywordB';
 import KeywordContext from 'context/KeywordContext';
 
 import Button from 'react-bootstrap/Button'
