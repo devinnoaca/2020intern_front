@@ -1,23 +1,21 @@
-import React, { useEffect, useContext } from 'react';
+import React, { useContext } from 'react';
 
-import ChipsArray from "components/main/ChipsArray";
 import KeywordContext from 'context/KeywordContext';
+import ChipsArray from "components/main/ChipsArray";
+import VerticalTabs from 'components/main/VerticalTabs';
 
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
-import VerticalTabs from 'components/main/VerticalTabs';
+
 
 const MyVerticallyCenteredModal1 = (props) => {
-    const { setTempList } = useContext(KeywordContext);
+    const { tempList } = useContext(KeywordContext);
     const { setList, ...rest } = props;
 
-    const saveKeywords = () => {
-
+    const saveKeyword = () => {
+        props.onHide();
+        setList(tempList);
     }
-
-    useEffect(() => {
-        setTempList(props.list)
-    }, [props.list, setTempList]);
 
     return (
         <Modal {...rest} size="lg" aria-labelledby="contained-modal-title-vcenter"
@@ -28,11 +26,11 @@ const MyVerticallyCenteredModal1 = (props) => {
                 </Modal.Title>
             </Modal.Header>
             <Modal.Body>
-                <VerticalTabs list={props.list} setList={props.setList} />
+                <VerticalTabs />
                 <ChipsArray list={props.list} setList={props.setList} />
             </Modal.Body>
             <Modal.Footer>
-                <Button onClick={props.onHide}>저장</Button>
+                <Button onClick={saveKeyword}>저장</Button>
             </Modal.Footer>
         </Modal>
     );
