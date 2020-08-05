@@ -11,10 +11,6 @@ const MyVerticallyCenteredModal1 = (props) => {
     const { setTempList } = useContext(KeywordContext);
     const { setList, ...rest } = props;
 
-    const saveKeywords = () => {
-
-    }
-
     useEffect(() => {
         setTempList(props.list)
     }, [props.list, setTempList]);

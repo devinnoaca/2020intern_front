@@ -141,7 +141,7 @@ app.use('/user/1/matching/1', (req, res) => {
                 time_req: '2019-2-3 19:00',
                 time_res: '2019-2-3 19:00',
                 state: 1,
-                req_reason: 'hubuh',
+                req_reason: '수락되었습니다!!',
                 reject_message: null,
                 isChecked: true,
                 keywordList:[
@@ -170,7 +170,7 @@ app.use('/user/1/matching/1', (req, res) => {
                 time_req: '2019-2-3 19:00',
                 time_res: '2019-2-3 19:00',
                 state: 1,
-                req_reason: 'asdfasdf',
+                req_reason: '수락되었습니다222',
                 reject_message: null,
                 isChecked: true,
                 keywordList: [
@@ -206,7 +206,7 @@ app.use('/user/1/matching/2', (req, res) => {
                 time_req: '2019-2-3 19:00',
                 time_res: '2019-2-3 19:00',
                 state: 2,
-                req_reason: 'asdfasdf',
+                req_reason: '거절되었습니다!!!',
                 reject_message: 'asdfasdf',
                 isChecked: true,
                 keywordList: [
@@ -234,7 +234,7 @@ app.use('/user/1/matching/2', (req, res) => {
                 time_req: '2019-2-3 19:00',
                 time_res: '2019-2-3 19:00',
                 state: 2,
-                req_reason: 'asdf',
+                req_reason: '거절되었습니다!!!!',
                 reject_message: 'adsfasdf',
                 isChecked: true,
                 keywordList: [
@@ -269,7 +269,7 @@ app.use('/user/1/matching/0', (req, res) => {
                 time_req: '2019-2-3 19:00',
                 time_res: null,
                 state: 0,
-                req_reason: 'asdfasdf',
+                req_reason: '대기중입니다!!!!!',
                 reject_message: '',
                 isChecked: true,
                 keywordList: [
@@ -297,7 +297,7 @@ app.use('/user/1/matching/0', (req, res) => {
                 time_req: '2019-2-3 19:00',
                 time_res: null,
                 state: 0,
-                req_reason: 'asdfasdf',
+                req_reason: '대기중입니다222222',
                 reject_message: '',
                 isChecked: true,
                 keywordList: [

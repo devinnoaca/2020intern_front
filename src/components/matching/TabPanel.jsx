@@ -8,6 +8,7 @@ function TabPanel(props) {
     const { value, index, ...other } = props;
     const [modalShow, setModalShow] = useState(false);
     const [matchingList, setMatchingList] = useState([]);
+    const [pickedMatchingList, setPickedMatchingList] = useState([]);
 
     useEffect(() => {
         if (value === 0) {
@@ -15,7 +16,6 @@ function TabPanel(props) {
                 await Api
                     .getWaitMatchingList()
                     .then((res) => {
-                        console.log(res.data);
                         setMatchingList(res.data.waitMatchingList);
                     })
             };
@@ -30,7 +30,6 @@ function TabPanel(props) {
                 await Api
                     .getAcceptMatchingList()
                     .then((res) => {
-                        console.log(res.data);
                         setMatchingList(res.data.acceptMatchingList);
                     })
             };
@@ -45,7 +44,6 @@ function TabPanel(props) {
                 await Api
                     .getRefuseMatchingList()
                     .then((res) => {
-                        console.log(res.data);
                         setMatchingList(res.data.refuseMatchingList);
                     })
             };
@@ -66,19 +64,21 @@ function TabPanel(props) {
                 <>
                 {matchingList.map((matching) => {
                     return (
-                        <div key={matching.matchingId} onClick={() => setModalShow(true)} className="matchingList">
+                        <div key= { matching.matchingId }>
+                            <div onClick={() => { setModalShow(true); setPickedMatchingList(matching)}} className="matchingList">
                             <div>{matching.mentor_USN} 멘토</div>
                             <div>{matching.req_reason}</div>
                             <div>요청 시간 : {matching.time_req}</div>
                         </div>
+                        <MyVerticallyCenteredModal
+                            value={value}
+                            matchinglist={pickedMatchingList}
+                            show={modalShow}
+                            onHide={() => setModalShow(false)}
+                        />
+                        </div>
                     );
                 })}
-                <MyVerticallyCenteredModal
-                    value={value}
-                    matchinglist={matchingList}
-                    show={modalShow}
-                    onHide={() => setModalShow(false)}
-                />
                 </>
             )}
         </div>
