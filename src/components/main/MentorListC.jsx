@@ -15,13 +15,11 @@ const MentorListC = () => {
             await Api
                 .getMentorList()
                 .then((res)=>{
-                    console.log("검색한 멘토리스트 : ",res.data.mentorList);
                     setMentorList(res.data.mentorList);
                 })
         };
 
         getMentorList();
-        console.log("mentorListC getMentorList useEffect");
     }, [setMentorList]);
 
     return (

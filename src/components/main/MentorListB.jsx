@@ -3,6 +3,9 @@ import React, { useState, useContext } from 'react';
 import 'style/Main.css';
 import MentorListContext from 'context/MentorListContext';
 import image from 'style/logo192.png';
+import ChipsArray from "components/main/ChipsArray";
+import VerticalTabs from 'components/main/VerticalTabs';
+
 
 import Grid from '@material-ui/core/Grid';
 import { makeStyles } from '@material-ui/core/styles';
@@ -80,6 +83,8 @@ const MentorListB = () => {
                         </div>
                         <br />
                         <hr />
+                        <VerticalTabs />
+                        <ChipsArray list={props.list} setList={props.setList} />
                         <div className="mentorApply">
                             <TextField
                                 id="outlined-multiline-static"

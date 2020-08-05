@@ -9,8 +9,6 @@ const MyProfileC = () => {
     const [eidtProfile, setEditProfile] = useState(false);
     const [eidtCareer, setEditCareer] = useState(false);
 
-    console.log('MyProfileC start');
-
     const onChangeProfile = (event) => {
         setUserProfile({ ...userProfile, [event.target.name]: event.target.value });
     }
@@ -18,7 +16,6 @@ const MyProfileC = () => {
     const onChangeCareer = (event) => {
         userCareer[event.target.name] = event.target.value;
         setUserCareer([...userCareer]);
-        console.log(userCareer);
     }
 
     const changeEditProfileMode = (event) => {
@@ -40,11 +37,11 @@ const MyProfileC = () => {
     }
     
     useEffect(() => {
-        console.log('getUserProfile useEffect');
         const getUserProfile = async () => {
             await Api
                 .getUserProfile()
                 .then((res) => {
+                console.log(res.data);
                     setUserProfile({
                         usn: res.data.USN,
                         id: res.data.ID,
@@ -61,7 +58,6 @@ const MyProfileC = () => {
     }, [setUserProfile]);
 
     useEffect(() => {
-        console.log('getUserCareer useEffect');
         const getUserCareer = async () => {
             await Api
                 .getUserCareer()
