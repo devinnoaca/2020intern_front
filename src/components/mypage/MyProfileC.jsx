@@ -38,7 +38,7 @@ const MyProfileC = () => {
             setEditCareer(false);
         }
     }
-
+    
     useEffect(() => {
         console.log('getUserProfile useEffect');
         const getUserProfile = async () => {

@@ -1,6 +1,6 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 
-import KeywordContext from 'context/KeywordContext'
+import KeywordContext from 'context/KeywordContext';
 
 import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
@@ -10,7 +10,7 @@ import Chip from '@material-ui/core/Chip';
 
 function TabPanel(props) {
     const { children, value, index, ...other } = props;
-    
+
     return (
         <div
             role="tabpanel"
@@ -20,9 +20,7 @@ function TabPanel(props) {
             {...other}
         >
             {value === index && (
-                <div>
-                    {children}
-                </div>
+                <div>{children}</div>
             )}
         </div>
     );
@@ -47,30 +45,31 @@ const useStyles = makeStyles((theme) => ({
         backgroundColor: theme.palette.background.paper,
         display: 'flex',
         height: 330,
+        width: '100%',
     },
     tabs: {
         borderRight: `1px solid ${theme.palette.divider}`,
     },
 }));
 
-export default function VerticalTabs() {
+export default function VerticalTabs({ list, changeList }) {
     const classes = useStyles();
-    const [value, setValue] = React.useState(0);
+    const [value, setValue] = useState(0);
 
-    const { keywordList, checkedKeywordList, setCheckedKeywordList } = useContext(KeywordContext);
+    console.log(list);
+
+    const { keywordList, tempList, setTempList } = useContext(KeywordContext);
 
     console.log('VertivalTapbs start');
-    
+
     const handleClick = (keyword) => {
         return (() => {
             console.log("클릭은됬다");
-            console.log("문제의부분",checkedKeywordList);
-            
-            setCheckedKeywordList([...checkedKeywordList,keyword]);
+            setTempList([...tempList, keyword]);
         });
     };
 
-    const makeCategory = keywordList.map((category,index)=>{
+    const makeCategory = keywordList.map((category, index) => {
         return (
             <Tab key={index} label={category.categoryName} {...a11yProps(index)} />
         );
@@ -81,7 +80,7 @@ export default function VerticalTabs() {
             <TabPanel key={index} value={value} index={index}>
                 {category.keywordList.map((keyword) => {
                     return (
-                        <Chip key={keyword.keywordId} label={keyword.keywordName} onClick={handleClick(keyword)} style={{margin:2}}/>
+                        <Chip key={keyword.keywordId} label={keyword.keywordName} onClick={handleClick(keyword)} style={{ margin: 2 }} />
                     )
                 })}
             </TabPanel>

@@ -72,14 +72,14 @@ const MentorListB = () => {
                                 <p>{pickedMentor.description}</p>
                                 <h4>경력 :</h4>
                                 {pickedMentor.career.map((career) => {
-                                        return (
-                                            <p key={career}>{career}</p>
-                                        )
-                                    })}
+                                    return (
+                                        <p key={career}>{career}</p>
+                                    )
+                                })}
                             </div>
                         </div>
-                        <br/>
-                        <hr/>
+                        <br />
+                        <hr />
                         <div className="mentorApply">
                             <TextField
                                 id="outlined-multiline-static"
@@ -87,7 +87,7 @@ const MentorListB = () => {
                                 multiline
                                 rows={4}
                                 variant="outlined"
-                                style={{width:'100%'}}
+                                style={{ width: '100%' }}
                             />
                             <Button variant="contained" className="applySubmit">신청하기</Button>
                         </div>

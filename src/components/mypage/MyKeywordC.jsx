@@ -21,12 +21,12 @@ const MyKeywordC = () => {
         };
         getUserKeyword();
 
-    },[setAllKeyword, setrecommendKeyword]);
-    
-    return ( 
+    }, [setAllKeyword, setrecommendKeyword]);
+
+    return (
         <div className="myKeywordCW">
-            <MyKeywordB keyword={allKeyword}></MyKeywordB>
-            <MyKeywordB keyword={recommendKeyword}></MyKeywordB>
+            <MyKeywordB list={allKeyword} setList={setAllKeyword}></MyKeywordB>
+            <MyKeywordB list={recommendKeyword} setList={setrecommendKeyword}></MyKeywordB>
         </div>
     );
 };
