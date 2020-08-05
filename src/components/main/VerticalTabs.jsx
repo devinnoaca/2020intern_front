@@ -52,20 +52,16 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-export default function VerticalTabs({ list, changeList }) {
+export default function VerticalTabs() {
     const classes = useStyles();
     const [value, setValue] = useState(0);
-
-    console.log(list);
-
     const { keywordList, tempList, setTempList } = useContext(KeywordContext);
-
-    console.log('VertivalTapbs start');
 
     const handleClick = (keyword) => {
         return (() => {
-            console.log("클릭은됬다");
-            setTempList([...tempList, keyword]);
+            if (!tempList.includes(keyword)) {
+                setTempList([...tempList, keyword]);
+            }
         });
     };
 

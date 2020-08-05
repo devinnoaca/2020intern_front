@@ -7,10 +7,7 @@ import UserKeywordContext from 'context/UserKeywordContext';
 const MyKeywordC = () => {
     const { allKeyword, setAllKeyword, recommendKeyword, setrecommendKeyword } = useContext(UserKeywordContext);
 
-    console.log('MyKeywordC start');
-
     useEffect(() => {
-        console.log('MyKeywordC useEffect');
         const getUserKeyword = async () => {
             await Api
                 .getUserKeyword()

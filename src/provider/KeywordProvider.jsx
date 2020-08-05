@@ -6,8 +6,6 @@ const KeywordProvider = ({ children }) => {
     const [checkedKeywordList, setCheckedKeywordList] = useState([]);
     const [tempList, setTempList] = useState([]);
 
-    console.log('Provider start');
-
     const keyword = {
         keywordList, setKeywordList, 
         checkedKeywordList, setCheckedKeywordList,

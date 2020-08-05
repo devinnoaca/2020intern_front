@@ -24,9 +24,6 @@ const ChipsArray = ({ list }) => {
     const classes = useStyles();
     const { tempList, setTempList } = useContext(KeywordContext);
 
-    let funStyle = 'color:blue';
-    console.log('%cchipsArray start', funStyle);
-
     const handleDelete = (chipToDelete) => {
         return (() => {
             setTempList((chips) => chips.filter((chip) => chip !== chipToDelete));
