@@ -11,7 +11,7 @@ import Modal from 'react-bootstrap/Modal';
 const MyVerticallyCenteredModal1 = (props) => {
     const { tempList } = useContext(KeywordContext);
     const { setList, ...rest } = props;
-
+  
     const saveKeyword = () => {
         props.onHide();
         setList(tempList);
