@@ -4,12 +4,14 @@ import KeywordContext from 'context/KeywordContext';
 const KeywordProvider = ({ children }) => {
     const [keywordList, setKeywordList] = useState([]);
     const [checkedKeywordList, setCheckedKeywordList] = useState([]);
+    const [tempList, setTempList] = useState([]);
 
     console.log('Provider start');
 
     const keyword = {
         keywordList, setKeywordList, 
         checkedKeywordList, setCheckedKeywordList,
+        tempList, setTempList,
     };
 
     return (

@@ -2,16 +2,19 @@ import React, { useEffect, useContext } from 'react';
 
 import Api from 'api/Api';
 import SearchKeywordB from 'components/main/SearchKeywordB';
-import KeywordB from 'components/main/KeywordB';
-import PickedKeywordB from 'components/main/PickedKeywordB';
 import KeywordContext from 'context/KeywordContext';
+import VerticalTabs from 'components/main/VerticalTabs';
+import ChipsArray from "components/main/ChipsArray"
+
+import IconButton from '@material-ui/core/IconButton';
+import SearchIcon from '@material-ui/icons/Search';
 
 const KeywordC = () => {
-    const { setKeywordList, setCheckedKeywordList } = useContext(KeywordContext);
+    const { setKeywordList, checkedKeywordList, setCheckedKeywordList, setTempList } = useContext(KeywordContext);
 
     let funStyle = 'color:blue';
     console.log('%ckeywordC start', funStyle);
-    
+
     useEffect(() => {
         const getKeyword = async () => {
             await Api
@@ -19,10 +22,10 @@ const KeywordC = () => {
                 .then((res) => {
                     setKeywordList(res.data.allCategory);
                     console.log("전체 카테고리,키워드 : ", res.data.allCategory);
-                    
+
                 });
         };
-       
+
         getKeyword();
         console.log('KeywordC getKeyword useEffect');
     }, [setKeywordList]);
@@ -41,11 +44,20 @@ const KeywordC = () => {
         console.log('KeywordC getUserKeyword useEffect');
     }, [setCheckedKeywordList]);
 
+    useEffect(() => {
+        setTempList(checkedKeywordList)
+    }, [checkedKeywordList, setTempList]);
+
     return (
         <div className="keywordCW">
             <SearchKeywordB />
-            <KeywordB />
-            <PickedKeywordB />
+            <VerticalTabs list={checkedKeywordList} changeList={setCheckedKeywordList} />
+            <div className="row">
+                <ChipsArray list={checkedKeywordList} changeList={setCheckedKeywordList} />
+                <IconButton>
+                    <SearchIcon />
+                </IconButton>
+            </div>
         </div>
     );
 };

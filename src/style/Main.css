@@ -11,7 +11,6 @@
     justify-content: space-around;
     min-width: 1000px;
     align-items: center;
-    
 }
 
 .searchKeywordBW {
@@ -21,16 +20,6 @@
     
 }
 
-.keywordBW {
-    border: 0.5px solid black;
-    width: 100%;
-}
-
-.pickedKeywordBW {
-    margin-top: 1rem;
-    margin-bottom: 1rem;
-}
-
 .mentorListCW {
     border: 0.5px solid black;
     margin-top: 1rem;
@@ -38,10 +27,6 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-}
-
-.MuiAutocomplete-endAdornment {
-    display: none;
 }
 
 .mentorCard {
