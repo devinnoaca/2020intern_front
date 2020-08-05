@@ -40,10 +40,6 @@
     align-items: center;
 }
 
-.MuiAutocomplete-endAdornment {
-    display: none;
-}
-
 .mentorCard {
     display: flex;
     flex-direction: row;

@@ -39,12 +39,6 @@ const MyProfileC = () => {
         }
     }
 
-    const make = userCareer.map((career, index) => {
-        return (
-             <div key={index}>{career}</div>
-        );
-    })
-
     useEffect(() => {
         console.log('getUserProfile useEffect');
         const getUserProfile = async () => {
