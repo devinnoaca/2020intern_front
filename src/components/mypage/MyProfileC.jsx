@@ -41,7 +41,6 @@ const MyProfileC = () => {
             await Api
                 .getUserProfile()
                 .then((res) => {
-                console.log(res.data);
                     setUserProfile({
                         usn: res.data.USN,
                         id: res.data.ID,

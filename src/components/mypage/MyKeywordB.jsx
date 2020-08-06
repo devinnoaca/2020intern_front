@@ -11,11 +11,7 @@ const MyKeywordB = ({ list, setList }) => {
     const [modalShow, setModalShow] = useState(false);
 
     const makeKeyword = () => {
-        if (list[0] === undefined) {
-            return (
-                <div></div>
-            );
-        } else {
+        if (list[0] !== undefined) {
             return (
                 list.map((keyword, index) => {
                     return (
