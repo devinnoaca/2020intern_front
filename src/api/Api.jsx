@@ -16,17 +16,9 @@ export default {
         return axios.get('/user/1/keyword'); 
     },
 
-    getWaitMatchingList(){
-        return axios.get('/user/2/1/matching/0');
+    getMatchingList(userId, userType, matchingType){
+        return axios.get(`/user${userId}/${userType}/matching/${matchingType}`);
     },
-
-    getAcceptMatchingList() {
-        return axios.get('/user/2/1/matching/1');
-    },
-
-    getRefuseMatchingList() {
-        return axios.get('/user/2/1/matching/2');
-    },    
 
     getKeyword() {
         return axios.get('/main/keyword');

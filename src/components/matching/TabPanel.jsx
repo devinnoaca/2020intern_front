@@ -1,66 +1,76 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 
 import Api from 'api/Api';
 import 'style/Matching.css';
 import MyVerticallyCenteredModal from 'components/matching/MyVerticallyCenteredModal';
+import UserContext from 'context/UserContext';
 
 function TabPanel(props) {
     const { value, index, ...other } = props;
+    const [tabValue, setTabValue] = useState();
     const [modalShow, setModalShow] = useState(false);
     const [matchingList, setMatchingList] = useState([]);
     const [pickedMatchingList, setPickedMatchingList] = useState([]);
+    const { userProfile } = useContext(UserContext);
 
     useEffect(() => {
-        if (value === 0) {
-            const getWaitMatchingList = async () => {
+        setTabValue(value);
+    },[value])
+
+    useEffect(() => {
+        if (tabValue === 0) {
+            const getMatchingList = async () => {
                 await Api
-                    .getWaitMatchingList()
+                    .getMatchingList(userProfile.usn,userProfile.type,tabValue)
                     .then((res) => {
+                        console.log("데이터받아오냐", res.data);
                         setMatchingList(res.data.waitMatchingList);
                     })
             };
 
-            getWaitMatchingList();
+            getMatchingList();
         }
-    }, [value]);
+    }, [tabValue, userProfile.usn, userProfile.type]);
 
-    useEffect(() => {
-        if (value === 1) {
-            const getAcceptMatchingList = async () => {
-                await Api
-                    .getAcceptMatchingList()
-                    .then((res) => {
-                        setMatchingList(res.data.acceptMatchingList);
-                    })
-            };
+    // useEffect(() => {
+    //     if (tabValue === 1) {
+    //         const getAcceptMatchingList = async () => {
+    //             await Api
+    //                 .getAcceptMatchingList()
+    //                 .then((res) => {
+    //                     console.log("데이터받아오냐", res.data);
+    //                     setMatchingList(res.data.acceptMatchingList);
+    //                 })
+    //         };
 
-            getAcceptMatchingList();
-        }
-    }, [value]);
+    //         getAcceptMatchingList();
+    //     }
+    // }, [tabValue]);
 
-    useEffect(() => {
-        if (value === 2) {
-            const getRefuseMatchingList = async () => {
-                await Api
-                    .getRefuseMatchingList()
-                    .then((res) => {
-                        setMatchingList(res.data.refuseMatchingList);
-                    })
-            };
+    // useEffect(() => {
+    //     if (tabValue === 2) {
+    //         const getRefuseMatchingList = async () => {
+    //             await Api
+    //                 .getRefuseMatchingList()
+    //                 .then((res) => {
+    //                     console.log("데이터받아오냐", res.data);
+    //                     setMatchingList(res.data.refuseMatchingList);
+    //                 })
+    //         };
 
-            getRefuseMatchingList();
-        }
-    }, [value]);
+    //         getRefuseMatchingList();
+    //     }
+    // }, [tabValue]);
 
     return (
         <div
             role="tabpanel"
-            hidden={value !== index}
+            hidden={tabValue !== index}
             id={`simple-tabpanel-${index}`}
             aria-labelledby={`simple-tab-${index}`}
             {...other}
         >
-            {value === index && (
+            {tabValue === index && (
                 <>
                 {matchingList.map((matching) => {
                     return (
@@ -71,7 +81,7 @@ function TabPanel(props) {
                             <div>요청 시간 : {matching.time_req}</div>
                         </div>
                         <MyVerticallyCenteredModal
-                            value={value}
+                            value={tabValue}
                             matchinglist={pickedMatchingList}
                             show={modalShow}
                             onHide={() => setModalShow(false)}

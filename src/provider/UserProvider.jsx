@@ -9,6 +9,7 @@ const UserProvider = ({ children }) => {
         password: '',
         description: '',
         company: '',
+        type: '',
     });
     const [userCareer, setUserCareer] = useState([]);
 

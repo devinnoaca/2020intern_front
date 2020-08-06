@@ -49,6 +49,7 @@ const MyProfileC = () => {
                         password: res.data.password,
                         description: res.data.description,
                         company: res.data.company,
+                        type: res.data.type,
                     });
                 });
         };
@@ -61,6 +62,8 @@ const MyProfileC = () => {
             await Api
                 .getUserCareer()
                 .then((res) => {
+                    console.log("데이터받아왔냐고씨발!!!!!!",res.data);
+                    
                     setUserCareer(res.data.career)
                 });
         };
