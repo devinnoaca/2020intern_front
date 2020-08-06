@@ -4,33 +4,25 @@ axios.defaults.baseURL = 'http://10.19.247.182:3001';
 //axios.defaults.baseURL = 'http://localhost:3001';
 
 export default {
-    getUserProfile() {
-        return axios.get('/user/inform/1'); 
-    },
+    getUserProfile(usn) {
+        return axios.get(`/user/inform/${usn}`); 
 
     editUserProfile(data) {
         return axios.put('/user/inform/1',data); 
     },
 
-    getUserCareer() {
-        return axios.get('/user/career/1'); 
+    getUserCareer(usn) {
+        return axios.get(`/user/career/${usn}`); 
     },
 
-    getUserKeyword(){
-        return axios.get('/user/keyword/1'); 
+    getUserKeyword(usn){
+        return axios.get(`/user/keyword/${usn}`); 
     },
-
-    getWaitMatchingList(){
-        return axios.get('/user/2/1/matching/0');
+      
+    getMatchingList(userId, userType, matchingType){
+        console.log(`/user/${userId}/${userType}/matching/${matchingType}`);
+        return axios.get(`/user/${userId}/${userType}/matching/${matchingType}`);
     },
-
-    getAcceptMatchingList() {
-        return axios.get('/user/2/1/matching/1');
-    },
-
-    getRefuseMatchingList() {
-        return axios.get('/user/2/1/matching/2');
-    },    
 
     getKeyword() {
         return axios.get('/main/keyword');

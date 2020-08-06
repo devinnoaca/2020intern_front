@@ -54,6 +54,7 @@ const MyProfileC = () => {
                         email: res.data.email,
                         description: res.data.description,
                         company: res.data.company,
+                        type: res.data.type,
                     });
                 });
         };
