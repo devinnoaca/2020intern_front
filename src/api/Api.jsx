@@ -12,12 +12,12 @@ export default {
         return axios.put('/user/inform/1',data); 
     },
 
-    getUserCareer(usn) {
-        return axios.get(`/user/career/${usn}`); 
+    getUserCareer() {
+        return axios.get(`/user/career/1`); 
     },
 
-    getUserKeyword(usn){
-        return axios.get(`/user/keyword/${usn}`); 
+    getUserKeyword(){
+        return axios.get(`/user/keyword/1`); 
     },
       
     getMatchingList(usn, userType, matchingType){

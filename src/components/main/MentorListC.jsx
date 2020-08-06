@@ -18,18 +18,20 @@ const MentorListC = () => {
                 .getMentorList({
                     keyword: checkedKeywordList,
                 })
-                .then((res)=>{
+                .then((res) => {
                     setMentorList(res.data.mentorList);
                 })
         };
 
-        getMentorList();
+        if (checkedKeywordList[0] !== undefined) {
+            getMentorList();
+        }
     }, [checkedKeywordList, setMentorList]);
 
     return (
         <div className="mentorListCW">
             <MentorListB />
-            <Pagination count={10} size="large" className="mentorBPagination"/>
+            <Pagination count={10} size="large" className="mentorBPagination" />
         </div>
     );
 };
