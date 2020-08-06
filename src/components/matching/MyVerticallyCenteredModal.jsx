@@ -27,8 +27,6 @@ function MyVerticallyCenteredModal(props) {
     }, [props.value]);
 
     useEffect(() => {
-        console.log("있는상태에서 넣었냐?",props.matchinglist);
-        
         setMatchingList(props.matchinglist);
     }, [props.matchinglist]);
 
@@ -37,7 +35,6 @@ function MyVerticallyCenteredModal(props) {
             await Api
                 .getUserProfile()
                 .then((res) => {
-                    console.log("멘토프로필", res.data);
                     setMentorProfile({
                         usn: res.data.USN,
                         id: res.data.ID,
@@ -58,7 +55,6 @@ function MyVerticallyCenteredModal(props) {
             await Api
                 .getUserCareer()
                 .then((res) => {
-                    console.log("멘토커리어", res.data.career);
                     setMentorCareer(res.data.career);
                 })
         }
@@ -71,7 +67,6 @@ function MyVerticallyCenteredModal(props) {
             await Api
                 .getUserKeyword()
                 .then((res) => {
-                    console.log("멘토키워드", res.data.allKeyword);
                     setMentorKeyword(res.data.allKeyword);
                 })
         }
