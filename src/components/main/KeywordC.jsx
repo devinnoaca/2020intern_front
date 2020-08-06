@@ -27,7 +27,7 @@ const KeywordC = () => {
     useEffect(() => {
         const getUserRecommendKeyword = async () => {
             await Api
-                .getUserKeyword()
+                .getUserKeyword(1)
                 .then((res) => {
                     setCheckedKeywordList(res.data.recommendKeyword);
                 });

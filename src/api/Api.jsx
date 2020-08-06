@@ -6,6 +6,7 @@ axios.defaults.baseURL = 'http://10.19.247.182:3001';
 export default {
     getUserProfile(usn) {
         return axios.get(`/user/inform/${usn}`); 
+    },
 
     editUserProfile(data) {
         return axios.put('/user/inform/1',data); 
@@ -19,9 +20,9 @@ export default {
         return axios.get(`/user/keyword/${usn}`); 
     },
       
-    getMatchingList(userId, userType, matchingType){
-        console.log(`/user/${userId}/${userType}/matching/${matchingType}`);
-        return axios.get(`/user/${userId}/${userType}/matching/${matchingType}`);
+    getMatchingList(usn, userType, matchingType){
+        console.log(`/user/${userType}/matching/${matchingType}/${usn}`);
+        return axios.get(`/user/${userType}/matching/${matchingType}/${usn}`);
     },
 
     getKeyword() {

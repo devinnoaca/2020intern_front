@@ -20,7 +20,8 @@ function TabPanel(props) {
     useEffect(() => {
         const getWaitMatchingList = async () => {
             await Api
-                .getMatchingList(userProfile.usn, userProfile.type, tabValue)
+                //.getMatchingList(userProfile.usn, userProfile.type, tabValue)
+                .getMatchingList(1,1,tabValue)
                 .then((res) => {
                     if (res.data.matchingList !== undefined) {
                         setMatchingList(res.data.matchingList);

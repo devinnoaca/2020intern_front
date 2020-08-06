@@ -57,7 +57,9 @@ function MyVerticallyCenteredModal(props) {
             await Api
                 .getUserCareer(props.matchinglist.oppositeUSN)
                 .then((res) => {
-                    setMentorCareer(res.data.career);
+                    if (res.data.career !== undefined){
+                        setMentorCareer(res.data.career);
+                    }
                 })
         }
 
@@ -69,7 +71,9 @@ function MyVerticallyCenteredModal(props) {
             await Api
                 .getUserKeyword(props.matchinglist.oppositeUSN)
                 .then((res) => {
-                    setMentorKeyword(res.data.allKeyword);
+                    if (res.data.allKeyword !== undefined) {
+                        setMentorKeyword(res.data.allKeyword);
+                    }
                 })
         }
 
@@ -84,6 +88,7 @@ function MyVerticallyCenteredModal(props) {
         >
             <Modal.Header closeButton>
                 <Modal.Title id="contained-modal-title-vcenter">
+                    {value}
                     {matchingList.mentor_USN} 멘토 소개
                 </Modal.Title>
             </Modal.Header>
