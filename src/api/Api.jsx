@@ -5,20 +5,19 @@ axios.defaults.baseURL = 'http://10.19.247.182:3001';
 
 export default {
     getUserProfile() {
-        return axios.get('/user/1/inform'); 
+        return axios.get('/user/inform/1'); 
     },
 
-    putUserProfile(data) {
-        console.log(data);
-        return axios.put('/user/1/inform',data); 
+    editUserProfile(data) {
+        return axios.put('/user/inform/1',data); 
     },
 
     getUserCareer() {
-        return axios.get('/user/1/career'); 
+        return axios.get('/user/career/1'); 
     },
 
     getUserKeyword(){
-        return axios.get('/user/1/keyword'); 
+        return axios.get('/user/keyword/1'); 
     },
 
     getWaitMatchingList(){
@@ -37,8 +36,8 @@ export default {
         return axios.get('/main/keyword');
     },
 
-    getMentorList() {
-        return axios.get('/mentorList');
+    getMentorList(data) {
+        return axios.post('/main/list',data);
     },
 
     

@@ -45,7 +45,7 @@ const KeywordC = () => {
             <SearchKeywordB />
             <VerticalTabs />
             <div className="row">
-                <ChipsArray list={checkedKeywordList} changeList={setCheckedKeywordList} />
+                <ChipsArray />
                 <IconButton>
                     <SearchIcon />
                 </IconButton>

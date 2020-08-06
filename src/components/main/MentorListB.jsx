@@ -44,16 +44,8 @@ const MentorListB = () => {
     });
     const { mentorList } = useContext(MentorListContext);
     const [modalShow, setModalShow] = React.useState(false);
-    const { tempList, setTempList } = React.useContext(KeywordContext);
-
-    
 
     function MyVerticallyCenteredModal(props) {
-        // const [value, setValue] = React.useState('Controlled');
-
-        // const handleChange = (event) => {
-        //     setValue(event.target.value);
-        // };
         return (
             <Modal
                 {...props}
