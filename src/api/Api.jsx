@@ -5,12 +5,10 @@ axios.defaults.baseURL = 'http://10.19.247.182:3001';
 
 export default {
     getUserProfile(usn) {
-        return axios.get(`/user/${usn}/inform`); 
-    },
+        return axios.get(`/user/inform/${usn}`); 
 
-    putUserProfile(data) {
-        console.log(data);
-        return axios.put('/user/1/inform',data); 
+    editUserProfile(data) {
+        return axios.put('/user/inform/1',data); 
     },
 
     getUserCareer(usn) {
@@ -20,7 +18,7 @@ export default {
     getUserKeyword(usn){
         return axios.get(`/user/keyword/${usn}`); 
     },
-
+      
     getMatchingList(userId, userType, matchingType){
         console.log(`/user/${userId}/${userType}/matching/${matchingType}`);
         return axios.get(`/user/${userId}/${userType}/matching/${matchingType}`);
@@ -30,8 +28,8 @@ export default {
         return axios.get('/main/keyword');
     },
 
-    getMentorList() {
-        return axios.get('/mentorList');
+    getMentorList(data) {
+        return axios.post('/main/list',data);
     },
 
     

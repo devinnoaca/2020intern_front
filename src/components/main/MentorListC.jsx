@@ -4,23 +4,27 @@ import Api from 'api/Api';
 import 'style/Main.css';
 import MentorListB from 'components/main/MentorListB';
 import MentorListContext from 'context/MentorListContext';
+import KeywordContext from 'context/KeywordContext';
 
 import Pagination from '@material-ui/lab/Pagination';
 
 const MentorListC = () => {
     const { setMentorList } = useContext(MentorListContext);
+    const { checkedKeywordList } = useContext(KeywordContext)
 
     useEffect(() => {
         const getMentorList = async () => {
             await Api
-                .getMentorList()
+                .getMentorList({
+                    keyword: checkedKeywordList,
+                })
                 .then((res)=>{
                     setMentorList(res.data.mentorList);
                 })
         };
 
         getMentorList();
-    }, [setMentorList]);
+    }, [checkedKeywordList, setMentorList]);
 
     return (
         <div className="mentorListCW">

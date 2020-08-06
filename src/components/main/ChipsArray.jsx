@@ -20,7 +20,7 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-const ChipsArray = ({ list }) => {
+const ChipsArray = () => {
     const classes = useStyles();
     const { tempList, setTempList } = useContext(KeywordContext);
 
