@@ -8,6 +8,11 @@ export default {
         return axios.get('/user/1/inform'); 
     },
 
+    putUserProfile(data) {
+        console.log(data);
+        return axios.put('/user/1/inform',data); 
+    },
+
     getUserCareer() {
         return axios.get('/user/1/career'); 
     },

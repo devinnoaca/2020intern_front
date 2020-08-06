@@ -9,7 +9,7 @@ app.use(bodyParser.json());
 app.use('/user/1/inform', (req, res) => {
     res.json({
         USN: 1,
-        userName: '이지훈',
+        name: '이지훈',
         email: 'wlgnssla311@gmail.com',
         password: 'jihun311',
         description: '국민대학교 4학년 이지훈입니다.',

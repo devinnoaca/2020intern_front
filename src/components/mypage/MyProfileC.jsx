@@ -14,15 +14,22 @@ const MyProfileC = () => {
     }
 
     const onChangeCareer = (event) => {
-        userCareer[event.target.name] = event.target.value;
+        userCareer[event.target.name].content = event.target.value;
         setUserCareer([...userCareer]);
     }
 
-    const changeEditProfileMode = (event) => {
+    const changeEditProfileMode = async (event) => {
         if (eidtProfile === false) {
             setEditProfile(true);
         } else {
             event.preventDefault();
+            
+            await Api
+                .putUserProfile(userProfile)
+                .then((res) => {
+                    console.log(res.data);
+                })
+
             setEditProfile(false);
         }
     }
@@ -46,7 +53,6 @@ const MyProfileC = () => {
                         id: res.data.ID,
                         name: res.data.name,
                         email: res.data.email,
-                        password: res.data.password,
                         description: res.data.description,
                         company: res.data.company,
                         type: res.data.type,
@@ -104,7 +110,7 @@ const MyProfileC = () => {
                             userCareer.map((career, index) => {
                                 return (   
                                     <p key={index}>
-                                        <input name={index} value={career} onChange={onChangeCareer} />
+                                        <input name={index} value={career.content} onChange={onChangeCareer} />
                                         <button>-</button>
                                     </p>
                                 );
@@ -113,7 +119,7 @@ const MyProfileC = () => {
                         : (
                             userCareer.map((career, index) => {
                                 return (
-                                    <div key={index}>{career}</div>
+                                    <div key={index}>{career.content}</div>
                                 );
                             })
                          )
