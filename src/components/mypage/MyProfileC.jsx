@@ -41,11 +41,10 @@ const MyProfileC = () => {
             await Api
                 .getUserProfile()
                 .then((res) => {
-                console.log(res.data);
                     setUserProfile({
                         usn: res.data.USN,
                         id: res.data.ID,
-                        name: res.data.userName,
+                        name: res.data.name,
                         email: res.data.email,
                         password: res.data.password,
                         description: res.data.description,

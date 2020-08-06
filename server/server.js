@@ -259,7 +259,7 @@ app.use('/user/1/matching/2', (req, res) => {
     });
 });
 
-app.use('/user/1/matching/0', (req, res) => {
+app.use('/user/1/1/matching/0', (req, res) => {
     res.json({
         waitMatchingList: [
             {
