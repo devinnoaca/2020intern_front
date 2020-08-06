@@ -25,9 +25,8 @@ const MyProfileC = () => {
             event.preventDefault();
             
             await Api
-                .putUserProfile(userProfile)
+                .editUserProfile(userProfile)
                 .then((res) => {
-                    console.log(res.data);
                 })
 
             setEditProfile(false);
