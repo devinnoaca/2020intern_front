@@ -15,31 +15,32 @@ function TabPanel(props) {
 
     useEffect(() => {
         setTabValue(value);
-    },[value])
+    }, [value])
 
     useEffect(() => {
-        if (tabValue === 0) {
-            const getMatchingList = async () => {
-                await Api
-                    .getMatchingList(userProfile.usn,userProfile.type,tabValue)
-                    .then((res) => {
-                        console.log("데이터받아오냐", res.data);
-                        setMatchingList(res.data.waitMatchingList);
-                    })
-            };
-
-            getMatchingList();
+        const getWaitMatchingList = async () => {
+            await Api
+                .getMatchingList(userProfile.usn, userProfile.type, tabValue)
+                .then((res) => {
+                    if (res.data.matchingList !== undefined) {
+                        setMatchingList(res.data.matchingList);
+                    }
+                })
         }
+
+        getWaitMatchingList();
+
     }, [tabValue, userProfile.usn, userProfile.type]);
 
     // useEffect(() => {
     //     if (tabValue === 1) {
     //         const getAcceptMatchingList = async () => {
     //             await Api
-    //                 .getAcceptMatchingList()
+    //                 .getMatchingList(userProfile.usn, userProfile.type, tabValue)
     //                 .then((res) => {
-    //                     console.log("데이터받아오냐", res.data);
-    //                     setMatchingList(res.data.acceptMatchingList);
+    //                     if (res.data.acceptMatchingList !== undefined) {
+    //                         setMatchingList(res.data.acceptMatchingList);
+    //                     }
     //                 })
     //         };
 
@@ -51,10 +52,11 @@ function TabPanel(props) {
     //     if (tabValue === 2) {
     //         const getRefuseMatchingList = async () => {
     //             await Api
-    //                 .getRefuseMatchingList()
+    //                 .getMatchingList(userProfile.usn, userProfile.type, tabValue)
     //                 .then((res) => {
-    //                     console.log("데이터받아오냐", res.data);
-    //                     setMatchingList(res.data.refuseMatchingList);
+    //                     if (res.data.refuseMatchingList !== undefined) {
+    //                         setMatchingList(res.data.refuseMatchingList);
+    //                     }
     //                 })
     //         };
 
@@ -72,23 +74,23 @@ function TabPanel(props) {
         >
             {tabValue === index && (
                 <>
-                {matchingList.map((matching) => {
-                    return (
-                        <div key= { matching.matchingId }>
-                            <div onClick={() => { setModalShow(true); setPickedMatchingList(matching)}} className="matchingList">
-                            <div>{matching.mentor_USN} 멘토</div>
-                            <div>{matching.req_reason}</div>
-                            <div>요청 시간 : {matching.time_req}</div>
-                        </div>
-                        <MyVerticallyCenteredModal
-                            value={tabValue}
-                            matchinglist={pickedMatchingList}
-                            show={modalShow}
-                            onHide={() => setModalShow(false)}
-                        />
-                        </div>
-                    );
-                })}
+                    {matchingList.map((matching) => {
+                        return (
+                            <div key={matching.matchingId}>
+                                <div onClick={() => { setModalShow(true); setPickedMatchingList(matching) }} className="matchingList">
+                                    <div>{matching.oppositeName} 멘토</div>
+                                    <div>{matching.rejectMessage}</div>
+                                    <div>요청 시간 : {matching.timeRes}</div>
+                                </div>
+                                <MyVerticallyCenteredModal
+                                    value={tabValue}
+                                    matchinglist={pickedMatchingList}
+                                    show={modalShow}
+                                    onHide={() => setModalShow(false)}
+                                />
+                            </div>
+                        );
+                    })}
                 </>
             )}
         </div>

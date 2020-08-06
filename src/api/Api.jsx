@@ -4,8 +4,8 @@ axios.defaults.baseURL = 'http://10.19.247.182:3001';
 //axios.defaults.baseURL = 'http://localhost:3001';
 
 export default {
-    getUserProfile() {
-        return axios.get('/user/1/inform'); 
+    getUserProfile(usn) {
+        return axios.get(`/user/${usn}/inform`); 
     },
 
     putUserProfile(data) {
@@ -13,16 +13,17 @@ export default {
         return axios.put('/user/1/inform',data); 
     },
 
-    getUserCareer() {
-        return axios.get('/user/1/career'); 
+    getUserCareer(usn) {
+        return axios.get(`/user/career/${usn}`); 
     },
 
-    getUserKeyword(){
-        return axios.get('/user/1/keyword'); 
+    getUserKeyword(usn){
+        return axios.get(`/user/keyword/${usn}`); 
     },
 
     getMatchingList(userId, userType, matchingType){
-        return axios.get(`/user${userId}/${userType}/matching/${matchingType}`);
+        console.log(`/user/${userId}/${userType}/matching/${matchingType}`);
+        return axios.get(`/user/${userId}/${userType}/matching/${matchingType}`);
     },
 
     getKeyword() {

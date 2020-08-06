@@ -17,6 +17,7 @@ function MyVerticallyCenteredModal(props) {
         password: '',
         description: '',
         company: '',
+        type: '',
     });
     const [mentorCareer, setMentorCareer] = useState([]);
     const [mentorKeyword, setMentorKeyword] = useState([]);
@@ -33,7 +34,7 @@ function MyVerticallyCenteredModal(props) {
     useEffect(() => {
         const getMentorProfile = async () => {
             await Api
-                .getUserProfile()
+                .getUserProfile(props.matchinglist.oppositeUSN)
                 .then((res) => {
                     setMentorProfile({
                         usn: res.data.USN,
@@ -43,36 +44,37 @@ function MyVerticallyCenteredModal(props) {
                         password: res.data.password,
                         description: res.data.description,
                         company: res.data.company,
+                        type: res.data.type,
                     })
                 })
         }
 
         getMentorProfile();
-    }, []);
+    }, [props.matchinglist.oppositeUSN]);
 
     useEffect(() => {
         const getMentorCareer = async () => {
             await Api
-                .getUserCareer()
+                .getUserCareer(props.matchinglist.oppositeUSN)
                 .then((res) => {
                     setMentorCareer(res.data.career);
                 })
         }
 
         getMentorCareer();
-    }, []);
+    }, [props.matchinglist.oppositeUSN]);
 
     useEffect(() => {
         const getMentorKeyword = async () => {
             await Api
-                .getUserKeyword()
+                .getUserKeyword(props.matchinglist.oppositeUSN)
                 .then((res) => {
                     setMentorKeyword(res.data.allKeyword);
                 })
         }
 
         getMentorKeyword();
-    }, []);
+    }, [props.matchinglist.oppositeUSN]);
     return (
         <Modal
             {...props}
@@ -100,7 +102,7 @@ function MyVerticallyCenteredModal(props) {
                             <h4>경력 :</h4>
                             {mentorCareer.map((career) => {
                                 return (
-                                    <p key={career}>{career}</p>
+                                    <p key={career.ID}>{career.content}</p>
                                 )
                             })}
                         </div>
@@ -117,7 +119,7 @@ function MyVerticallyCenteredModal(props) {
                             rows={4}
                             variant="outlined"
                             style={{ width: '100%' }}
-                            value={matchingList.req_reason}
+                            value={matchingList.reqReason}
                         />
                         <TextField
                             id="outlined-multiline-static"
@@ -126,7 +128,7 @@ function MyVerticallyCenteredModal(props) {
                             rows={4}
                             variant="outlined"
                             style={{ width: '100%' }}
-                            value={matchingList.req_reason}
+                            value={matchingList.reqReason}
                         />
                         <Button variant="contained" className="applySubmit">신청하기</Button>
                     </div>
