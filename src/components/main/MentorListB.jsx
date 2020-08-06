@@ -1,10 +1,11 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 
 import 'style/Main.css';
 import MentorListContext from 'context/MentorListContext';
 import image from 'style/logo192.png';
 import ChipsArray from "components/main/ChipsArray";
 import VerticalTabs from 'components/main/VerticalTabs';
+import KeywordContext from 'context/KeywordContext'
 
 
 import Grid from '@material-ui/core/Grid';
@@ -43,6 +44,9 @@ const MentorListB = () => {
     });
     const { mentorList } = useContext(MentorListContext);
     const [modalShow, setModalShow] = React.useState(false);
+    const { tempList, setTempList } = React.useContext(KeywordContext);
+
+    
 
     function MyVerticallyCenteredModal(props) {
         // const [value, setValue] = React.useState('Controlled');
@@ -55,7 +59,8 @@ const MentorListB = () => {
                 {...props}
                 size="lg"
                 aria-labelledby="contained-modal-title-vcenter"
-                centered>
+                centered
+                animation={false}>
                 <Modal.Header closeButton>
                     <Modal.Title id="contained-modal-title-vcenter">
                         {pickedMentor.name}
@@ -84,7 +89,7 @@ const MentorListB = () => {
                         <br />
                         <hr />
                         <VerticalTabs />
-                        <ChipsArray list={props.list} setList={props.setList} />
+                        <ChipsArray />
                         <div className="mentorApply">
                             <TextField
                                 id="outlined-multiline-static"
@@ -101,7 +106,7 @@ const MentorListB = () => {
 
                 </Modal.Body>
                 <Modal.Footer>
-                    <Button onClick={props.onHide}>Close</Button>
+                    {/* <Button onClick={props.onHide}>Close</Button> */}
                 </Modal.Footer>
             </Modal>
         );
@@ -135,6 +140,7 @@ const MentorListB = () => {
                                     <Button size="small" color="primary" onClick={() => {
                                         setModalShow(true);
                                         setPickedMentor(mentor);
+                                        
                                     }} >
                                         자세히 보기
                                 </Button>
@@ -147,6 +153,7 @@ const MentorListB = () => {
             <MyVerticallyCenteredModal
                 show={modalShow}
                 onHide={() => setModalShow(false)}
+                backdrop='static'
             />
         </>
     );
