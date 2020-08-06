@@ -10,7 +10,7 @@ const MyKeywordC = () => {
     useEffect(() => {
         const getUserKeyword = async () => {
             await Api
-                .getUserKeyword()
+                .getUserKeyword(1)
                 .then((res) => {
                     setAllKeyword(res.data.allKeyword);
                     setrecommendKeyword(res.data.recommendKeyword);
