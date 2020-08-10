@@ -22,10 +22,11 @@ const useStyles = makeStyles((theme) => ({
 
 const ChipsArray = () => {
     const classes = useStyles();
-    const { tempList, setTempList } = useContext(KeywordContext);
+    const { tempList, setTempList, deleteKeywordList, setDeleteKeywordList } = useContext(KeywordContext);
 
     const handleDelete = (chipToDelete) => {
         return (() => {
+            setDeleteKeywordList([...deleteKeywordList, chipToDelete.keywordId]);
             setTempList((chips) => chips.filter((chip) => chip !== chipToDelete));
         })
     };

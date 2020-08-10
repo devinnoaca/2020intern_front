@@ -1,5 +1,6 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 
+import Api from 'api/Api';
 import KeywordContext from 'context/KeywordContext';
 import ChipsArray from "components/main/ChipsArray";
 import VerticalTabs from 'components/main/VerticalTabs';
@@ -9,13 +10,29 @@ import Modal from 'react-bootstrap/Modal';
 
 
 const MyVerticallyCenteredModal1 = (props) => {
-    const { tempList } = useContext(KeywordContext);
+    const { tempList, addKeywordList, deleteKeywordList } = useContext(KeywordContext);
     const { setList, ...rest } = props;
   
-    const saveKeyword = () => {
+    const saveKeyword = async () => {
+        const data = {
+            keyword: {
+                insert_keywords: addKeywordList,
+                delete_keywords: deleteKeywordList,
+            }
+        }
+
         props.onHide();
+
         setList(tempList);
-        
+
+        console.log(data);
+
+        await Api
+                .editUserKeyword(props.where, data)
+                .then((res) => {
+                    console.log(res.data);
+                })
+
     }
 
     return (
@@ -28,7 +45,7 @@ const MyVerticallyCenteredModal1 = (props) => {
             </Modal.Header>
             <Modal.Body>
                 <VerticalTabs />
-                <ChipsArray list={props.list} setList={props.setList} />
+                <ChipsArray />
             </Modal.Body>
             <Modal.Footer>
                 <Button onClick={saveKeyword}>저장</Button>

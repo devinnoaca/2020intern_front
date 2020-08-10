@@ -20,8 +20,8 @@ export default {
         return axios.get(`/user/keyword/1`); 
     },
 
-    editUserKeyword(usn,type,data){
-        return axios.post(`/user/keyword/${type}/${usn}`,data);
+    editUserKeyword(where, data) {
+        return axios.post(`/user/keyword/${where}/1`,data); 
     },
       
     getMatchingList(usn, userType, matchingType){
