@@ -6,8 +6,8 @@ import MyVerticallyCenteredModal1 from 'components/mypage/MyVerticallyCenteredMo
 
 import Chip from '@material-ui/core/Chip';
 
-const MyKeywordB = ({ list, setList }) => {
-    const { setKeywordList, setTempList } = useContext(KeywordContext);
+const MyKeywordB = ({ list, setList, where }) => {
+    const { setKeywordList, setTempList, setAddKeywordList, setDeleteKeywordList } = useContext(KeywordContext);
     const [modalShow, setModalShow] = useState(false);
 
     const makeKeyword = () => {
@@ -25,6 +25,8 @@ const MyKeywordB = ({ list, setList }) => {
     const editKeyword = () => {
         setModalShow(true);
         setTempList(list);
+        setAddKeywordList([]);
+        setDeleteKeywordList([]);
     };
 
     useEffect(() => {
@@ -46,8 +48,9 @@ const MyKeywordB = ({ list, setList }) => {
             <MyVerticallyCenteredModal1
                 show={modalShow}
                 onHide={() => setModalShow(false)}
-                list={list} setList={setList}
+                setList={setList}
                 backdrop='static'
+                where={where}
             />
         </div>
     );

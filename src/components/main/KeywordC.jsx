@@ -15,13 +15,11 @@ const KeywordC = () => {
     const { setMentorList } = useContext(MentorListContext);
 
     const searchMentor = async () => {
-        console.log(tempList);
             await Api
                 .getMentorList({
                     keyword: tempList,
                 })
                 .then((res) => {
-                    console.log(res.data);
                     setMentorList(res.data.mentorList);
                 })
         };

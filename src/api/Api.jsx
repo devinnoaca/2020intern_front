@@ -19,6 +19,10 @@ export default {
     getUserKeyword(){
         return axios.get(`/user/keyword/1`); 
     },
+
+    editUserKeyword(where, data) {
+        return axios.post(`/user/keyword/${where}/1`,data); 
+    },
       
     getMatchingList(usn, userType, matchingType){
         console.log(`/user/${userType}/matching/${matchingType}/${usn}`);
@@ -30,6 +34,7 @@ export default {
     },
 
     getMentorList(data) {
+        console.log(data);
         return axios.post('/main/list',data);
     },
 

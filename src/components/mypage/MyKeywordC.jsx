@@ -22,8 +22,8 @@ const MyKeywordC = () => {
 
     return (
         <div className="myKeywordCW">
-            <MyKeywordB list={allKeyword} setList={setAllKeyword}></MyKeywordB>
-            <MyKeywordB list={recommendKeyword} setList={setrecommendKeyword}></MyKeywordB>
+            <MyKeywordB list={allKeyword} setList={setAllKeyword} where={'total'}></MyKeywordB>
+            <MyKeywordB list={recommendKeyword} setList={setrecommendKeyword} where={'recommend'}></MyKeywordB>
         </div>
     );
 };
