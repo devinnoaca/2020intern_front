@@ -7,6 +7,7 @@ import image from 'style/logo192.png';
 import ChipsArray from "components/main/ChipsArray";
 import VerticalTabs from 'components/main/VerticalTabs';
 import MentorKeywordB from 'components/main/MentorKeywordB';
+import KeywordContext from 'context/KeywordContext';
 
 import Grid from '@material-ui/core/Grid';
 import { makeStyles } from '@material-ui/core/styles';
@@ -34,6 +35,7 @@ const useStyles = makeStyles({
 const MentorListB = () => {
     const classes = useStyles();
     const [pickedMentor, setPickedMentor] = useState({
+
         usn: '',
         name: '',
         imageUrl: '',
@@ -43,20 +45,56 @@ const MentorListB = () => {
         career: [],
     });
     const { mentorList } = useContext(MentorListContext);
+    const { tempList } = useContext(KeywordContext);
     const [modalShow, setModalShow] = React.useState(false);
 
     function MyVerticallyCenteredModal(props) {
 
+        const [value, setValue] = React.useState('');
+
         useEffect(() => {
             const getMentorKeyword = async () => {
                 await Api
-                    .getUserKeyword()
+                    .getUserKeyword(pickedMentor.usn)
                     .then((res) => {
                         console.log("맨토디테일에서 멘토 키워드띄울꺼야", res.data);
                     })
             }
             getMentorKeyword()
         });
+
+
+        const createMatching = async () => {
+            console.log("템프리스트", tempList);
+            let keywordNameList = []
+            let categoryNameList = []
+            tempList.map((temp, index) => {
+                keywordNameList.push(temp.keywordName);
+                categoryNameList.push(temp.categoryName);
+                return (
+                    <></>
+                )
+            })
+            console.log("매칭키!", keywordNameList);
+            console.log("매칭키!", categoryNameList);
+            await Api
+                .createMatching({
+                    mentorUsn: pickedMentor.usn,
+                    menteeUsn: 4,
+                    reqReason: value,
+                    keywordList: [{
+                        keywordName: keywordNameList,
+                        categoryName: categoryNameList,
+                    }]
+                })
+                .then((res) => {
+                    console.log("매칭만들어졋냐?",res.data);
+                })
+        };
+
+        const handleChange = (event) => {
+            setValue(event.target.value);
+        };
 
         return (
             <Modal
@@ -109,8 +147,10 @@ const MentorListB = () => {
                                 rows={4}
                                 variant="outlined"
                                 style={{ width: '100%' }}
+                                value={value}
+                                onChange={handleChange}
                             />
-                            <Button variant="contained" className="applySubmit">신청하기</Button>
+                            <Button variant="contained" className="applySubmit" onClick={createMatching}>신청하기</Button>
                         </div>
                         </Paper>
 

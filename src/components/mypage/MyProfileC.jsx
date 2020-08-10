@@ -45,7 +45,7 @@ const MyProfileC = () => {
     useEffect(() => {
         const getUserProfile = async () => {
             await Api
-                .getUserProfile(1)
+                .getUserProfile(4)
                 .then((res) => {
                     console.log(res.data);
                     
@@ -67,7 +67,7 @@ const MyProfileC = () => {
     useEffect(() => {
         const getUserCareer = async () => {
             await Api
-                .getUserCareer(12)
+                .getUserCareer(4)
                 .then((res) => {
                     setUserCareer(res.data.career)
                 });

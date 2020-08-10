@@ -8,20 +8,22 @@ export default {
         return axios.get(`/user/inform/${usn}`); 
     },
 
-    editUserProfile(data) {
-        return axios.put('/user/inform/1',data); 
+    editUserProfile(usn,data) {
+        return axios.put(`/user/inform/${usn}`,data); 
     },
 
-    getUserCareer() {
-        return axios.get(`/user/career/1`); 
+    getUserCareer(usn) {
+        return axios.get(`/user/career/${usn}`); 
     },
 
-    getUserKeyword(){
-        return axios.get(`/user/keyword/1`); 
+    getUserKeyword(usn){
+        return axios.get(`/user/keyword/${usn}`); 
     },
 
-    editUserKeyword(where, data) {
-        return axios.post(`/user/keyword/${where}/1`,data); 
+    editUserKeyword(where, data, usn) {
+        console.log(`/user/keyword/${where}/${usn}`);
+        
+        return axios.post(`/user/keyword/${where}/${usn}`,data); 
     },
       
     getMatchingList(usn, userType, matchingType){
@@ -37,4 +39,10 @@ export default {
         console.log("멘토리스트 받으려고 뭐뭐보내는데?",data);
         return axios.post('/main/list',data);
     },
+
+    createMatching(data){
+        console.log("매칭생성",data);
+        
+        return axios.post('/matching',data)
+    }
 };
