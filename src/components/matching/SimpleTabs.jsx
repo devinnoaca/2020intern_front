@@ -46,9 +46,24 @@ export default function SimpleTabs() {
                     <Tab label="거절" {...a11yProps(2)} />
                 </Tabs>
             </AppBar>
-            <TabPanel value={value} index={0} />
-            <TabPanel value={value} index={1} />
-            <TabPanel value={value} index={2} />
+            <TabPanel state={
+                {
+                    matchingType: "처리되지 않은",
+                    time: "요청"
+                }
+            } value={value} index={0} />
+            <TabPanel state={
+                {
+                    matchingType: "수락",
+                    time: "수락"
+                }
+            } value={value} index={1} />
+            <TabPanel state={
+                {
+                    matchingType: "거절",
+                    time: "거절"
+                }
+            } value={value} index={2} />
         </div>
     );
 }

@@ -15,6 +15,7 @@ const MyVerticallyCenteredModal1 = (props) => {
     const saveKeyword = () => {
         props.onHide();
         setList(tempList);
+        
     }
 
     return (

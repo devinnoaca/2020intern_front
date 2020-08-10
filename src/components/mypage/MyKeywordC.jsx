@@ -10,7 +10,7 @@ const MyKeywordC = () => {
     useEffect(() => {
         const getUserKeyword = async () => {
             await Api
-                .getUserKeyword(1)
+                .getUserKeyword(12)
                 .then((res) => {
                     setAllKeyword(res.data.allKeyword);
                     setrecommendKeyword(res.data.recommendKeyword);
@@ -22,7 +22,9 @@ const MyKeywordC = () => {
 
     return (
         <div className="myKeywordCW">
+            <h1>내가 공부해왔던 모든~키워드</h1>
             <MyKeywordB list={allKeyword} setList={setAllKeyword}></MyKeywordB>
+            <h1>내가 현재 추천받고 싶은 키워드</h1>
             <MyKeywordB list={recommendKeyword} setList={setrecommendKeyword}></MyKeywordB>
         </div>
     );

@@ -1,10 +1,12 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 
+import Api from 'api/Api';
 import 'style/Main.css';
 import MentorListContext from 'context/MentorListContext';
 import image from 'style/logo192.png';
 import ChipsArray from "components/main/ChipsArray";
 import VerticalTabs from 'components/main/VerticalTabs';
+import MentorKeywordB from 'components/main/MentorKeywordB';
 
 import Grid from '@material-ui/core/Grid';
 import { makeStyles } from '@material-ui/core/styles';
@@ -18,6 +20,7 @@ import Typography from '@material-ui/core/Typography';
 import Modal from 'react-bootstrap/Modal';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import TextField from '@material-ui/core/TextField';
+import Paper from '@material-ui/core/Paper';
 
 const useStyles = makeStyles({
     root: {
@@ -35,7 +38,6 @@ const MentorListB = () => {
         name: '',
         imageUrl: '',
         email: '',
-        password: '',
         description: '',
         company: '',
         career: [],
@@ -44,6 +46,18 @@ const MentorListB = () => {
     const [modalShow, setModalShow] = React.useState(false);
 
     function MyVerticallyCenteredModal(props) {
+
+        useEffect(() => {
+            const getMentorKeyword = async () => {
+                await Api
+                    .getUserKeyword()
+                    .then((res) => {
+                        console.log("맨토디테일에서 멘토 키워드띄울꺼야", res.data);
+                    })
+            }
+            getMentorKeyword()
+        });
+
         return (
             <Modal
                 {...props}
@@ -53,11 +67,13 @@ const MentorListB = () => {
                 animation={false}>
                 <Modal.Header closeButton>
                     <Modal.Title id="contained-modal-title-vcenter">
-                        {pickedMentor.name}
+                        멘토링 신청 페이지
                     </Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
+                    <Paper component="ul">
                     <div className="modalBodyWrap">
+                        <div>멘토 상세 정보</div>
                         <div className="mentorB">
                             <div className="mentorBL">
                                 <img src={image} alt="" />
@@ -76,14 +92,19 @@ const MentorListB = () => {
                                 })}
                             </div>
                         </div>
-                        <br />
-                        <hr />
+                        </div>
+                        <MentorKeywordB usn={pickedMentor.usn}/>
+                        </Paper>
+                    <Paper component="ul">
+                        멘토링 받고싶은 분야의 키워드를 선택하세요
                         <VerticalTabs />
+                        멘토링받고 싶은 키워드(멘토에게 보여집니다)
+                        <br/>
                         <ChipsArray />
                         <div className="mentorApply">
                             <TextField
                                 id="outlined-multiline-static"
-                                label="멘토링 받고 싶은 내용을 입력하세요"
+                                label="멘토링 받고 싶은 내용을 자유롭게 입력하세요"
                                 multiline
                                 rows={4}
                                 variant="outlined"
@@ -91,8 +112,9 @@ const MentorListB = () => {
                             />
                             <Button variant="contained" className="applySubmit">신청하기</Button>
                         </div>
+                        </Paper>
 
-                    </div>
+                   
 
                 </Modal.Body>
                 <Modal.Footer>
