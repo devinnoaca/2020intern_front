@@ -34,9 +34,7 @@ export default {
     },
 
     getMentorList(data) {
-        console.log(data);
+        console.log("멘토리스트 받으려고 뭐뭐보내는데?",data);
         return axios.post('/main/list',data);
     },
-
-    
 };

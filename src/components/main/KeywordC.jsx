@@ -40,8 +40,10 @@ const KeywordC = () => {
     useEffect(() => {
         const getUserRecommendKeyword = async () => {
             await Api
-                .getUserKeyword(1)
+                .getUserKeyword(12)
                 .then((res) => {
+                    console.log("애초에 추천받고싶은키어드", res.data.recommendKeyword);
+
                     setCheckedKeywordList(res.data.recommendKeyword);
                 });
         };

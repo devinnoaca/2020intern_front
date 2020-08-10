@@ -32,6 +32,7 @@ const MyVerticallyCenteredModal1 = (props) => {
                 .then((res) => {
                     console.log(res.data);
                 })
+
     }
 
     return (

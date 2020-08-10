@@ -17,7 +17,7 @@ app.use('/user/1/inform', (req, res) => {
     });
 });
 
-app.use('/mentorList', (req, res) => {
+app.use('/main/list', (req, res) => {
     res.json({
         mentorList: [
             {
@@ -25,7 +25,6 @@ app.use('/mentorList', (req, res) => {
                 name: '이지훈',
                 imageUrl: 'asdfasdf',
                 email: 'wlgnssla311@gmail.com',
-                password: 'jihun311',
                 description: '국민대학교 4학년 이지훈입니다.',
                 company: '국민대학교',
                 career: ['log분석기 개발', '육군 만기 전역', '솔로 9개월차'],
@@ -35,7 +34,6 @@ app.use('/mentorList', (req, res) => {
                 name: '박종민',
                 imageUrl: 'asdfasdf',
                 email: 'wlgnssla311@gmail.com',
-                password: 'jihun311',
                 description: '국민대학교 4학년 이지훈입니다.',
                 company: '국민대학교',
                 career: ['log분석기 개발', '육군 만기 전역', '솔로 9개월차'],
@@ -45,7 +43,6 @@ app.use('/mentorList', (req, res) => {
                 name: '송성재',
                 imageUrl: 'asdfasdf',
                 email: 'wlgnssla311@gmail.com',
-                password: 'jihun311',
                 description: '국민대학교 4학년 이지훈입니다.',
                 company: '국민대학교',
                 career: ['log분석기 개발', '육군 만기 전역', '솔로 9개월차'],
@@ -55,7 +52,6 @@ app.use('/mentorList', (req, res) => {
                 name: '이인평',
                 imageUrl: 'asdfasdf',
                 email: 'wlgnssla311@gmail.com',
-                password: 'jihun311',
                 description: '국민대학교 4학년 이지훈입니다.',
                 company: '국민대학교',
                 career: ['log분석기 개발', '육군 만기 전역', '솔로 9개월차'],
@@ -65,7 +61,6 @@ app.use('/mentorList', (req, res) => {
                 name: '이정현',
                 imageUrl: 'asdfasdf',
                 email: 'wlgnssla311@gmail.com',
-                password: 'jihun311',
                 description: '국민대학교 4학년 이지훈입니다.',
                 company: '국민대학교',
                 career: ['log분석기 개발', '육군 만기 전역', '솔로 9개월차'],
@@ -75,7 +70,6 @@ app.use('/mentorList', (req, res) => {
                 name: '이진구',
                 imageUrl: 'asdfasdf',
                 email: 'wlgnssla311@gmail.com',
-                password: 'jihun311',
                 description: '국민대학교 4학년 이지훈입니다.',
                 company: '국민대학교',
                 career: ['log분석기 개발', '육군 만기 전역', '솔로 9개월차'],
@@ -90,35 +84,40 @@ app.use('/user/1/keyword', (req, res) => {
         allKeyword: [
             {
                 keywordId: 1111,
-                keywordName: 'a',
                 categoryName: '개발/프로그래밍',
+                keywordName: '파이썬',
+            },
+            {
+                keywordId: 1111,
+                categoryName: '개발/프로그래밍',
+                keywordName: '자바',
             },
             {
                 keywordId: 2222,
-                keywordName: 'b',
                 categoryName: '디자인',
+                keywordName: 'html',
             },
             {
                 keywordId: 3333,
-                keywordName: 'c',
                 categoryName: '데이터',
+                keywordName: '데이터베이스',
             },
         ],
         recommendKeyword: [
             {
                 keywordId: 1124123,
-                keywordName: 'qwe',
                 categoryName: '업무 스킬',
+                keywordName: '아첨',
             },
             {
                 keywordId: 21231,
-                keywordName: 'asd',
                 categoryName: '업무 스킬',
+                keywordName: '아부',
             },
             {
                 keywordId: 313231,
-                keywordName: 'zxcs',
                 categoryName: '업무 스킬',
+                keywordName: '싸바싸바',
             },
         ],
     });

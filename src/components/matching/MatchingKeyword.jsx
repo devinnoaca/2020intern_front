@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 
 import { makeStyles } from '@material-ui/core/styles';
 import Chip from '@material-ui/core/Chip';
-import Paper from '@material-ui/core/Paper';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -18,7 +17,7 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-export default function MentorKeyword(props) {
+export default function MatchingKeyword(props) {
     const classes = useStyles();
     const [keywordList, setKeywordList] = useState([]);
 
@@ -29,18 +28,22 @@ export default function MentorKeyword(props) {
     }, [props.keywordList])
 
     return (
-        <Paper component="ul" className={classes.root}>
-            {keywordList.map((data) => {
+        <div className="mMentorKeywordB">
+            <div>{props.useFor} 관련 키워드</div>
+            <div className={classes.root}>
+                {keywordList.map((data) => {
 
-                return (
-                    <li key={data.keywordName}>
-                        <Chip
-                            label={data.keywordName}
-                            className={classes.chip}
-                        />
-                    </li>
-                );
-            })}
-        </Paper>
+                    return (
+                        <li key={data.keywordName}>
+                            <Chip
+                                label={data.keywordName}
+                                className={classes.chip}
+                            />
+                        </li>
+                    );
+                })}
+            </div>
+            
+        </div>
     );
 }

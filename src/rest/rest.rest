@@ -1,0 +1,110 @@
+### 유저 정보 접근(GET), 수정(PUT)
+GET http://10.19.247.182:3001/user/inform/1
+
+###
+PUT http://10.19.247.182:3001/user/inform/1
+Content-Type: application/json
+
+{
+    "email": "jeongsik@kookmin.ac.kr",
+    "name": "이인평",
+    "image_url": "image3",
+    "description": "테스트",
+    "company": "국민대"  
+}
+
+### 유저 커리어 접근
+GET http://10.19.247.182:3001/user/career/1
+
+### 유저 키워드 접근(GET), 생성(POST), 삭제(DELETE)
+
+### 전체, 추천 모두
+GET http://10.19.247.182:3001/user/keyword/1
+
+### 전체 키워드 추가
+POST http://10.19.247.182:3001/user/keyword/4
+Content-Type: application/json
+
+{
+    "keyword": [1, 2, 3]
+}
+
+### 전체 키워드 삭제
+DELETE http://10.19.247.182:3001/user/keyword/9
+Content-Type: application/json
+
+{
+    "keyword": [24, 21, 19]
+}
+
+
+### 멘토 매칭 정보 접근
+GET http://10.19.247.182:3001/user/0/matching/0/2
+
+###
+GET http://10.19.247.182:3001/user/0/matching/1/2
+
+###
+GET http://10.19.247.182:3001/user/0/matching/2/2
+
+### 멘티 매칭 정보 접근 
+GET http://10.19.247.182:3001/user/1/matching/0/1
+###
+GET http://10.19.247.182:3001/user/1/matching/1/1
+###
+GET http://10.19.247.182:3001/user/1/matching/2/1
+
+
+### 키워드 정보 접근
+GET http://10.19.247.182:3001/main/keyword
+
+### 멘토 리스트 정보 접근 
+POST http://10.19.247.182:3001/main/list
+Content-Type: application/json
+
+{
+    "keyword": [
+    {
+        "keywordName": "React.js", 
+        "categoryName": "개발/프로그래밍"   
+    }
+    ]
+}
+
+### 매칭 생성(POST), 수정(PUT)
+
+### 매칭 생성(POST)
+POST http://10.19.247.182:3001/matching
+Content-Type: application/json
+
+{
+    "matching_ID": 11,
+    "mentor_usn": 1,
+    "mentee_usn": 2,
+    "matching_request_time": "2020-01-20 13:24:30",
+    "mathcing_response_time": "2020-01-20 13:24:30",
+    "matching_state": 2,
+    "request_reason": "요청합니다.",
+    "reject_reason": "거절합니다.",
+    "isChecked": 0
+}
+
+### 매칭 수정
+PUT http://10.19.247.182:3001/matching/7
+Content-Type: application/json
+
+{
+    "matching_state": 2,
+    "is_checked": 1
+}
+
+### 매칭 키워드 생성(POST)
+POST http://10.19.247.182:3001/matching/keyword
+Content-Type: application/json
+
+{
+    "matching_keyword_ID": 6,
+    "matching_keyword_name": "CSS",
+    "mk_matching_ID": 2,
+    "matching_category_name": "웹 프로그래밍"
+}
