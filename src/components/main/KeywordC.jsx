@@ -16,16 +16,16 @@ const KeywordC = () => {
 
     const searchMentor = async () => {
         console.log(tempList);
-            await Api
-                .getMentorList({
-                    keyword: tempList,
-                })
-                .then((res) => {
-                    console.log(res.data);
-                    setMentorList(res.data.mentorList);
-                })
-        };
-    
+        await Api
+            .getMentorList({
+                keyword: tempList,
+            })
+            .then((res) => {
+                console.log("검색했을떄멘토리스트?", res.data);
+                setMentorList(res.data.mentorList);
+            })
+    };
+
 
     useEffect(() => {
         const getKeyword = async () => {
@@ -42,8 +42,10 @@ const KeywordC = () => {
     useEffect(() => {
         const getUserRecommendKeyword = async () => {
             await Api
-                .getUserKeyword(1)
+                .getUserKeyword(12)
                 .then((res) => {
+                    console.log("애초에 추천받고싶은키어드", res.data.recommendKeyword);
+
                     setCheckedKeywordList(res.data.recommendKeyword);
                 });
         };

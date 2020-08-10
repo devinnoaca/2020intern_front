@@ -19,6 +19,10 @@ export default {
     getUserKeyword(){
         return axios.get(`/user/keyword/1`); 
     },
+
+    editUserKeyword(usn,type,data){
+        return axios.post(`/user/keyword/${type}/${usn}`,data);
+    },
       
     getMatchingList(usn, userType, matchingType){
         console.log(`/user/${userType}/matching/${matchingType}/${usn}`);
@@ -30,8 +34,7 @@ export default {
     },
 
     getMentorList(data) {
+        console.log("멘토리스트 받으려고 뭐뭐보내는데?",data);
         return axios.post('/main/list',data);
     },
-
-    
 };

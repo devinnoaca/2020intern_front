@@ -6,7 +6,7 @@ import MyVerticallyCenteredModal from 'components/matching/MyVerticallyCenteredM
 import UserContext from 'context/UserContext';
 
 function TabPanel(props) {
-    const { value, index, ...other } = props;
+    const { value, index, state, ...other } = props;
     const [tabValue, setTabValue] = useState();
     const [modalShow, setModalShow] = useState(false);
     const [matchingList, setMatchingList] = useState([]);
@@ -20,8 +20,7 @@ function TabPanel(props) {
     useEffect(() => {
         const getWaitMatchingList = async () => {
             await Api
-                //.getMatchingList(userProfile.usn, userProfile.type, tabValue)
-                .getMatchingList(1,1,tabValue)
+                .getMatchingList(1, 1, tabValue)
                 .then((res) => {
                     if (res.data.matchingList !== undefined) {
                         setMatchingList(res.data.matchingList);
@@ -30,40 +29,7 @@ function TabPanel(props) {
         }
 
         getWaitMatchingList();
-
     }, [tabValue, userProfile.usn, userProfile.type]);
-
-    // useEffect(() => {
-    //     if (tabValue === 1) {
-    //         const getAcceptMatchingList = async () => {
-    //             await Api
-    //                 .getMatchingList(userProfile.usn, userProfile.type, tabValue)
-    //                 .then((res) => {
-    //                     if (res.data.acceptMatchingList !== undefined) {
-    //                         setMatchingList(res.data.acceptMatchingList);
-    //                     }
-    //                 })
-    //         };
-
-    //         getAcceptMatchingList();
-    //     }
-    // }, [tabValue]);
-
-    // useEffect(() => {
-    //     if (tabValue === 2) {
-    //         const getRefuseMatchingList = async () => {
-    //             await Api
-    //                 .getMatchingList(userProfile.usn, userProfile.type, tabValue)
-    //                 .then((res) => {
-    //                     if (res.data.refuseMatchingList !== undefined) {
-    //                         setMatchingList(res.data.refuseMatchingList);
-    //                     }
-    //                 })
-    //         };
-
-    //         getRefuseMatchingList();
-    //     }
-    // }, [tabValue]);
 
     return (
         <div
@@ -71,17 +37,26 @@ function TabPanel(props) {
             hidden={tabValue !== index}
             id={`simple-tabpanel-${index}`}
             aria-labelledby={`simple-tab-${index}`}
-            {...other}
-        >
+            {...other}>
+            <h1>{state.matchingType} 멘토링 요청</h1>
             {tabValue === index && (
                 <>
                     {matchingList.map((matching) => {
                         return (
                             <div key={matching.matchingId}>
-                                <div onClick={() => { setModalShow(true); setPickedMatchingList(matching) }} className="matchingList">
-                                    <div>{matching.oppositeName} 멘토</div>
+                                <div onClick={() => {
+                                    setModalShow(true); setPickedMatchingList(matching) 
+                                    }} className="matchingList">
+                                    {(userProfile.type === 0)
+                                        ? (
+                                            <div>{matching.oppositeName} 멘토</div>
+                                        )
+                                        : (
+                                            <div>{matching.oppositeName} 멘티</div>
+                                        )}
+
                                     <div>{matching.rejectMessage}</div>
-                                    <div>요청 시간 : {matching.timeRes}</div>
+                                    <div>{state.time} 시간 : {matching.timeRes}</div>
                                 </div>
                                 <MyVerticallyCenteredModal
                                     value={tabValue}
