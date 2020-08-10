@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext } from 'react';
 
 import Api from 'api/Api';
 import KeywordContext from 'context/KeywordContext';
@@ -12,27 +12,32 @@ import Modal from 'react-bootstrap/Modal';
 const MyVerticallyCenteredModal1 = (props) => {
     const { tempList, addKeywordList, deleteKeywordList } = useContext(KeywordContext);
     const { setList, ...rest } = props;
-  
+
     const saveKeyword = async () => {
+        console.log("중복제거전",addKeywordList);
+        console.log("중복제거전",deleteKeywordList);
+        
+        const addKeywordList1 = addKeywordList.filter(val => !deleteKeywordList.includes(val));
+        const deleteKeywordList1 = deleteKeywordList.filter(val => !addKeywordList.includes(val));
+        console.log("중복제거됬냐?",addKeywordList1);
+        console.log("중복제거됬냐?",deleteKeywordList1);
+        
         const data = {
             keyword: {
-                insert_keywords: addKeywordList,
-                delete_keywords: deleteKeywordList,
+                insertKeywords: addKeywordList1,
+                deleteKeywords: deleteKeywordList1,
             }
         }
 
         props.onHide();
-
-        setList(tempList);
-
         console.log(data);
 
         await Api
-                .editUserKeyword(props.where, data)
+                .editUserKeyword(props.where, data, 4)
                 .then((res) => {
-                    console.log(res.data);
+                    console.log("res를받았어 수정시도하고?",res.data);
+                    setList(tempList);
                 })
-
     }
 
     return (

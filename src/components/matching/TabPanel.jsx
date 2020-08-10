@@ -20,9 +20,11 @@ function TabPanel(props) {
     useEffect(() => {
         const getWaitMatchingList = async () => {
             await Api
-                .getMatchingList(1, 1, tabValue)
+                .getMatchingList(userProfile.usn, userProfile.type, tabValue)
                 .then((res) => {
                     if (res.data.matchingList !== undefined) {
+                        console.log("요청목록리스트",res.data);
+                        
                         setMatchingList(res.data.matchingList);
                     }
                 })

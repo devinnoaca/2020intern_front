@@ -18,6 +18,7 @@ const MentorListC = () => {
             await Api
                 .getMentorList({
                     keyword: checkedKeywordList,
+                    pageNum:1,
                 })
                 .then((res) => {
                     console.log("이거뭐받아오냐?",res.data);

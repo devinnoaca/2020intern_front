@@ -18,8 +18,11 @@ const KeywordC = () => {
             await Api
                 .getMentorList({
                     keyword: tempList,
+                    pageNum:1,
                 })
                 .then((res) => {
+                    console.log("검색해서 나온멘토리스트",res.data.mentorList);
+                    
                     setMentorList(res.data.mentorList);
                 })
         };
@@ -40,7 +43,7 @@ const KeywordC = () => {
     useEffect(() => {
         const getUserRecommendKeyword = async () => {
             await Api
-                .getUserKeyword(12)
+                .getUserKeyword(4)
                 .then((res) => {
                     console.log("애초에 추천받고싶은키어드", res.data.recommendKeyword);
 

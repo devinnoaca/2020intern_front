@@ -26,7 +26,7 @@ export default function MentorKeywordB(props) {
     useEffect(() => {
         const getMentorKeyword = async () => {
             await Api
-                .getUserKeyword()
+                .getUserKeyword(props.usn)
                 .then((res) => {
                     console.log("멘토리스트 키워드 띄울꺼야",res.data);
                     setKeywordList(res.data.allKeyword)
@@ -34,7 +34,7 @@ export default function MentorKeywordB(props) {
         }
 
         getMentorKeyword();
-    }, [setKeywordList])
+    }, [props.usn])
 
     return (
         <div className="mMentorKeywordB">

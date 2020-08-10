@@ -82,7 +82,7 @@ function MyVerticallyCenteredModal(props) {
 
         getMentorKeyword();
     }, [props.matchinglist.oppositeUSN]);
-    console.log("타입뭐라고되있는데?",userProfile.type);
+
     return (
         
         <Modal
