@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState, useRef } from 'react';
 
 import Api from 'api/Api';
 import image from 'style/logo192.png';
@@ -8,6 +8,7 @@ const MyProfileC = () => {
     const { userProfile, setUserProfile, userCareer, setUserCareer } = useContext(UserContext);
     const [eidtProfile, setEditProfile] = useState(false);
     const [eidtCareer, setEditCareer] = useState(false);
+    const careerRef = useRef()
 
     const onChangeProfile = (event) => {
         setUserProfile({ ...userProfile, [event.target.name]: event.target.value });
@@ -15,6 +16,9 @@ const MyProfileC = () => {
 
     const onChangeCareer = (event) => {
         userCareer[event.target.name].content = event.target.value;
+        if (userCareer[event.target.name].type !== 0) {
+            userCareer[event.target.name].type = 1;
+        }
         setUserCareer([...userCareer]);
     }
 
@@ -23,9 +27,14 @@ const MyProfileC = () => {
             setEditProfile(true);
         } else {
             event.preventDefault();
-            
+
             await Api
-                .editUserProfile(userProfile)
+                .editUserProfile(1, userProfile)
+                .then((res) => {
+                })
+
+            await Api
+                .editUserCareer(1, { career: userCareer })
                 .then((res) => {
                 })
 
@@ -33,22 +42,73 @@ const MyProfileC = () => {
         }
     }
 
-    const changeEditCareerMode = (event) => {
-        if (eidtCareer === false) {
-            setEditCareer(true);
+    const makeProfile = () => {
+        if (eidtProfile) {
+            return (
+                <>
+                    <p><input onChange={onChangeProfile} name="name" value={userProfile.name} /></p>
+                    <p><input onChange={onChangeProfile} name="company" value={userProfile.company} /></p>
+                    <p><input onChange={onChangeProfile} name="email" value={userProfile.email} /></p>
+                    <p><textarea onChange={onChangeProfile} name="description" value={userProfile.description} /></p>
+                </>
+            )
+
         } else {
-            event.preventDefault();
-            setEditCareer(false);
+            return (
+                <>
+                    <div className="userName">{userProfile.name}</div>
+                    <div className="userCompany">{userProfile.company}</div>
+                    <div className="userEmail">{userProfile.email}</div>
+                    <div className="userDescription">{userProfile.description}</div>
+                </>
+            )
         }
     }
-    
+
+    const makeCareer = () => {
+        if (eidtProfile) {
+            let career = userCareer.map((career, index) => {
+                return (
+                    <p key={index}>
+                        <input name={index} value={career.content} onChange={onChangeCareer} />
+                        <button onClick={(event) => {
+                            setUserCareer([...userCareer])
+                        }
+                        }>-</button>
+                    </p>
+                );
+            })
+            career.push(<p key={career.length}><button onClick={() => {
+                userCareer[career.length - 1] = {
+                    ID: null,
+                    content: '',
+                    user_USN: 1,
+                    type: 0,
+                }
+                setUserCareer([...userCareer]);
+            }
+            }>+</button></p>);
+
+            return (career);
+
+        } else {
+            return (
+                userCareer.map((career, index) => {
+                    return (
+                        <div key={index}>{career.content}</div>
+                    );
+                })
+            )
+        }
+    }
+
     useEffect(() => {
         const getUserProfile = async () => {
             await Api
-                .getUserProfile(4)
+                .getUserProfile(1)
                 .then((res) => {
                     console.log(res.data);
-                    
+
                     setUserProfile({
                         usn: res.data.USN,
                         id: res.data.ID,
@@ -67,8 +127,9 @@ const MyProfileC = () => {
     useEffect(() => {
         const getUserCareer = async () => {
             await Api
-                .getUserCareer(4)
+                .getUserCareer(1)
                 .then((res) => {
+                    console.log(res.data);
                     setUserCareer(res.data.career)
                 });
         };
@@ -82,50 +143,12 @@ const MyProfileC = () => {
                 <img src={image} alt="" />
             </div>
             <div className="userProfile">
-                {(eidtProfile)
-                    ? (
-                        <>
-                            <p><input onChange={onChangeProfile} name="name" value={userProfile.name} /></p>
-                            <p><input onChange={onChangeProfile} name="company" value={userProfile.company} /></p>
-                            <p><input onChange={onChangeProfile} name="email" value={userProfile.email} /></p>
-                            <p><textarea onChange={onChangeProfile} name="description" value={userProfile.description} /></p>
-                        </>
-                    )
-                    : (
-                        <>
-                            <div className="userName">{userProfile.name}</div>
-                            <div className="userCompany">{userProfile.company}</div>
-                            <div className="userEmail">{userProfile.email}</div>
-                            <div className="userDescription">{userProfile.description}</div>
-                        </>
-                    )
-                }
-                <button onClick={changeEditProfileMode}>프로필 수정</button>
+                {makeProfile()}
             </div>
             <div className="userCareer">
-                {
-                    (eidtCareer)
-                        ? ( 
-                            userCareer.map((career, index) => {
-                                return (   
-                                    <p key={index}>
-                                        <input name={index} value={career.content} onChange={onChangeCareer} />
-                                        <button>-</button>
-                                    </p>
-                                );
-                            }) 
-                        )
-                        : (
-                            userCareer.map((career, index) => {
-                                return (
-                                    <div key={index}>{career.content}</div>
-                                );
-                            })
-                         )
-                }
-                <button>+</button>
-                <button onClick={changeEditCareerMode}>경력 수정</button>
+                {makeCareer()}
             </div>
+            <p><button onClick={changeEditProfileMode}>프로필 수정</button></p>
         </div>
     );
 };

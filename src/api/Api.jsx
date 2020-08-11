@@ -9,6 +9,7 @@ export default {
     },
 
     editUserProfile(usn,data) {
+        console.log(data);
         return axios.put(`/user/inform/${usn}`,data); 
     },
 
@@ -16,13 +17,16 @@ export default {
         return axios.get(`/user/career/${usn}`); 
     },
 
+    editUserCareer(usn, data) {
+        console.log(data);
+        return axios.post(`/user/career/${usn}`,data); 
+    },
+
     getUserKeyword(usn){
         return axios.get(`/user/keyword/${usn}`); 
     },
 
     editUserKeyword(where, data, usn) {
-        console.log(`/user/keyword/${where}/${usn}`);
-        
         return axios.post(`/user/keyword/${where}/${usn}`,data); 
     },
       
