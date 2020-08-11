@@ -6,6 +6,7 @@ import KeywordContext from 'context/KeywordContext';
 import MentorListContext from 'context/MentorListContext';
 import VerticalTabs from 'components/main/VerticalTabs';
 import ChipsArray from "components/main/ChipsArray";
+import UserContext from 'context/UserContext';
 
 import IconButton from '@material-ui/core/IconButton';
 import SearchIcon from '@material-ui/icons/Search';
@@ -13,6 +14,7 @@ import SearchIcon from '@material-ui/icons/Search';
 const KeywordC = () => {
     const { setKeywordList, checkedKeywordList, setCheckedKeywordList, tempList, setTempList } = useContext(KeywordContext);
     const { setMentorList } = useContext(MentorListContext);
+    const { userProfile } = useContext(UserContext);
 
     const searchMentor = async () => {
             await Api
@@ -43,7 +45,7 @@ const KeywordC = () => {
     useEffect(() => {
         const getUserRecommendKeyword = async () => {
             await Api
-                .getUserKeyword(4)
+                .getUserKeyword(userProfile.usn)
                 .then((res) => {
                     console.log("애초에 추천받고싶은키어드", res.data.recommendKeyword);
 
@@ -52,7 +54,7 @@ const KeywordC = () => {
         };
 
         getUserRecommendKeyword();
-    }, [setCheckedKeywordList]);
+    }, [setCheckedKeywordList, userProfile.usn]);
 
     useEffect(() => {
         setTempList(checkedKeywordList)

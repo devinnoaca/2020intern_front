@@ -3,14 +3,16 @@ import React, { useEffect, useContext } from 'react';
 import Api from 'api/Api';
 import MyKeywordB from 'components/mypage/MyKeywordB';
 import UserKeywordContext from 'context/UserKeywordContext';
+import UserContext from 'context/UserContext';
 
 const MyKeywordC = () => {
     const { allKeyword, setAllKeyword, recommendKeyword, setrecommendKeyword } = useContext(UserKeywordContext);
+    const { userProfile } = useContext(UserContext);
 
     useEffect(() => {
         const getUserKeyword = async () => {
             await Api
-                .getUserKeyword(4)
+                .getUserKeyword(userProfile.usn)
                 .then((res) => {
                     setAllKeyword(res.data.allKeyword);
                     setrecommendKeyword(res.data.recommendKeyword);
@@ -18,7 +20,7 @@ const MyKeywordC = () => {
         };
         getUserKeyword();
 
-    }, [setAllKeyword, setrecommendKeyword]);
+    }, [setAllKeyword, setrecommendKeyword, userProfile.usn]);
 
     return (
         <div className="myKeywordCW">
