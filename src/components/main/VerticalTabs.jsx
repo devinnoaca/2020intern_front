@@ -72,9 +72,7 @@ export default function VerticalTabs() {
         );
     });
 
-    const makeKeyword = keywordList.map((category, index) => {
-        console.log("카테고리",category);
-        
+    const makeKeyword = keywordList.map((category, index) => {   
         return (
             <TabPanel key={index} value={value} index={index}>
                 {category.keywordList.map((keyword) => {

@@ -7,8 +7,6 @@ import UserContext from 'context/UserContext';
 const MyProfileC = () => {
     const { userProfile, setUserProfile, userCareer, setUserCareer } = useContext(UserContext);
     const [eidtProfile, setEditProfile] = useState(false);
-    const [eidtCareer, setEditCareer] = useState(false);
-    const careerRef = useRef()
 
     const onChangeProfile = (event) => {
         setUserProfile({ ...userProfile, [event.target.name]: event.target.value });
@@ -25,6 +23,12 @@ const MyProfileC = () => {
     const changeEditProfileMode = async (event) => {
         if (eidtProfile === false) {
             setEditProfile(true);
+        } else if (userCareer.filter((career) => career.content.trim() === '').length > 0) {
+            event.preventDefault();
+            alert('입력하지 않은 항목이 있습니다.')
+        } else if ((userProfile.name.trim() || userProfile.company.trim() || userProfile.description.trim() || userProfile.email.trim()) === '') {
+            event.preventDefault();
+            alert('입력하지 않은 항목이 있습니다.')
         } else {
             event.preventDefault();
 
@@ -46,16 +50,16 @@ const MyProfileC = () => {
         if (eidtProfile) {
             return (
                 <>
-                    <p><input onChange={onChangeProfile} name="name" value={userProfile.name} /></p>
-                    <p><input onChange={onChangeProfile} name="company" value={userProfile.company} /></p>
-                    <p><input onChange={onChangeProfile} name="email" value={userProfile.email} /></p>
-                    <p><textarea onChange={onChangeProfile} name="description" value={userProfile.description} /></p>
+                    <p>이름<input onChange={onChangeProfile} name="name" value={userProfile.name} /></p>
+                    <p>회사<input onChange={onChangeProfile} name="company" value={userProfile.company} /></p>
+                    <p>이메일<input onChange={onChangeProfile} name="email" value={userProfile.email} /></p>
+                    <p>자기소개<textarea onChange={onChangeProfile} name="description" value={userProfile.description} /></p>
                 </>
             )
 
         } else {
             return (
-                <>
+                <> 
                     <div className="userName">{userProfile.name}</div>
                     <div className="userCompany">{userProfile.company}</div>
                     <div className="userEmail">{userProfile.email}</div>
@@ -72,6 +76,8 @@ const MyProfileC = () => {
                     <p key={index}>
                         <input name={index} value={career.content} onChange={onChangeCareer} />
                         <button onClick={(event) => {
+                            event.target.parentElement.style.display = 'none';
+                            userCareer[index].type = 2;
                             setUserCareer([...userCareer])
                         }
                         }>-</button>
@@ -94,9 +100,11 @@ const MyProfileC = () => {
         } else {
             return (
                 userCareer.map((career, index) => {
-                    return (
-                        <div key={index}>{career.content}</div>
-                    );
+                    if (career.type !== 2) {
+                        return (
+                            <div key={index}>{career.content}</div>
+                        );
+                    }
                 })
             )
         }
@@ -105,7 +113,7 @@ const MyProfileC = () => {
     useEffect(() => {
         const getUserProfile = async () => {
             await Api
-                .getUserProfile(userProfile.usn)
+                .getUserProfile(1)
                 .then((res) => {
                     console.log(res.data);
 
@@ -129,8 +137,7 @@ const MyProfileC = () => {
             await Api
                 .getUserCareer(userProfile.usn)
                 .then((res) => {
-                    console.log(res.data);
-                    setUserCareer(res.data.career)
+                    setUserCareer(res.data.career);
                 });
         };
 
