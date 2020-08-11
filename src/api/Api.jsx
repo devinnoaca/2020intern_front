@@ -47,6 +47,12 @@ export default {
     createMatching(data){
         console.log("매칭생성",data);
         
-        return axios.post('/matching',data)
+        return axios.post('/matching',data);
+    },
+
+    editMatching(matchingId,data){
+        console.log("매칭수정", data);
+        console.log(`/matching/${matchingId}`);
+        return axios.put(`/matching/${matchingId}`, data);
     }
 };

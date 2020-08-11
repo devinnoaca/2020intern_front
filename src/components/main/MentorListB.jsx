@@ -46,11 +46,11 @@ const MentorListB = () => {
     });
     const { mentorList } = useContext(MentorListContext);
     const { tempList } = useContext(KeywordContext);
-    const [modalShow, setModalShow] = React.useState(false);
+    const [modalShow, setModalShow] = useState(false);
 
     function MyVerticallyCenteredModal(props) {
 
-        const [value, setValue] = React.useState('');
+        const [value, setValue] = useState();
 
         useEffect(() => {
             const getMentorKeyword = async () => {
@@ -65,7 +65,6 @@ const MentorListB = () => {
 
 
         const createMatching = async () => {
-            console.log("템프리스트", tempList);
             let keywordNameList = []
             let categoryNameList = []
             tempList.map((temp, index) => {
@@ -75,26 +74,35 @@ const MentorListB = () => {
                     <></>
                 )
             })
-            console.log("매칭키!", keywordNameList);
-            console.log("매칭키!", categoryNameList);
-            await Api
-                .createMatching({
-                    mentorUsn: pickedMentor.usn,
-                    menteeUsn: 4,
-                    reqReason: value,
-                    keywordList: [{
-                        keywordName: keywordNameList,
-                        categoryName: categoryNameList,
-                    }]
-                })
-                .then((res) => {
-                    console.log("매칭만들어졋냐?",res.data);
-                })
+            if (Array.isArray(keywordNameList) && keywordNameList.length === 0) {
+                alert("매칭에 관한 키워드를 최소 한개는 설정해야합니다.");
+            } else {
+                await Api
+                    .createMatching({
+                        mentorUsn: pickedMentor.usn,
+                        menteeUsn: 4,
+                        reqReason: value,
+                        keywordList: [{
+                            keywordName: keywordNameList,
+                            categoryName: categoryNameList,
+                        }]
+                    })
+                    .then((res) => {
+                        console.log("매칭만들어졋냐?", res.data);
+                        alert("멘토링 신청이 완료되었습니다. 우측상단 프로필 버튼을 누르고 내 요청목록 탭에서 확인하세요");
+                        props.onHide();
+                    })
+            }
         };
 
         const handleChange = (event) => {
             setValue(event.target.value);
         };
+
+        const matchingAlert = () => {
+            alert("멘토링 신청이 완료되었습니다. 우측상단 프로필 버튼을 누르고 내 요청목록 탭에서 확인하세요");
+            props.onHide();
+        }
 
         return (
             <Modal
@@ -110,34 +118,34 @@ const MentorListB = () => {
                 </Modal.Header>
                 <Modal.Body>
                     <Paper component="ul">
-                    <div className="modalBodyWrap">
-                        <div>멘토 상세 정보</div>
-                        <div className="mentorB">
-                            <div className="mentorBL">
-                                <img src={image} alt="" />
-                                <h3>{pickedMentor.name}</h3>
-                                <h6>{pickedMentor.email}</h6>
-                                <h6>{pickedMentor.company}</h6>
-                            </div>
-                            <div className="mentorBR">
-                                <h4>멘토 소개 : </h4>
-                                <p>{pickedMentor.description}</p>
-                                <h4>경력 :</h4>
-                                {pickedMentor.career.map((career) => {
-                                    return (
-                                        <p key={career}>{career}</p>
-                                    )
-                                })}
+                        <div className="modalBodyWrap">
+                            <div>멘토 상세 정보</div>
+                            <div className="mentorB">
+                                <div className="mentorBL">
+                                    <img src={image} alt="" />
+                                    <h3>{pickedMentor.name}</h3>
+                                    <h6>{pickedMentor.email}</h6>
+                                    <h6>{pickedMentor.company}</h6>
+                                </div>
+                                <div className="mentorBR">
+                                    <h4>멘토 소개 : </h4>
+                                    <p>{pickedMentor.description}</p>
+                                    <h4>경력 :</h4>
+                                    {pickedMentor.career.map((career) => {
+                                        return (
+                                            <p key={career}>{career}</p>
+                                        )
+                                    })}
+                                </div>
                             </div>
                         </div>
-                        </div>
-                        <MentorKeywordB usn={pickedMentor.usn}/>
-                        </Paper>
+                        <MentorKeywordB usn={pickedMentor.usn} />
+                    </Paper>
                     <Paper component="ul">
                         멘토링 받고싶은 분야의 키워드를 선택하세요
                         <VerticalTabs />
                         멘토링받고 싶은 키워드(멘토에게 보여집니다)
-                        <br/>
+                        <br />
                         <ChipsArray />
                         <div className="mentorApply">
                             <TextField
@@ -152,9 +160,9 @@ const MentorListB = () => {
                             />
                             <Button variant="contained" className="applySubmit" onClick={createMatching}>신청하기</Button>
                         </div>
-                        </Paper>
+                    </Paper>
 
-                   
+
 
                 </Modal.Body>
                 <Modal.Footer>
@@ -192,7 +200,6 @@ const MentorListB = () => {
                                     <Button size="small" color="primary" onClick={() => {
                                         setModalShow(true);
                                         setPickedMentor(mentor);
-                                        
                                     }} >
                                         자세히 보기
                                 </Button>

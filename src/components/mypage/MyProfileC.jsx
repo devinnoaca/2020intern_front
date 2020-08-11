@@ -105,7 +105,7 @@ const MyProfileC = () => {
     useEffect(() => {
         const getUserProfile = async () => {
             await Api
-                .getUserProfile(1)
+                .getUserProfile(userProfile.usn)
                 .then((res) => {
                     console.log(res.data);
 
@@ -122,12 +122,12 @@ const MyProfileC = () => {
         };
 
         getUserProfile();
-    }, [setUserProfile]);
+    }, [setUserProfile, userProfile.usn]);
 
     useEffect(() => {
         const getUserCareer = async () => {
             await Api
-                .getUserCareer(1)
+                .getUserCareer(userProfile.usn)
                 .then((res) => {
                     console.log(res.data);
                     setUserCareer(res.data.career)
@@ -135,7 +135,7 @@ const MyProfileC = () => {
         };
 
         getUserCareer();
-    }, [setUserCareer]);
+    }, [setUserCareer, userProfile.usn]);
 
     return (
         <div className="myProfileCW">

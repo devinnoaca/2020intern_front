@@ -72,6 +72,7 @@ Content-Type: application/json
 }
 
 ### 매칭 생성(POST), 수정(PUT)
+ PUT http://10.19.247.182:3001/matching/173 
 
 ### 매칭 생성(POST)
 POST http://10.19.247.182:3001/matching

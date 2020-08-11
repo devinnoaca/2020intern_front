@@ -31,10 +31,10 @@ export default function MatchingKeyword(props) {
         <div className="mMentorKeywordB">
             <div>{props.useFor} 관련 키워드</div>
             <div className={classes.root}>
-                {keywordList.map((data) => {
+                {keywordList.map((data,index) => {
 
                     return (
-                        <li key={data.keywordName}>
+                        <li key={index}>
                             <Chip
                                 label={data.keywordName}
                                 className={classes.chip}
