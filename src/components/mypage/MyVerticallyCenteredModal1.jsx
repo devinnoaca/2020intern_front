@@ -33,7 +33,7 @@ const MyVerticallyCenteredModal1 = (props) => {
         console.log(data);
 
         await Api
-                .editUserKeyword(props.where, data, 4)
+                .editUserKeyword(props.where, data, 1)
                 .then((res) => {
                     console.log("res를받았어 수정시도하고?",res.data);
                     setList(tempList);

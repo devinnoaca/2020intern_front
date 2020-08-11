@@ -93,7 +93,6 @@ function MyVerticallyCenteredModal(props) {
             })
             .then((res) => {
                 console.log("매칭수정됬냐?", res.data);
-                
             })
     }
 
