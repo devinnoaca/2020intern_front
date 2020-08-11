@@ -83,8 +83,28 @@ function MyVerticallyCenteredModal(props) {
         getMentorKeyword();
     }, [props.matchinglist.oppositeUSN]);
 
+    const editMatching = async (matchingState) => {
+        await Api  
+            .editMatching(matchingList.matchingId,{
+                "responseMessage": refuseValue,
+                "state": matchingState,
+                "menteeUSN": matchingList.oppositeUSN,
+                "mentorUSN": userProfile.usn,
+            })
+            .then((res) => {
+                console.log("매칭수정됬냐?", res.data);
+                
+            })
+    }
+
+    const [refuseValue, setRefuseValue] = useState(' ');
+
+    const handleChange = (event) => {
+        setRefuseValue(event.target.value);
+    };
+
     return (
-        
+
         <Modal
             {...props}
             size="lg"
@@ -97,50 +117,109 @@ function MyVerticallyCenteredModal(props) {
                 </Modal.Title>
             </Modal.Header>
             {(userProfile.type === 0)
-            ?(
-                    <Modal.Body>
-                        <Paper component="ul">
-                            <div className="modalBodyWrap">
-                                <div>내가 요청한 멘토 상세 정보</div>
-                                <div className="mentorB">
-                                    <div className="mentorBL">
-                                        <img src={image} alt="" />
-                                        <h3>{mentorProfile.name}</h3>
-                                        <h6>{mentorProfile.email}</h6>
-                                        <h6>{mentorProfile.company}</h6>
-                                    </div>
-                                    <div className="mentorBR">
-                                        <h4>멘토 소개 : </h4>
-                                        <p>{mentorProfile.description}</p>
-                                        <h4>경력 :</h4>
-                                        {mentorCareer.map((career) => {
-                                            return (
-                                                <p key={career.ID}>{career.content}</p>
-                                            )
-                                        })}
-                                    </div>
-                                </div>
-                            </div>
-                            <MatchingKeyword useFor={'멘토'} keywordList={mentorKeyword} />
-                        </Paper>
-                        <Paper component="ul">
-                            <div>멘토링 요청 내용</div>
-                            <div className="mentorApply">
-                                <TextField
-                                    id="outlined-multiline-static"
-                                    label="신청한 내용"
-                                    multiline
-                                    rows={4}
-                                    variant="outlined"
-                                    style={{ width: '100%' }}
-                                    value={matchingList.reqReason}
-                                />
-                            </div>
-                            <MatchingKeyword useFor={'멘토링 내용'} keywordList={matchingList.keywordList} />
-                        </Paper>
-                    </Modal.Body>
-            )
-            :(
+                ? (
+                    <>
+                        {(value === 1 || value === 2)
+                            ? (
+                                <Modal.Body>
+                                    <Paper component="ul">
+                                        <div className="modalBodyWrap">
+                                            <div>내가 요청한 멘토 상세 정보</div>
+                                            <div className="mentorB">
+                                                <div className="mentorBL">
+                                                    <img src={image} alt="" />
+                                                    <h3>{mentorProfile.name}</h3>
+                                                    <h6>{mentorProfile.email}</h6>
+                                                    <h6>{mentorProfile.company}</h6>
+                                                </div>
+                                                <div className="mentorBR">
+                                                    <h4>멘토 소개 : </h4>
+                                                    <p>{mentorProfile.description}</p>
+                                                    <h4>경력 :</h4>
+                                                    {mentorCareer.map((career) => {
+                                                        return (
+                                                            <p key={career.ID}>{career.content}</p>
+                                                        )
+                                                    })}
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <MatchingKeyword useFor={'멘토'} keywordList={mentorKeyword} />
+                                    </Paper>
+                                    <Paper component="ul">
+                                        <div>멘토링 요청 내용</div>
+                                        <div className="mentorApply">
+                                            <TextField
+                                                id="outlined-multiline-static"
+                                                label="신청한 내용"
+                                                multiline
+                                                rows={4}
+                                                variant="outlined"
+                                                style={{ width: '100%' }}
+                                                value={matchingList.reqReason}
+                                            />
+                                            <TextField
+                                                id="outlined-multiline-static"
+                                                label="멘토 답신"
+                                                multiline
+                                                rows={4}
+                                                variant="outlined"
+                                                style={{ width: '100%' }}
+                                                value={matchingList.resReason}
+                                            />
+                                        </div>
+                                        <MatchingKeyword useFor={'멘토링 내용'} keywordList={matchingList.keywordList} />
+                                    </Paper>
+                                </Modal.Body>
+                            )
+                            : (
+                                <Modal.Body>
+                                    <Paper component="ul">
+                                        <div className="modalBodyWrap">
+                                            <div>내가 요청한 멘토 상세 정보</div>
+                                            <div className="mentorB">
+                                                <div className="mentorBL">
+                                                    <img src={image} alt="" />
+                                                    <h3>{mentorProfile.name}</h3>
+                                                    <h6>{mentorProfile.email}</h6>
+                                                    <h6>{mentorProfile.company}</h6>
+                                                </div>
+                                                <div className="mentorBR">
+                                                    <h4>멘토 소개 : </h4>
+                                                    <p>{mentorProfile.description}</p>
+                                                    <h4>경력 :</h4>
+                                                    {mentorCareer.map((career) => {
+                                                        return (
+                                                            <p key={career.ID}>{career.content}</p>
+                                                        )
+                                                    })}
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <MatchingKeyword useFor={'멘토'} keywordList={mentorKeyword} />
+                                    </Paper>
+                                    <Paper component="ul">
+                                        <div>멘토링 요청 내용</div>
+                                        <div className="mentorApply">
+                                            <TextField
+                                                id="outlined-multiline-static"
+                                                label="신청한 내용"
+                                                multiline
+                                                rows={4}
+                                                variant="outlined"
+                                                style={{ width: '100%' }}
+                                                value={matchingList.reqReason}
+                                            />
+                                        </div>
+                                        <MatchingKeyword useFor={'멘토링 내용'} keywordList={matchingList.keywordList} />
+                                    </Paper>
+                                </Modal.Body>
+                            )
+                        }
+                    </>
+
+                )
+                : (
                     <Modal.Body>
                         <Paper component="ul">
                             <div className="modalBodyWrap">
@@ -178,28 +257,45 @@ function MyVerticallyCenteredModal(props) {
                                     style={{ width: '100%' }}
                                     value={matchingList.reqReason}
                                 />
-                                <TextField
-                                    id="outlined-multiline-static"
-                                    label="멘토 답신"
-                                    multiline
-                                    rows={4}
-                                    variant="outlined"
-                                    style={{ width: '100%' }}
-                                    value={matchingList.resReason}
-                                />
+                                {(value === 0)
+                                    ? (
+                                        <TextField
+                                            id="outlined-multiline-static"
+                                            label="멘토 답신"
+                                            multiline
+                                            rows={4}
+                                            variant="outlined"
+                                            style={{ width: '100%' }}
+                                            value={refuseValue}
+                                            onChange={handleChange}
+                                        />
+                                    )
+                                    : (
+                                        <TextField
+                                            id="outlined-multiline-static"
+                                            label="멘토 답신"
+                                            multiline
+                                            rows={4}
+                                            variant="outlined"
+                                            style={{ width: '100%' }}
+                                            value={matchingList.resReason}
+                                        />
+                                    )
+                                }
+                                
                             </div>
                             <MatchingKeyword useFor={'멘토링 내용'} keywordList={matchingList.keywordList} />
                         </Paper>
 
                     </Modal.Body>
-            )
+                )
             }
             <Modal.Footer>
-                {(value === 0 && userProfile.type===1)
+                {(value === 0 && userProfile.type === 1)
                     ? (
                         <>
-                            <Button variant="contained" className="applySubmit">수락</Button>
-                            <Button variant="contained" className="applySubmit">거절</Button>
+                            <Button variant="contained" className="applySubmit" onClick={() => editMatching(1)}>수락</Button>
+                            <Button variant="contained" className="applySubmit" onClick={() => editMatching(2)}>거절</Button>
                             <Button onClick={props.onHide}>Close</Button>
                         </>
                     )

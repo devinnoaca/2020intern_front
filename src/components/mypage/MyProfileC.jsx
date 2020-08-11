@@ -25,7 +25,7 @@ const MyProfileC = () => {
             event.preventDefault();
             
             await Api
-                .editUserProfile(userProfile)
+                .editUserProfile(userProfile.usn)
                 .then((res) => {
                 })
 
@@ -45,7 +45,7 @@ const MyProfileC = () => {
     useEffect(() => {
         const getUserProfile = async () => {
             await Api
-                .getUserProfile(4)
+                .getUserProfile(userProfile.usn)
                 .then((res) => {
                     console.log(res.data);
                     
@@ -62,19 +62,19 @@ const MyProfileC = () => {
         };
 
         getUserProfile();
-    }, [setUserProfile]);
+    }, [setUserProfile, userProfile.usn]);
 
     useEffect(() => {
         const getUserCareer = async () => {
             await Api
-                .getUserCareer(4)
+                .getUserCareer(userProfile.usn)
                 .then((res) => {
                     setUserCareer(res.data.career)
                 });
         };
 
         getUserCareer();
-    }, [setUserCareer]);
+    }, [setUserCareer, userProfile.usn]);
 
     return (
         <div className="myProfileCW">
