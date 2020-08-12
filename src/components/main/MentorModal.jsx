@@ -20,6 +20,8 @@ export default function MentorModal(props) {
     const { tempList } = useContext(KeywordContext);
     const { userProfile } = useContext(UserContext);
 
+    const {sendform, setsendform, ...rest} = props;
+
     const createMatching = async (event) => {
         console.log(event.target);
         let keywordNameList = []
@@ -40,7 +42,7 @@ export default function MentorModal(props) {
             event.preventDefault();
             await Api
                 .createMatching({
-                    mentorUsn: props.pickedmentor.usn,
+                    mentorUsn: rest.pickedmentor.usn,
                     menteeUsn: userProfile.usn,
                     reqReason: reqReason,
                     keywordList: [{
@@ -51,23 +53,23 @@ export default function MentorModal(props) {
                 .then((res) => {
                     console.log("매칭만들어졋냐?", res.data);
                     alert("멘토링 신청이 완료되었습니다. 우측상단 프로필 버튼을 누르고 내 요청목록 탭에서 확인하세요");
-                    props.onHide();
+                    rest.onHide();
                 })
         }
     };
 
     useEffect(() => {
-        if (props.pickedmentor.usn) {
+        if (rest.pickedmentor.usn) {
             const getMentorKeyword = async () => {
                 await Api
-                    .getUserKeyword(props.pickedmentor.usn)
+                    .getUserKeyword(rest.pickedmentor.usn)
                     .then((res) => {
                         console.log("맨토디테일에서 멘토 키워드띄울꺼야", res.data);
                     })
             }
             getMentorKeyword()
         }
-    }, [props.pickedmentor.usn]);
+    }, [rest.pickedmentor.usn]);
 
     const handleChange = (event) => {
         setReqReason(event.target.value);
@@ -75,11 +77,11 @@ export default function MentorModal(props) {
     };
 
     const changeSendForm = () => {
-        props.setsendform(true);
+        rest.setsendform(true);
     }
 
     const makeModalBody = () => {
-        if (props.sendform) {
+        if (rest.sendform ) {
             return (
                 <Paper component="ul">
                     멘토링 받고싶은 분야의 키워드를 선택하세요
@@ -112,15 +114,15 @@ export default function MentorModal(props) {
                             <div className="mentorB">
                                 <div className="mentorBL">
                                     <img src={image} alt="" />
-                                    <h3>{props.pickedmentor.name}</h3>
-                                    <h6>{props.pickedmentor.email}</h6>
-                                    <h6>{props.pickedmentor.company}</h6>
+                                    <h3>{rest.pickedmentor.name}</h3>
+                                    <h6>{rest.pickedmentor.email}</h6>
+                                    <h6>{rest.pickedmentor.company}</h6>
                                 </div>
                                 <div className="mentorBR">
                                     <h4>멘토 소개 : </h4>
-                                    <p>{props.pickedmentor.description}</p>
+                                    <p>{rest.pickedmentor.description}</p>
                                     <h4>경력 :</h4>
-                                    {props.pickedmentor.career.map((career,index) => {
+                                    {rest.pickedmentor.career.map((career,index) => {
                                         return (
                                             <p key={index}>{career}</p>
                                         )
@@ -128,7 +130,7 @@ export default function MentorModal(props) {
                                 </div>
                             </div>
                         </div>
-                        <MentorKeywordB usn={props.pickedmentor.usn} />
+                        <MentorKeywordB usn={rest.pickedmentor.usn} />
                     </Paper>
                     <Button variant="contained" className="applySubmit" onClick={changeSendForm}>신청하기</Button>
                 </>
@@ -138,7 +140,7 @@ export default function MentorModal(props) {
 
     return (
         <Modal
-            {...props}
+            {...rest}
             size="lg"
             aria-labelledby="contained-modal-title-vcenter"
             centered
