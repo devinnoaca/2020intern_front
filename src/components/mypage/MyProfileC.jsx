@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState, useRef } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 
 import Api from 'api/Api';
 import image from 'style/logo192.png';
@@ -98,15 +98,17 @@ const MyProfileC = () => {
             return (career);
 
         } else {
-            return (
                 userCareer.map((career, index) => {
                     if (career.type !== 2) {
                         return (
                             <div key={index}>{career.content}</div>
                         );
+                    } else{
+                        return(
+                            <div></div>
+                        )
                     }
                 })
-            )
         }
     }
 

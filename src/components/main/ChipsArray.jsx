@@ -1,7 +1,6 @@
 import React, { useContext } from 'react';
 
 import KeywordContext from 'context/KeywordContext'
-import MentorListContext from 'context/MentorListContext';
 
 import { makeStyles } from '@material-ui/core/styles';
 import Chip from '@material-ui/core/Chip';
@@ -24,7 +23,6 @@ const useStyles = makeStyles((theme) => ({
 const ChipsArray = () => {
     const classes = useStyles();
     const { tempList, setTempList, deleteKeywordList, setDeleteKeywordList } = useContext(KeywordContext);
-    const { textRef } = useContext(MentorListContext);
 
     const handleDelete = (chipToDelete) => {
         return (() => {
