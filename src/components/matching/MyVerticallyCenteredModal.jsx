@@ -84,8 +84,8 @@ function MyVerticallyCenteredModal(props) {
     }, [props.matchinglist.oppositeUsn]);
 
     const editMatching = async (matchingState) => {
-        await Api  
-            .editMatching(matchingList.matchingId,{
+        await Api
+            .editMatching(matchingList.matchingId, {
                 "resMessage": refuseValue,
                 "state": matchingState,
                 "menteeUsn": matchingList.oppositeUsn,
@@ -281,7 +281,7 @@ function MyVerticallyCenteredModal(props) {
                                         />
                                     )
                                 }
-                                
+
                             </div>
                             <MatchingKeyword useFor={'멘토링 내용'} keywordList={matchingList.keywordList} />
                         </Paper>
