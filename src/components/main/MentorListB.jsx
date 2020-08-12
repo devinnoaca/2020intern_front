@@ -44,7 +44,7 @@ const MentorListB = () => {
         company: '',
         career: [],
     });
-    const { mentorList, textRef} = useContext(MentorListContext);
+    const { mentorList } = useContext(MentorListContext);
     const { tempList } = useContext(KeywordContext);
     const [modalShow, setModalShow] = useState(false);
     const [sendForm, setSendForm] = useState(false);
@@ -116,7 +116,7 @@ const MentorListB = () => {
                                 style={{ width: '100%' }}
                                 value={reqReason}
                                 onChange={handleChange}
-                                ref={textRef}
+                                className="reqReason"
                             />
                             <Button variant="contained" className="applySubmit" onClick={createMatching}>신청하기</Button>
                         </div>
