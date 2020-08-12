@@ -26,7 +26,6 @@ const ChipsArray = () => {
 
     const handleDelete = (chipToDelete) => {
         return (() => {
-            console.log('ss');
             setDeleteKeywordList([...deleteKeywordList, chipToDelete.keywordId]);
             setTempList((chips) => chips.filter((chip) => chip !== chipToDelete));
         })

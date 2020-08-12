@@ -34,7 +34,6 @@ const MentorListC = () => {
                     pageNum: currentPageNum,
                 })
                 .then((res) => {
-                    console.log("이거뭐받아오냐?", res.data);
                     setMentorList(res.data.mentorList);
                 })
         };

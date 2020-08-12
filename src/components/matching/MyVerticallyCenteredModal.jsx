@@ -95,7 +95,6 @@ function MyVerticallyCenteredModal(props) {
                     "mentorUsn": userProfile.usn,
                 })
                 .then((res) => {
-                    console.log("매칭수정됬냐?", res.data);
                 })
             props.onHide();
         }

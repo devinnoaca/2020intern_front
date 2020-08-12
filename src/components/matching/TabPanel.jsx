@@ -23,7 +23,6 @@ function TabPanel(props) {
                 .getMatchingList(userProfile.usn, userProfile.type, tabValue)
                 .then((res) => {
                     if (res.data.matchingList !== undefined) {
-                        console.log("요청목록리스트", res.data);
                         setMatchingList(res.data.matchingList);
                     }
                 })

@@ -28,7 +28,6 @@ export default function MentorKeywordB(props) {
             await Api
                 .getUserKeyword(props.usn)
                 .then((res) => {
-                    console.log("멘토리스트 키워드 띄울꺼야",res.data);
                     setKeywordList(res.data.allKeyword)
                 })
         }
