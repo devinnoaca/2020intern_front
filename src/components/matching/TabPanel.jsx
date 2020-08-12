@@ -56,8 +56,8 @@ function TabPanel(props) {
                                             <div>{matching.oppositeName} 멘티</div>
                                         )}
 
-                                    <div>{matching.rejectMessage}</div>
-                                    <div>{state.time} 시간 : {matching.timeRes}</div>
+                                    <div>{matching.reqReason}</div>
+                                    <div>{state.time} 시간 : {matching.timeReq}</div>
                                 </div>
                                 <MyVerticallyCenteredModal
                                     value={tabValue}

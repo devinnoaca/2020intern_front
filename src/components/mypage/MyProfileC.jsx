@@ -31,7 +31,8 @@ const MyProfileC = () => {
             alert('입력하지 않은 항목이 있습니다.')
         } else {
             event.preventDefault();
-
+            console.log(userProfile.usn);
+            
             await Api
                 .editUserProfile(userProfile.usn, userProfile)
                 .then((res) => {
@@ -88,7 +89,7 @@ const MyProfileC = () => {
                 userCareer[career.length - 1] = {
                     ID: null,
                     content: '',
-                    user_USN: 1,
+                    user_USN: userProfile.usn,
                     type: 0,
                 }
                 setUserCareer([...userCareer]);
