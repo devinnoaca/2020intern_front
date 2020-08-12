@@ -4,12 +4,14 @@ import Api from 'api/Api';
 import KeywordContext from 'context/KeywordContext';
 import ChipsArray from "components/main/ChipsArray";
 import VerticalTabs from 'components/main/VerticalTabs';
+import UserContext from 'context/UserContext';
 
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 
 
 const MyVerticallyCenteredModal1 = (props) => {
+    const { userProfile } = useContext(UserContext);
     const { tempList, addKeywordList, deleteKeywordList } = useContext(KeywordContext);
     const { setList, ...rest } = props;
 
@@ -33,7 +35,7 @@ const MyVerticallyCenteredModal1 = (props) => {
         console.log(data);
 
         await Api
-                .editUserKeyword(props.where, data, 1)
+            .editUserKeyword(props.where, data, userProfile.usn)
                 .then((res) => {
                     console.log("res를받았어 수정시도하고?",res.data);
                     setList(tempList);

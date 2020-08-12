@@ -33,12 +33,12 @@ const MyProfileC = () => {
             event.preventDefault();
 
             await Api
-                .editUserProfile(1, userProfile)
+                .editUserProfile(userProfile.usn, userProfile)
                 .then((res) => {
                 })
 
             await Api
-                .editUserCareer(1, { career: userCareer })
+                .editUserCareer(userProfile.usn, { career: userCareer })
                 .then((res) => {
                 })
 
@@ -117,7 +117,7 @@ const MyProfileC = () => {
     useEffect(() => {
         const getUserProfile = async () => {
             await Api
-                .getUserProfile(1)
+                .getUserProfile(userProfile.usn)
                 .then((res) => {
                     console.log(res.data);
 
@@ -141,7 +141,6 @@ const MyProfileC = () => {
             await Api
                 .getUserCareer(userProfile.usn)
                 .then((res) => {
-                    console.log(res.data);
                     setUserCareer(res.data.career);
                 });
         };
