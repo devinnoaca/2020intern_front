@@ -84,16 +84,21 @@ function MyVerticallyCenteredModal(props) {
     }, [props.matchinglist.oppositeUsn]);
 
     const editMatching = async (matchingState) => {
-        await Api
-            .editMatching(matchingList.matchingId, {
-                "resMessage": refuseValue,
-                "state": matchingState,
-                "menteeUsn": matchingList.oppositeUsn,
-                "mentorUsn": userProfile.usn,
-            })
-            .then((res) => {
-                console.log("매칭수정됬냐?", res.data);
-            })
+        if (refuseValue.trim() === '') {
+            alert("사유를 입력해주세요");
+        } else {
+            await Api
+                .editMatching(matchingList.matchingId, {
+                    "resMessage": refuseValue,
+                    "state": matchingState,
+                    "menteeUsn": matchingList.oppositeUsn,
+                    "mentorUsn": userProfile.usn,
+                })
+                .then((res) => {
+                    console.log("매칭수정됬냐?", res.data);
+                })
+            props.onHide();
+        }
     }
 
     const [refuseValue, setRefuseValue] = useState(' ');
@@ -295,7 +300,6 @@ function MyVerticallyCenteredModal(props) {
                         <>
                             <Button variant="contained" className="applySubmit" onClick={() => editMatching(1)}>수락</Button>
                             <Button variant="contained" className="applySubmit" onClick={() => editMatching(2)}>거절</Button>
-                            <Button onClick={props.onHide}>Close</Button>
                         </>
                     )
                     : (
