@@ -23,8 +23,6 @@ const KeywordC = () => {
                     pageNum:1,
                 })
                 .then((res) => {
-                    console.log("검색해서 나온멘토리스트",res.data.mentorList);
-                    
                     setMentorList(res.data.mentorList);
                 })
         };
@@ -47,8 +45,6 @@ const KeywordC = () => {
             await Api
                 .getUserKeyword(userProfile.usn)
                 .then((res) => {
-                    console.log("애초에 추천받고싶은키어드", res.data.recommendKeyword);
-
                     setCheckedKeywordList(res.data.recommendKeyword);
                 });
         };
