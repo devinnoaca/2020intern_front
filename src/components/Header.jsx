@@ -12,15 +12,20 @@ const Header = () => {
     return (
         <div className="header">
             <Container id="headerContainer" maxWidth="lg">
-                <div id="logo"><Link to='/'>logo</Link></div>
                 {(loginChecked === '0')
                     ? (
+                        <>
+                        <div id="logo"><Link to='/'>logo</Link></div>
                         <div id="login">
                             <Link to='/login'>login</Link>
                         </div>
+                        </>
                     )
                     : (
+                        <>
+                        <div id="logo"><Link to='/main'>logo</Link></div>
                         <HeaderRight />
+                        </>
                     )}
             </Container>
         </div>

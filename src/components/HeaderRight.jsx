@@ -1,5 +1,7 @@
 import React from 'react';
-import {Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
+
+import NotificationC from 'components/NotificationC';
 
 import Badge from '@material-ui/core/Badge';
 import MailIcon from '@material-ui/icons/Mail';
@@ -9,6 +11,10 @@ import IconButton from '@material-ui/core/IconButton';
 const HeaderRight = () => {
     const dropdown = () => {
         document.getElementById("myDropdown").classList.toggle("show");
+    };
+
+    const dropdown1 = () => {
+        document.getElementById("myDropdown1").classList.toggle("show1");
     };
 
     window.onclick = (event) => {
@@ -23,9 +29,6 @@ const HeaderRight = () => {
         }
     };
 
-    const openNotification = () => {
-    }
-
     return (
         <div className="headerRightWrap">
             <div className="dropdown">
@@ -35,18 +38,19 @@ const HeaderRight = () => {
                 <div id="myDropdown" className="dropdown-content">
                     <Link to='/matching'><div>내 요청목록</div></Link>
                     <Link to='/mypage'><div>내 프로필</div></Link>
-                    <Link to='/login'><div>내 계정설정</div></Link>
-                    <hr/>
+                    <Link to='/myaccount'><div>내 계정설정</div></Link>
+                    <hr />
                     <div>로그아웃</div>
                 </div>
             </div>
-            <Badge color="secondary" >
-                <MailIcon className='notificationIcon' onClick={openNotification}/>
-                <div className='notificationC'>
-
-
+            <div className="dropdown1">
+                <Badge color="secondary" className="dropbtn1">
+                    <MailIcon className='notificationIcon' onClick={dropdown1} />
+                </Badge>
+                <div id="myDropdown1" className="dropdown-content1">
+                    {/* <NotificationC /> */}
                 </div>
-            </Badge>
+            </div>
         </div>
     )
 }
