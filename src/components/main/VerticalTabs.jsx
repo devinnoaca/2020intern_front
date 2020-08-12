@@ -74,7 +74,7 @@ export default function VerticalTabs() {
 
     const makeKeyword = keywordList.map((category, index) => {   
         return (
-            <TabPanel key={index} value={value} index={index}>
+            <TabPanel style={{width:'70%'}}key={index} value={value} index={index}>
                 {category.keywordList.map((keyword) => {
                     return (
                         <Chip key={keyword.keywordId} label={keyword.keywordName} onClick={handleClick(keyword)} style={{ margin: 2 }} />

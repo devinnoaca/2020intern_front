@@ -23,7 +23,7 @@ function TabPanel(props) {
                 .getMatchingList(userProfile.usn, userProfile.type, tabValue)
                 .then((res) => {
                     if (res.data.matchingList !== undefined) {
-                        console.log("요청목록리스트",res.data);
+                        console.log("요청목록리스트", res.data);
                         setMatchingList(res.data.matchingList);
                     }
                 })
@@ -46,8 +46,8 @@ function TabPanel(props) {
                         return (
                             <div key={matching.matchingId}>
                                 <div onClick={() => {
-                                    setModalShow(true); setPickedMatchingList(matching) 
-                                    }} className="matchingList">
+                                    setModalShow(true); setPickedMatchingList(matching)
+                                }} className="matchingList">
                                     {(userProfile.type === 0)
                                         ? (
                                             <div>{matching.oppositeName} 멘토</div>
@@ -55,7 +55,6 @@ function TabPanel(props) {
                                         : (
                                             <div>{matching.oppositeName} 멘티</div>
                                         )}
-
                                     <div>{matching.reqReason}</div>
                                     <div>{state.time} 시간 : {matching.timeReq}</div>
                                 </div>
