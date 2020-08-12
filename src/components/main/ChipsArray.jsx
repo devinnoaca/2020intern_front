@@ -1,7 +1,6 @@
 import React, { useContext } from 'react';
 
 import KeywordContext from 'context/KeywordContext'
-import MentorListContext from 'context/MentorListContext';
 
 import { makeStyles } from '@material-ui/core/styles';
 import Chip from '@material-ui/core/Chip';

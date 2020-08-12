@@ -22,6 +22,8 @@ export default {
     },
 
     getUserKeyword(usn){
+        console.log("먼데",usn);
+        
         return axios.get(`/user/keyword/${usn}`); 
     },
 
