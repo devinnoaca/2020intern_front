@@ -2,7 +2,7 @@ import React, { useEffect, useContext } from 'react';
 import { Route } from 'react-router-dom';
 
 import 'style/App.css';
-import { Main, Intro, MyPage, Matching } from 'pages';
+import { Main, Intro, MyPage, Matching, MyAccount } from 'pages';
 import Header from '../components/Header';
 import Api from 'api/Api';
 import UserContext from 'context/UserContext';
@@ -63,6 +63,7 @@ const App = () => {
           </MentorListProvider>
 
         </KeywordProvider>
+
       </Container>
     </>
   );
