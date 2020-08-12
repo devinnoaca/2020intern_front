@@ -23,7 +23,6 @@ export default function MentorModal(props) {
     const {sendform, setsendform, ...rest} = props;
 
     const createMatching = async (event) => {
-        console.log(event.target);
         let keywordNameList = []
         let categoryNameList = []
         tempList.map((temp, index) => {
@@ -51,7 +50,6 @@ export default function MentorModal(props) {
                     }]
                 })
                 .then((res) => {
-                    console.log("매칭만들어졋냐?", res.data);
                     alert("멘토링 신청이 완료되었습니다. 우측상단 프로필 버튼을 누르고 내 요청목록 탭에서 확인하세요");
                     rest.onHide();
                 })
@@ -64,7 +62,6 @@ export default function MentorModal(props) {
                 await Api
                     .getUserKeyword(rest.pickedmentor.usn)
                     .then((res) => {
-                        console.log("맨토디테일에서 멘토 키워드띄울꺼야", res.data);
                     })
             }
             getMentorKeyword()
@@ -73,7 +70,6 @@ export default function MentorModal(props) {
 
     const handleChange = (event) => {
         setReqReason(event.target.value);
-        console.log(reqReason);
     };
 
     const changeSendForm = () => {

@@ -31,7 +31,6 @@ const MyProfileC = () => {
             alert('입력하지 않은 항목이 있습니다.')
         } else {
             event.preventDefault();
-            console.log(userProfile.usn);
             
             await Api
                 .editUserProfile(userProfile.usn, userProfile)
@@ -41,7 +40,6 @@ const MyProfileC = () => {
             await Api
                 .editUserCareer(userProfile.usn, { career: userCareer })
                 .then((res) => {
-                    console.log(res.data);
                 })
 
             setEditProfile(false);
@@ -121,8 +119,6 @@ const MyProfileC = () => {
             await Api
                 .getUserProfile(userProfile.usn)
                 .then((res) => {
-                    console.log(res.data);
-
                     setUserProfile({
                         usn: res.data.USN,
                         id: res.data.ID,

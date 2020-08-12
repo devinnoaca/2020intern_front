@@ -16,14 +16,9 @@ const MyVerticallyCenteredModal1 = (props) => {
     const { setList, ...rest } = props;
 
     const saveKeyword = async () => {
-        console.log("중복제거전",addKeywordList);
-        console.log("중복제거전",deleteKeywordList);
-        
         const addKeywordList1 = addKeywordList.filter(val => !deleteKeywordList.includes(val));
         const deleteKeywordList1 = deleteKeywordList.filter(val => !addKeywordList.includes(val));
-        console.log("중복제거됬냐?",addKeywordList1);
-        console.log("중복제거됬냐?",deleteKeywordList1);
-        
+
         const data = {
             keyword: {
                 insertKeywords: addKeywordList1,
@@ -32,12 +27,10 @@ const MyVerticallyCenteredModal1 = (props) => {
         }
 
         props.onHide();
-        console.log(data);
 
         await Api
             .editUserKeyword(props.where, data, userProfile.usn)
                 .then((res) => {
-                    console.log("res를받았어 수정시도하고?",res.data);
                     setList(tempList);
                 })
     }

@@ -24,7 +24,6 @@ const HeaderRight = () => {
     };
 
     const openNotification = () => {
-        console.log("dd");
     }
 
     return (
