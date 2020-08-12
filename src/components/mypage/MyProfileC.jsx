@@ -98,17 +98,19 @@ const MyProfileC = () => {
             return (career);
 
         } else {
+            return (
                 userCareer.map((career, index) => {
                     if (career.type !== 2) {
                         return (
                             <div key={index}>{career.content}</div>
                         );
-                    } else{
-                        return(
+                    } else {
+                        return (
                             <div></div>
                         )
                     }
                 })
+            )
         }
     }
 
@@ -139,6 +141,7 @@ const MyProfileC = () => {
             await Api
                 .getUserCareer(userProfile.usn)
                 .then((res) => {
+                    console.log(res.data);
                     setUserCareer(res.data.career);
                 });
         };
