@@ -44,27 +44,16 @@ const MentorListB = () => {
         company: '',
         career: [],
     });
-    const { mentorList } = useContext(MentorListContext);
+    const { mentorList, textRef} = useContext(MentorListContext);
     const { tempList } = useContext(KeywordContext);
     const [modalShow, setModalShow] = useState(false);
+    const [sendForm, setSendForm] = useState(false);
 
     function MyVerticallyCenteredModal(props) {
+        const[reqReason, setReqReason] = useState('');
 
-        const [value, setValue] = useState();
-
-        useEffect(() => {
-            const getMentorKeyword = async () => {
-                await Api
-                    .getUserKeyword(pickedMentor.usn)
-                    .then((res) => {
-                        console.log("맨토디테일에서 멘토 키워드띄울꺼야", res.data);
-                    })
-            }
-            getMentorKeyword()
-        });
-
-
-        const createMatching = async () => {
+        const createMatching = async (event) => {
+            console.log(event.target);
             let keywordNameList = []
             let categoryNameList = []
             tempList.map((temp, index) => {
@@ -76,12 +65,16 @@ const MentorListB = () => {
             })
             if (Array.isArray(keywordNameList) && keywordNameList.length === 0) {
                 alert("매칭에 관한 키워드를 최소 한개는 설정해야합니다.");
+            } else if (reqReason.trim() === '') {
+                event.preventDefault();
+                alert("멘토링 받고 싶은 내용을 입력하세요.");
             } else {
+                event.preventDefault();
                 await Api
                     .createMatching({
                         mentorUsn: pickedMentor.usn,
                         menteeUsn: 4,
-                        reqReason: value,
+                        reqReason: reqReason,
                         keywordList: [{
                             keywordName: keywordNameList,
                             categoryName: categoryNameList,
@@ -96,12 +89,70 @@ const MentorListB = () => {
         };
 
         const handleChange = (event) => {
-            setValue(event.target.value);
+            setReqReason(event.target.value);
+            console.log(reqReason);
         };
 
-        const matchingAlert = () => {
-            alert("멘토링 신청이 완료되었습니다. 우측상단 프로필 버튼을 누르고 내 요청목록 탭에서 확인하세요");
-            props.onHide();
+        const changeSendForm = () => {
+            setSendForm(true);
+        }
+
+        const makeModalBody = () => {
+            if (sendForm) {
+                return (
+                    <Paper component="ul">
+                        멘토링 받고싶은 분야의 키워드를 선택하세요
+                        <VerticalTabs />
+                        멘토링받고 싶은 키워드(멘토에게 보여집니다)
+                        <br />
+                        <ChipsArray />
+                        <div className="mentorApply">
+                            <TextField
+                                id="outlined-multiline-static"
+                                placeholder="멘토링 받고 싶은 내용을 자유롭게 입력하세요."
+                                multiline
+                                rows={4}
+                                variant="outlined"
+                                style={{ width: '100%' }}
+                                value={reqReason}
+                                onChange={handleChange}
+                                ref={textRef}
+                            />
+                            <Button variant="contained" className="applySubmit" onClick={createMatching}>신청하기</Button>
+                        </div>
+                    </Paper>
+                )
+            } else {
+                return (
+                    <>
+                        <Paper component="ul">
+                            <div className="modalBodyWrap">
+                                <div>멘토 상세 정보</div>
+                                <div className="mentorB">
+                                    <div className="mentorBL">
+                                        <img src={image} alt="" />
+                                        <h3>{pickedMentor.name}</h3>
+                                        <h6>{pickedMentor.email}</h6>
+                                        <h6>{pickedMentor.company}</h6>
+                                    </div>
+                                    <div className="mentorBR">
+                                        <h4>멘토 소개 : </h4>
+                                        <p>{pickedMentor.description}</p>
+                                        <h4>경력 :</h4>
+                                        {pickedMentor.career.map((career) => {
+                                            return (
+                                                <p key={career}>{career}</p>
+                                            )
+                                        })}
+                                    </div>
+                                </div>
+                            </div>
+                            <MentorKeywordB usn={pickedMentor.usn} />
+                        </Paper>
+                        <Button variant="contained" className="applySubmit" onClick={changeSendForm}>신청하기</Button>
+                    </>
+                )
+            }
         }
 
         return (
@@ -117,67 +168,33 @@ const MentorListB = () => {
                     </Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                    <Paper component="ul">
-                        <div className="modalBodyWrap">
-                            <div>멘토 상세 정보</div>
-                            <div className="mentorB">
-                                <div className="mentorBL">
-                                    <img src={image} alt="" />
-                                    <h3>{pickedMentor.name}</h3>
-                                    <h6>{pickedMentor.email}</h6>
-                                    <h6>{pickedMentor.company}</h6>
-                                </div>
-                                <div className="mentorBR">
-                                    <h4>멘토 소개 : </h4>
-                                    <p>{pickedMentor.description}</p>
-                                    <h4>경력 :</h4>
-                                    {pickedMentor.career.map((career) => {
-                                        return (
-                                            <p key={career}>{career}</p>
-                                        )
-                                    })}
-                                </div>
-                            </div>
-                        </div>
-                        <MentorKeywordB usn={pickedMentor.usn} />
-                    </Paper>
-                    <Paper component="ul">
-                        멘토링 받고싶은 분야의 키워드를 선택하세요
-                        <VerticalTabs />
-                        멘토링받고 싶은 키워드(멘토에게 보여집니다)
-                        <br />
-                        <ChipsArray />
-                        <div className="mentorApply">
-                            <TextField
-                                id="outlined-multiline-static"
-                                label="멘토링 받고 싶은 내용을 자유롭게 입력하세요"
-                                multiline
-                                rows={4}
-                                variant="outlined"
-                                style={{ width: '100%' }}
-                                value={value}
-                                onChange={handleChange}
-                            />
-                            <Button variant="contained" className="applySubmit" onClick={createMatching}>신청하기</Button>
-                        </div>
-                    </Paper>
-
-
-
+                    {makeModalBody()}
                 </Modal.Body>
                 <Modal.Footer>
                     {/* <Button onClick={props.onHide}>Close</Button> */}
                 </Modal.Footer>
             </Modal>
+
         );
     }
+
+    useEffect(() => {
+        const getMentorKeyword = async () => {
+            await Api
+                .getUserKeyword(pickedMentor.usn)
+                .then((res) => {
+                    console.log("맨토디테일에서 멘토 키워드띄울꺼야", res.data);
+                })
+        }
+        getMentorKeyword()
+    });
 
     return (
         <>
             <Grid container spacing={4} className="mentorListBW">
                 {mentorList.map((mentor) => {
                     return (
-                        <Grid key={mentor.usn} item xs={12} sm={4}>
+                        <Grid key={mentor.usn} item xs={12} sm={4} onClick={()=>{setModalShow(true);setPickedMentor(mentor);setSendForm(false);}}>
                             <Card className={classes.root}>
                                 <CardActionArea>
                                     <CardMedia
@@ -197,10 +214,7 @@ const MentorListB = () => {
                                     </CardContent>
                                 </CardActionArea>
                                 <CardActions>
-                                    <Button size="small" color="primary" onClick={() => {
-                                        setModalShow(true);
-                                        setPickedMentor(mentor);
-                                    }} >
+                                    <Button size="small" color="primary">
                                         자세히 보기
                                 </Button>
                                 </CardActions>
