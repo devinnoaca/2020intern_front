@@ -3,7 +3,7 @@ import UserContext from 'context/UserContext';
 
 const UserProvider = ({ children }) => {
     const [userProfile, setUserProfile] = useState({
-        usn: 4,
+        usn: 2,
         name: '',
         email: '',
         password: '',
