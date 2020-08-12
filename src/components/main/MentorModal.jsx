@@ -1,13 +1,15 @@
-import React,{ useState, useContext, useEffect } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
+
+import image from 'style/logo192.png';
 
 import Api from 'api/Api';
-import KeywordContext from 'context/KeywordContext';
 import ChipsArray from "components/main/ChipsArray";
 import VerticalTabs from 'components/main/VerticalTabs';
 import MentorKeywordB from 'components/main/MentorKeywordB';
-import image from 'style/logo192.png';
-import MentorListContext from 'context/MentorListContext';
 import UserContext from 'context/UserContext';
+import UserKeywordContext from 'context/UserKeywordContext';
+import KeywordContext from 'context/KeywordContext';
+import MentorListContext from 'context/MentorListContext';
 
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
@@ -15,12 +17,14 @@ import Paper from '@material-ui/core/Paper';
 import Modal from 'react-bootstrap/Modal';
 
 export default function MentorModal(props) {
-    const { textRef } = useContext(MentorListContext);
     const [reqReason, setReqReason] = useState('');
-    const { tempList } = useContext(KeywordContext);
+    
     const { userProfile } = useContext(UserContext);
+    const { recommendKeyword } = useContext(UserKeywordContext);
+    const { tempList, setTempList } = useContext(KeywordContext);
+    const { textRef } = useContext(MentorListContext);
 
-    const {sendform, setsendform, ...rest} = props;
+    const { sendform, setsendform, ...rest } = props;
 
     const createMatching = async (event) => {
         let keywordNameList = []
@@ -53,6 +57,8 @@ export default function MentorModal(props) {
                     alert("멘토링 신청이 완료되었습니다. 우측상단 프로필 버튼을 누르고 내 요청목록 탭에서 확인하세요");
                     rest.onHide();
                 })
+            setTempList(recommendKeyword);
+            setReqReason('');
         }
     };
 
@@ -106,7 +112,7 @@ export default function MentorModal(props) {
                                     <h4>멘토 소개 : </h4>
                                     <p>{rest.pickedmentor.description}</p>
                                     <h4>경력 :</h4>
-                                    {rest.pickedmentor.career.map((career,index) => {
+                                    {rest.pickedmentor.career.map((career, index) => {
                                         return (
                                             <p key={index}>{career}</p>
                                         )
@@ -121,7 +127,7 @@ export default function MentorModal(props) {
             )
         }
     }
-    
+
     useEffect(() => {
         if (rest.pickedmentor.usn) {
             const getMentorKeyword = async () => {
@@ -130,7 +136,7 @@ export default function MentorModal(props) {
                     .then((res) => {
                     })
             }
-            getMentorKeyword()
+            getMentorKeyword();
         }
     }, [rest.pickedmentor.usn]);
 
@@ -141,16 +147,15 @@ export default function MentorModal(props) {
             aria-labelledby="contained-modal-title-vcenter"
             centered
             animation={false}>
-            <Modal.Header closeButton>
+            <Modal.Header closeButton onClick={() => { setTempList(recommendKeyword); setReqReason('');}}>
                 <Modal.Title id="contained-modal-title-vcenter">
                     멘토링 신청 페이지
-                    </Modal.Title>
+                </Modal.Title>
             </Modal.Header>
             <Modal.Body>
                 {makeModalBody()}
             </Modal.Body>
             <Modal.Footer>
-                {/* <Button onClick={props.onHide}>Close</Button> */}
             </Modal.Footer>
         </Modal>
 

@@ -25,8 +25,6 @@ const MentorListC = () => {
         );
     }
 
-    console.log(recommendKeyword);
-
     useEffect(() => {
         const getMentorList = async () => {
             await Api

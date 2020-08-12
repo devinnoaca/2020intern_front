@@ -2,20 +2,20 @@ import React, { useEffect, useContext } from 'react';
 
 import Api from 'api/Api';
 import SearchKeywordB from 'components/main/SearchKeywordB';
-import KeywordContext from 'context/KeywordContext';
-import MentorListContext from 'context/MentorListContext';
 import VerticalTabs from 'components/main/VerticalTabs';
 import ChipsArray from "components/main/ChipsArray";
-import UserContext from 'context/UserContext';
+import UserKeywordContext from 'context/UserKeywordContext';
+import KeywordContext from 'context/KeywordContext';
+import MentorListContext from 'context/MentorListContext';
 
 import IconButton from '@material-ui/core/IconButton';
 import SearchIcon from '@material-ui/icons/Search';
 
 const KeywordC = () => {
-    const { setKeywordList, checkedKeywordList, setCheckedKeywordList, tempList, setTempList } = useContext(KeywordContext);
+    const { recommendKeyword } = useContext(UserKeywordContext);
+    const { setKeywordList, tempList, setTempList } = useContext(KeywordContext);
     const { setMentorList } = useContext(MentorListContext);
-    const { userProfile } = useContext(UserContext);
-
+    
     const searchMentor = async () => {
             await Api
                 .getMentorList({
@@ -26,7 +26,6 @@ const KeywordC = () => {
                     setMentorList(res.data.mentorList);
                 })
         };
-    
 
     useEffect(() => {
         const getKeyword = async () => {
@@ -41,20 +40,8 @@ const KeywordC = () => {
     }, [setKeywordList]);
 
     useEffect(() => {
-        const getUserRecommendKeyword = async () => {
-            await Api
-                .getUserKeyword(userProfile.usn)
-                .then((res) => {
-                    setCheckedKeywordList(res.data.recommendKeyword);
-                });
-        };
-
-        getUserRecommendKeyword();
-    }, [setCheckedKeywordList, userProfile.usn]);
-
-    useEffect(() => {
-        setTempList(checkedKeywordList)
-    }, [checkedKeywordList, setTempList]);
+        setTempList(recommendKeyword)
+    }, [recommendKeyword, setTempList]);
 
     return (
         <div className="keywordCW">
