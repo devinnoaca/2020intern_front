@@ -56,28 +56,16 @@ export default function MentorModal(props) {
         }
     };
 
-    useEffect(() => {
-        if (rest.pickedmentor.usn) {
-            const getMentorKeyword = async () => {
-                await Api
-                    .getUserKeyword(rest.pickedmentor.usn)
-                    .then((res) => {
-                    })
-            }
-            getMentorKeyword()
-        }
-    }, [rest.pickedmentor.usn]);
-
     const handleChange = (event) => {
         setReqReason(event.target.value);
     };
 
     const changeSendForm = () => {
-        rest.setsendform(true);
+        setsendform(true);
     }
 
     const makeModalBody = () => {
-        if (rest.sendform ) {
+        if (sendform) {
             return (
                 <Paper component="ul">
                     멘토링 받고싶은 분야의 키워드를 선택하세요
@@ -133,6 +121,18 @@ export default function MentorModal(props) {
             )
         }
     }
+    
+    useEffect(() => {
+        if (rest.pickedmentor.usn) {
+            const getMentorKeyword = async () => {
+                await Api
+                    .getUserKeyword(rest.pickedmentor.usn)
+                    .then((res) => {
+                    })
+            }
+            getMentorKeyword()
+        }
+    }, [rest.pickedmentor.usn]);
 
     return (
         <Modal
