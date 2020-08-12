@@ -26,7 +26,7 @@ const MyProfileC = () => {
         } else if (userCareer.filter((career) => career.content.trim() === '').length > 0) {
             event.preventDefault();
             alert('입력하지 않은 항목이 있습니다.')
-        } else if ((userProfile.name.trim() || userProfile.company.trim() || userProfile.description.trim() || userProfile.email.trim()) === '') {
+        } else if ((userProfile.name.trim() === '') || (userProfile.company.trim() === '') || (userProfile.description.trim() === '') || (userProfile.email.trim() === '')) {
             event.preventDefault();
             alert('입력하지 않은 항목이 있습니다.')
         } else {
@@ -59,7 +59,7 @@ const MyProfileC = () => {
 
         } else {
             return (
-                <> 
+                <>
                     <div className="userName">{userProfile.name}</div>
                     <div className="userCompany">{userProfile.company}</div>
                     <div className="userEmail">{userProfile.email}</div>

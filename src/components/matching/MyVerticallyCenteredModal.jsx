@@ -37,7 +37,7 @@ function MyVerticallyCenteredModal(props) {
     useEffect(() => {
         const getMentorProfile = async () => {
             await Api
-                .getUserProfile(props.matchinglist.oppositeUSN)
+                .getUserProfile(props.matchinglist.oppositeUsn)
                 .then((res) => {
                     setMentorProfile({
                         usn: res.data.USN,
@@ -53,12 +53,12 @@ function MyVerticallyCenteredModal(props) {
         }
 
         getMentorProfile();
-    }, [props.matchinglist.oppositeUSN]);
+    }, [props.matchinglist.oppositeUsn]);
 
     useEffect(() => {
         const getMentorCareer = async () => {
             await Api
-                .getUserCareer(props.matchinglist.oppositeUSN)
+                .getUserCareer(props.matchinglist.oppositeUsn)
                 .then((res) => {
                     if (res.data.career !== undefined) {
                         setMentorCareer(res.data.career);
@@ -67,12 +67,12 @@ function MyVerticallyCenteredModal(props) {
         }
 
         getMentorCareer();
-    }, [props.matchinglist.oppositeUSN]);
+    }, [props.matchinglist.oppositeUsn]);
 
     useEffect(() => {
         const getMentorKeyword = async () => {
             await Api
-                .getUserKeyword(props.matchinglist.oppositeUSN)
+                .getUserKeyword(props.matchinglist.oppositeUsn)
                 .then((res) => {
                     if (res.data.allKeyword !== undefined) {
                         setMentorKeyword(res.data.allKeyword);
@@ -81,15 +81,15 @@ function MyVerticallyCenteredModal(props) {
         }
 
         getMentorKeyword();
-    }, [props.matchinglist.oppositeUSN]);
+    }, [props.matchinglist.oppositeUsn]);
 
     const editMatching = async (matchingState) => {
         await Api  
             .editMatching(matchingList.matchingId,{
-                "responseMessage": refuseValue,
+                "resMessage": refuseValue,
                 "state": matchingState,
-                "menteeUSN": matchingList.oppositeUSN,
-                "mentorUSN": userProfile.usn,
+                "menteeUsn": matchingList.oppositeUsn,
+                "mentorUsn": userProfile.usn,
             })
             .then((res) => {
                 console.log("매칭수정됬냐?", res.data);
