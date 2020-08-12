@@ -40,6 +40,7 @@ const MyProfileC = () => {
             await Api
                 .editUserCareer(userProfile.usn, { career: userCareer })
                 .then((res) => {
+                    console.log(res.data);
                 })
 
             setEditProfile(false);
@@ -88,7 +89,7 @@ const MyProfileC = () => {
                 userCareer[career.length - 1] = {
                     ID: null,
                     content: '',
-                    user_USN: 1,
+                    user_USN: userProfile.usn,
                     type: 0,
                 }
                 setUserCareer([...userCareer]);
