@@ -23,11 +23,12 @@ const HeaderRight = () => {
         }
     };
 
+    const openNotification = () => {
+        console.log("dd");
+    }
+
     return (
         <div className="headerRightWrap">
-            <Badge color="secondary" variant="dot" >
-                <MailIcon />
-            </Badge>
             <div className="dropdown">
                 <IconButton color="primary" onClick={dropdown} className="dropbtn">
                     <Avatar />
@@ -40,6 +41,13 @@ const HeaderRight = () => {
                     <div>로그아웃</div>
                 </div>
             </div>
+            <Badge color="secondary" >
+                <MailIcon className='notificationIcon' onClick={openNotification}/>
+                <div className='notificationC'>
+
+
+                </div>
+            </Badge>
         </div>
     )
 }
