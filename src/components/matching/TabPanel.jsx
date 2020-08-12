@@ -57,15 +57,15 @@ function TabPanel(props) {
                                     <div>{matching.reqReason}</div>
                                     <div>{state.time} 시간 : {matching.timeReq}</div>
                                 </div>
-                                <MyVerticallyCenteredModal
-                                    value={tabValue}
-                                    matchinglist={pickedMatchingList}
-                                    show={modalShow}
-                                    onHide={() => setModalShow(false)}
-                                />
                             </div>
                         );
                     })}
+                    <MyVerticallyCenteredModal
+                        value={tabValue}
+                        matchinglist={pickedMatchingList}
+                        show={modalShow}
+                        onHide={() => setModalShow(false)}
+                    />
                 </>
             )}
         </div>

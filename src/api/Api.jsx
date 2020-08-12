@@ -46,5 +46,9 @@ export default {
 
     editMatching(matchingId,data){
         return axios.put(`/matching/${matchingId}`, data);
+    },
+
+    getNotification(){
+        return axios.get('/notification');
     }
 };
