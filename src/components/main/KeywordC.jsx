@@ -64,6 +64,7 @@ const KeywordC = () => {
         <div className="keywordCW">
             <SearchKeywordB />
             <VerticalTabs />
+            <div><h3>멘토를 검색할 키워드(위에서 원하는 키워드를 클릭하세요!!)</h3></div>
             <div className="row">
                 <ChipsArray />
                 <IconButton onClick={searchMentor}>
