@@ -5,14 +5,14 @@ import Api from 'api/Api';
 import 'style/Main.css';
 import MentorListB from 'components/main/MentorListB';
 import MentorListContext from 'context/MentorListContext';
-import KeywordContext from 'context/KeywordContext';
+import UserKeywordContext from 'context/UserKeywordContext';
 
 import Pagination from 'react-bootstrap/Pagination'
 
 
 const MentorListC = () => {
     const { mentorList, setMentorList } = useContext(MentorListContext);
-    const { checkedKeywordList } = useContext(KeywordContext)
+    const { recommendKeyword } = useContext(UserKeywordContext)
     const [totalPageNum, setTotalPageNum] = useState('');
     const [currentPageNum, setCurrentPageNum] = useState(1);
 
@@ -25,12 +25,13 @@ const MentorListC = () => {
         );
     }
 
-    useEffect(() => {
+    console.log(recommendKeyword);
 
+    useEffect(() => {
         const getMentorList = async () => {
             await Api
                 .getMentorList({
-                    keyword: checkedKeywordList,
+                    keyword: recommendKeyword,
                     pageNum: currentPageNum,
                 })
                 .then((res) => {
@@ -38,10 +39,10 @@ const MentorListC = () => {
                 })
         };
 
-        if (checkedKeywordList[0] !== undefined) {
+        if (recommendKeyword[0] !== undefined) {
             getMentorList();
         }
-    }, [checkedKeywordList, setMentorList, currentPageNum]);
+    }, [recommendKeyword, setMentorList, currentPageNum]);
 
     useEffect(() => {
         if (mentorList[0]) {

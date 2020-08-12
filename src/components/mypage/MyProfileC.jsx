@@ -115,26 +115,6 @@ const MyProfileC = () => {
     }
 
     useEffect(() => {
-        const getUserProfile = async () => {
-            await Api
-                .getUserProfile(userProfile.usn)
-                .then((res) => {
-                    setUserProfile({
-                        usn: res.data.USN,
-                        id: res.data.ID,
-                        name: res.data.name,
-                        email: res.data.email,
-                        description: res.data.description,
-                        company: res.data.company,
-                        type: res.data.type,
-                    });
-                });
-        };
-
-        getUserProfile();
-    }, [setUserProfile, userProfile.usn]);
-
-    useEffect(() => {
         const getUserCareer = async () => {
             await Api
                 .getUserCareer(userProfile.usn)

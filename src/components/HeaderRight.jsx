@@ -42,10 +42,6 @@ const HeaderRight = () => {
             </div>
             <Badge color="secondary" >
                 <MailIcon className='notificationIcon' onClick={openNotification}/>
-                <div className='notificationC'>
-
-
-                </div>
             </Badge>
         </div>
     )

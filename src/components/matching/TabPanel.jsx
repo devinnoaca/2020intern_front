@@ -18,17 +18,19 @@ function TabPanel(props) {
     }, [value])
 
     useEffect(() => {
-        const getWaitMatchingList = async () => {
-            await Api
-                .getMatchingList(userProfile.usn, userProfile.type, tabValue)
-                .then((res) => {
-                    if (res.data.matchingList !== undefined) {
-                        setMatchingList(res.data.matchingList);
-                    }
-                })
-        }
+        if (userProfile.type !== '') {
+            const getWaitMatchingList = async () => {
+                await Api
+                    .getMatchingList(userProfile.usn, userProfile.type, tabValue)
+                    .then((res) => {
+                        if (res.data.matchingList !== undefined) {
+                            setMatchingList(res.data.matchingList);
+                        }
+                    })
+            }
 
-        getWaitMatchingList();
+            getWaitMatchingList();
+        }
     }, [tabValue, userProfile.usn, userProfile.type]);
 
     return (
@@ -62,6 +64,7 @@ function TabPanel(props) {
                                     matchinglist={pickedMatchingList}
                                     show={modalShow}
                                     onHide={() => setModalShow(false)}
+                                    backdrop='static'
                                 />
                             </div>
                         );
