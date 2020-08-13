@@ -51,5 +51,9 @@ export default {
 
     getNotification(){
         return axios.get('/notification');
-    }
+    },
+
+    getTotalPage(data){
+        return axios.post('/main/page', data);
+    },
 };

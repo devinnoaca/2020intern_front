@@ -1,20 +1,33 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-import NotificationC from 'components/NotificationC';
+import NotificationList from './NotificationList';
 
 import Badge from '@material-ui/core/Badge';
 import MailIcon from '@material-ui/icons/Mail';
 import Avatar from '@material-ui/core/Avatar';
 import IconButton from '@material-ui/core/IconButton';
+import Drawer from '@material-ui/core/Drawer';
 
 const HeaderRight = () => {
-    const dropdown = () => {
-        document.getElementById("myDropdown").classList.toggle("show");
+    const [state, setState] = React.useState({
+        top: false,
+        left: false,
+        bottom: false,
+        right: false,
+    });
+    
+
+    const toggleDrawer = (anchor, open) => (event) => {
+        if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
+            return;
+        }
+
+        setState({ ...state, [anchor]: open });
     };
 
-    const dropdown1 = () => {
-        document.getElementById("myDropdown1").classList.toggle("show1");
+    const dropdown = () => {
+        document.getElementById("myDropdown").classList.toggle("show");
     };
 
     window.onclick = (event) => {
@@ -28,6 +41,10 @@ const HeaderRight = () => {
             }
         }
     };
+
+    const list = (anchor) => (
+        <NotificationList toggleDrawer={toggleDrawer} anchor={anchor}/>
+    );
 
     return (
         <div className="headerRightWrap">
@@ -45,11 +62,14 @@ const HeaderRight = () => {
             </div>
             <div className="dropdown1">
                 <Badge color="secondary" className="dropbtn1">
-                    <MailIcon className='notificationIcon' onClick={dropdown1} />
+                    <MailIcon className='notificationIcon' onClick={toggleDrawer("right", true)} />
                 </Badge>
-                <div id="myDropdown1" className="dropdown-content1">
-                    {/* <NotificationC /> */}
-                </div>
+                <Drawer anchor="right" open={state["right"]} onClose={toggleDrawer("right", false)}>
+                    {list("right")}
+                </Drawer>
+                {/* <div id="myDropdown1" className="dropdown-content1">
+                    <NotificationC />
+                </div> */}
             </div>
         </div>
     )

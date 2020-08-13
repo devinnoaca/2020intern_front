@@ -24,7 +24,26 @@ const MentorListC = () => {
             </Pagination.Item>,
         );
     }
-
+  
+    useEffect(() => {
+        const getTotalPage = async () => {
+            await Api
+                .getTotalPage({
+                    "keyword": recommendKeyword,
+                })
+                .then((res) => {
+                    console.log("토탈페이지 받아오냐?",res.data[0].totalSearch);
+                    let totalPage = (res.data[0].totalSearch) / 6;
+                    if (((res.data[0].totalSearch) % 6) === 0){
+                        setTotalPageNum(totalPage)
+                    } else {
+                        setTotalPageNum(totalPage + 1)
+                    }
+                })
+        }
+        getTotalPage();
+    })
+  
     useEffect(() => {
         const getMentorList = async () => {
             await Api
@@ -42,11 +61,11 @@ const MentorListC = () => {
         }
     }, [recommendKeyword, setMentorList, currentPageNum]);
 
-    useEffect(() => {
-        if (mentorList[0]) {
-            setTotalPageNum(mentorList[0].totalPage)
-        };
-    }, [mentorList]);
+    // useEffect(() => {
+    //     if (mentorList[0]) {
+    //         setTotalPageNum(mentorList[0].totalPage)
+    //     };
+    // }, [mentorList]);
 
     return (
         <div className="mentorListCW">

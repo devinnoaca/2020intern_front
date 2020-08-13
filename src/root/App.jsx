@@ -62,6 +62,7 @@ const App = () => {
             <Route exact path='/main' component={Main} />
             <Route exact path='/mypage' component={MyPage} />
             <Route exact path='/matching' component={Matching} />
+            <Route exact path='/myaccount' component={MyAccount} />
             <Route exact path='/signup' component={SignUp} />
             <Route exact path='/login' component={Login} />
           </MentorListProvider>
