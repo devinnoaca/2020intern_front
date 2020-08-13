@@ -6,7 +6,7 @@ import UserContext from 'context/UserContext';
 
 const MyProfileC = () => {
     const { userProfile, setUserProfile, userCareer, setUserCareer } = useContext(UserContext);
-    const [eidtProfile, setEditProfile] = useState(false);
+    const [editProfile, setEditProfile] = useState(false);
 
     const onChangeProfile = (event) => {
         setUserProfile({ ...userProfile, [event.target.name]: event.target.value });
@@ -21,7 +21,7 @@ const MyProfileC = () => {
     }
 
     const changeEditProfileMode = async (event) => {
-        if (eidtProfile === false) {
+        if (editProfile === false) {
             setEditProfile(true);
         } else if (userCareer.filter((career) => career.content.trim() === '').length > 0) {
             event.preventDefault();
@@ -31,7 +31,7 @@ const MyProfileC = () => {
             alert('입력하지 않은 항목이 있습니다.')
         } else {
             event.preventDefault();
-            
+
             await Api
                 .editUserProfile(userProfile.usn, userProfile)
                 .then((res) => {
@@ -43,11 +43,12 @@ const MyProfileC = () => {
                 })
 
             setEditProfile(false);
+
         }
     }
 
     const makeProfile = () => {
-        if (eidtProfile) {
+        if (editProfile) {
             return (
                 <>
                     <p>이름<input onChange={onChangeProfile} name="name" value={userProfile.name} /></p>
@@ -70,7 +71,7 @@ const MyProfileC = () => {
     }
 
     const makeCareer = () => {
-        if (eidtProfile) {
+        if (editProfile) {
             let career = userCareer.map((career, index) => {
                 return (
                     <p key={index}>

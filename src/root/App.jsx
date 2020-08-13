@@ -2,7 +2,7 @@ import React, { useEffect, useContext } from 'react';
 import { Route } from 'react-router-dom';
 
 import 'style/App.css';
-import { Main, Intro, MyPage, Matching, MyAccount } from 'pages';
+import { SignUp, Login, Main, Intro, MyPage, Matching, MyAccount } from 'pages';
 import Header from '../components/Header';
 import Api from 'api/Api';
 import UserContext from 'context/UserContext';
@@ -17,6 +17,7 @@ const App = () => {
   const { setAllKeyword, setrecommendKeyword } = useContext(UserKeywordContext);
 
   useEffect(() => {
+    console.log(userProfile);
     const getUserProfile = async () => {
       await Api
         .getUserProfile(userProfile.usn)
@@ -28,6 +29,7 @@ const App = () => {
             email: res.data.email,
             description: res.data.description,
             company: res.data.company,
+            image_url: res.data.image_url,
             type: res.data.type,
           });
         });
@@ -60,6 +62,8 @@ const App = () => {
             <Route exact path='/main' component={Main} />
             <Route exact path='/mypage' component={MyPage} />
             <Route exact path='/matching' component={Matching} />
+            <Route exact path='/signup' component={SignUp} />
+            <Route exact path='/login' component={Login} />
           </MentorListProvider>
 
         </KeywordProvider>
