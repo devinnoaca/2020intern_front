@@ -35,53 +35,59 @@ function MyVerticallyCenteredModal(props) {
     }, [props.matchinglist]);
 
     useEffect(() => {
-        const getMentorProfile = async () => {
-            await Api
-                .getUserProfile(props.matchinglist.oppositeUsn)
-                .then((res) => {
-                    setMentorProfile({
-                        usn: res.data.USN,
-                        id: res.data.ID,
-                        name: res.data.name,
-                        email: res.data.email,
-                        password: res.data.password,
-                        description: res.data.description,
-                        company: res.data.company,
-                        type: res.data.type,
+        if (props.matchingList !== undefined) {
+            const getMentorProfile = async () => {
+                await Api
+                    .getUserProfile(props.matchinglist.oppositeUsn)
+                    .then((res) => {
+                        setMentorProfile({
+                            usn: res.data.USN,
+                            id: res.data.ID,
+                            name: res.data.name,
+                            email: res.data.email,
+                            password: res.data.password,
+                            description: res.data.description,
+                            company: res.data.company,
+                            type: res.data.type,
+                        })
                     })
-                })
-        }
+            }
 
-        getMentorProfile();
-    }, [props.matchinglist.oppositeUsn]);
+            getMentorProfile();
+        }
+    }, [props.matchinglist.oppositeUsn, props.matchingList]);
 
     useEffect(() => {
-        const getMentorCareer = async () => {
-            await Api
-                .getUserCareer(props.matchinglist.oppositeUsn)
-                .then((res) => {
-                    if (res.data.career !== undefined) {
-                        setMentorCareer(res.data.career);
-                    }
-                })
-        }
+        if (props.matchingList !== undefined) {
+            const getMentorCareer = async () => {
+                await Api
+                    .getUserCareer(props.matchinglist.oppositeUsn)
+                    .then((res) => {
+                        if (res.data.career !== undefined) {
+                            setMentorCareer(res.data.career);
+                        }
+                    })
+            }
 
-        getMentorCareer();
-    }, [props.matchinglist.oppositeUsn]);
+            getMentorCareer();
+        }
+    }, [props.matchinglist.oppositeUsn, props.matchingList]);
 
     useEffect(() => {
-        const getMentorKeyword = async () => {
-            await Api
-                .getUserKeyword(props.matchinglist.oppositeUsn)
-                .then((res) => {
-                    if (res.data.allKeyword !== undefined) {
-                        setMentorKeyword(res.data.allKeyword);
-                    }
-                })
-        }
+        if (props.matchingList !== undefined) {
+            const getMentorKeyword = async () => {
+                await Api
+                    .getUserKeyword(props.matchinglist.oppositeUsn)
+                    .then((res) => {
+                        if (res.data.allKeyword !== undefined) {
+                            setMentorKeyword(res.data.allKeyword);
+                        }
+                    })
+            }
 
-        getMentorKeyword();
-    }, [props.matchinglist.oppositeUsn]);
+            getMentorKeyword();
+        }
+    }, [props.matchinglist.oppositeUsn, props.matchingList]);
 
     const editMatching = async (matchingState) => {
         if (refuseValue.trim() === '') {
