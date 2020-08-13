@@ -9,6 +9,7 @@ export default {
     },
 
     editUserProfile(usn,data) {
+        console.log(data);
         return axios.put(`/user/inform/${usn}`,data); 
     },
 

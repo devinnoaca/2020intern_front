@@ -24,7 +24,7 @@ const MentorListC = () => {
             </Pagination.Item>,
         );
     }
-
+  
     useEffect(() => {
         const getTotalPage = async () => {
             await Api
@@ -43,7 +43,7 @@ const MentorListC = () => {
         }
         getTotalPage();
     })
-
+  
     useEffect(() => {
         const getMentorList = async () => {
             await Api

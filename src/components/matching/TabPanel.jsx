@@ -18,7 +18,7 @@ function TabPanel(props) {
     }, [value])
 
     useEffect(() => {
-        if (userProfile.type !== '') {
+        if ((userProfile.type !== '')) {
             const getWaitMatchingList = async () => {
                 await Api
                     .getMatchingList(userProfile.usn, userProfile.type, tabValue)
