@@ -10,7 +10,7 @@ import UserKeywordContext from 'context/UserKeywordContext';
 import KeywordProvider from 'provider/KeywordProvider';
 import MentorListProvider from 'provider/MentorListProvider';
 
-import Cookies from 'js-cookie';
+//import Cookies from 'js-cookie';
 
 import Container from '@material-ui/core/Container';
 
@@ -21,7 +21,7 @@ const App = () => {
   useEffect(() => {
     const getUserProfile = async () => {
       await Api
-        .getUserProfile(Cookies.get('token'))
+        .getUserProfile(userProfile.usn)
         .then((res) => {
           setUserProfile({
             usn: res.data.USN,
@@ -37,7 +37,7 @@ const App = () => {
     };
 
     getUserProfile();
-  }, [setUserProfile]);
+  }, [setUserProfile, userProfile.usn]);
 
   useEffect(() => {
     const getUserKeyword = async () => {

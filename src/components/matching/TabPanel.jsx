@@ -7,7 +7,7 @@ import UserContext from 'context/UserContext';
 
 function TabPanel(props) {
     const { value, index, state, ...other } = props;
-    const [tabValue, setTabValue] = useState();
+    const [tabValue, setTabValue] = useState(0);
     const [modalShow, setModalShow] = useState(false);
     const [matchingList, setMatchingList] = useState([]);
     const [pickedMatchingList, setPickedMatchingList] = useState([]);
@@ -31,6 +31,7 @@ function TabPanel(props) {
 
             getWaitMatchingList();
         }
+
     }, [tabValue, userProfile.usn, userProfile.type]);
 
     return (

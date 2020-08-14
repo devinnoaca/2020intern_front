@@ -6,8 +6,8 @@ import SearchKeywordB from 'components/main/SearchKeywordB';
 import VerticalTabs from 'components/main/VerticalTabs';
 import MentorListContext from 'context/MentorListContext';
 
-//import KeywordContext from 'context/KeywordContext';
-//import UserKeywordContext from 'context/UserKeywordContext';
+import KeywordContext from 'context/KeywordContext';
+import UserKeywordContext from 'context/UserKeywordContext';
 
 import PaginationContext from 'context/PaginationContext';
 
@@ -19,28 +19,32 @@ const KeywordC = () => {
     const { recommendKeyword } = useContext(UserKeywordContext);
     const { setKeywordList, tempList, setTempList } = useContext(KeywordContext);
     const { setMentorList } = useContext(MentorListContext);
-  
+
     const { setTotalPageNum } = useContext(PaginationContext);
 
     useEffect(() => {
-        const getTotalPage = async () => {
-            await Api
-                .getTotalPage({
-                    "keyword": tempList,
-                })
-                .then((res) => {
-                    console.log(res.data);
-                    let totalPage = (res.data.totalSearch) / 6;
-                    if (totalPage !== undefined) {
-                        if (((res.data.totalSearch) % 6) === 0) {
-                            setTotalPageNum(totalPage)
-                        } else {
-                            setTotalPageNum(totalPage + 1)
+        if (tempList.length !== 0) {
+            const getTotalPage = async () => {
+                await Api
+                    .getTotalPage({
+                        "keyword": tempList,
+                    })
+                    .then((res) => {
+                        console.log(res.data);
+                        let totalPage = (res.data.totalSearch) / 6;
+                        if (totalPage !== undefined) {
+                            if (((res.data.totalSearch) % 6) === 0) {
+                                setTotalPageNum(totalPage)
+                            } else {
+                                setTotalPageNum(totalPage + 1)
+                            }
                         }
-                    }
-                })
+                    })
+            }
+            getTotalPage();
         }
-        getTotalPage();
+    }
+    )
 
     const searchMentor = async () => {
         await Api
