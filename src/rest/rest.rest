@@ -20,7 +20,16 @@ GET http://10.19.247.182:3001/user/career/1
 
 
 ### 메인페이지 페이지네이션
-GET http://10.19.247.182:3001/notification/3
+POST http://10.19.247.182:3001/main/page
+Content-Type: application/json
+
+{
+    "keyword": [
+    {
+        "keywordId": 2
+    }
+    ]
+}
 
 ### 전체, 추천 모두
 GET http://10.19.247.182:3001/user/keyword/1

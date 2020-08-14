@@ -18,29 +18,31 @@ const KeywordC = () => {
     const { recommendKeyword } = useContext(UserKeywordContext);
     const { setKeywordList, tempList, setTempList } = useContext(KeywordContext);
     const { setMentorList } = useContext(MentorListContext);
-  
+
     const { setTotalPageNum } = useContext(PaginationContext);
 
     useEffect(() => {
-        const getTotalPage = async () => {
-            await Api
-                .getTotalPage({
-                    "keyword": tempList,
-                })
-                .then((res) => {
-                    console.log(res.data);
-                    let totalPage = (res.data.totalSearch) / 6;
-                    if (totalPage !== undefined) {
-                        if (((res.data.totalSearch) % 6) === 0) {
-                            setTotalPageNum(totalPage)
-                        } else {
-                            setTotalPageNum(totalPage + 1)
+        if (tempList.length !== 0) {
+            const getTotalPage = async () => {
+                await Api
+                    .getTotalPage({
+                        "keyword": tempList,
+                    })
+                    .then((res) => {
+                        console.log(res.data);
+                        let totalPage = (res.data.totalSearch) / 6;
+                        if (totalPage !== undefined) {
+                            if (((res.data.totalSearch) % 6) === 0) {
+                                setTotalPageNum(totalPage)
+                            } else {
+                                setTotalPageNum(totalPage + 1)
+                            }
                         }
-                    }
-                })
+                    })
+            }
+            getTotalPage();
         }
-        getTotalPage();
-    });
+    })
 
     const searchMentor = async () => {
         await Api
