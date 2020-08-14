@@ -31,7 +31,6 @@ const MentorListC = () => {
                     "keyword": recommendKeyword,
                 })
                 .then((res) => {
-                    console.log("토탈페이지 받아오냐?", res.data);
                     let totalPage = (res.data.totalSearch) / 6;
                     if (totalPage !== undefined) {
                         if (((res.data.totalSearch) % 6) === 0) {
@@ -53,8 +52,6 @@ const MentorListC = () => {
                     pageNum: currentPageNum,
                 })
                 .then((res) => {
-                    console.log("띠용치?");
-                    
                     setMentorList(res.data.mentorList);
                 })
         };

@@ -12,7 +12,7 @@ import IconButton from '@material-ui/core/IconButton';
 import Drawer from '@material-ui/core/Drawer';
 
 const HeaderRight = () => {
-    const { isLogged, setIsLogged } = useContext(UserContext); 
+    const { isLogged, setIsLogged } = useContext(UserContext);
 
     const [state, setState] = React.useState({
         top: false,
@@ -45,14 +45,14 @@ const HeaderRight = () => {
         }
     };
 
-    const logout = () =>  {
+    const logout = () => {
         Cookies.remove('isLogged');
         Cookies.remove('usn');
         setIsLogged(false);
     }
 
     return (
-        (Cookies.get('isLogged') || isLogged)
+        (Cookies.get('isLogged'))
             ? (
                 <div className="headerRightWrap">
                     <div className="dropdown">
