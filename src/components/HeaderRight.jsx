@@ -12,7 +12,7 @@ import IconButton from '@material-ui/core/IconButton';
 import Drawer from '@material-ui/core/Drawer';
 
 const HeaderRight = () => {
-    const { isLogged, setIsLogged } = useContext(UserContext);
+    const { setIsLogged } = useContext(UserContext);
 
     const [state, setState] = React.useState({
         top: false,
