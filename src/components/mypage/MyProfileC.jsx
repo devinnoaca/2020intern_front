@@ -3,6 +3,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import Api from 'api/Api';
 import image from 'style/logo192.png';
 import UserContext from 'context/UserContext';
+import Cookies from 'js-cookie';
 
 const MyProfileC = () => {
     const { userProfile, setUserProfile, userCareer, setUserCareer } = useContext(UserContext);
@@ -101,6 +102,7 @@ const MyProfileC = () => {
         } else {
             return (
                 userCareer.map((career, index) => {
+                    console.log(index);
                     if (career.type !== 2) {
                         return (
                             <div key={index}>{career.content}</div>
@@ -118,7 +120,7 @@ const MyProfileC = () => {
     useEffect(() => {
         const getUserCareer = async () => {
             await Api
-                .getUserCareer(userProfile.usn)
+                .getUserCareer(Cookies.get('usn'))
                 .then((res) => {
                     setUserCareer(res.data.career);
                 });
