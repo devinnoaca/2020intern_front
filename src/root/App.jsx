@@ -10,12 +10,11 @@ import UserKeywordContext from 'context/UserKeywordContext';
 import KeywordProvider from 'provider/KeywordProvider';
 import MentorListProvider from 'provider/MentorListProvider';
 
-//import Cookies from 'js-cookie';
-
+import Cookies from 'js-cookie';
 import Container from '@material-ui/core/Container';
 
 const App = () => {
-  const { userProfile, setUserProfile } = useContext(UserContext);
+  const { userProfile, setUserProfile, isLogged } = useContext(UserContext);
   const { setAllKeyword, setrecommendKeyword } = useContext(UserKeywordContext);
 
   useEffect(() => {
@@ -37,7 +36,7 @@ const App = () => {
     };
 
     getUserProfile();
-  }, [setUserProfile, userProfile.usn]);
+  }, [setUserProfile, isLogged]);
 
   useEffect(() => {
     const getUserKeyword = async () => {
@@ -50,11 +49,10 @@ const App = () => {
     };
     getUserKeyword();
 
-  }, [setAllKeyword, setrecommendKeyword, userProfile.usn]);
+  }, [setAllKeyword, setrecommendKeyword, isLogged]);
 
   return (
     <>
-      
       <Container className="App">
         <KeywordProvider>
           <MentorListProvider>

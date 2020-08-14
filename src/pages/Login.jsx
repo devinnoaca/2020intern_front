@@ -2,14 +2,13 @@ import React, { useRef, useContext } from 'react';
 
 import 'style/SignUp.css';
 import Api from 'api/Api';
-import UserContext from 'context/UserContext';
 
 import Cookies from 'js-cookie';
+import { useEffect } from 'react';
 
 const Login = ({ history }) => {
     const id = useRef();
     const password = useRef();
-    const { setIsLogged } = useContext(UserContext); 
 
     const submitSignUp = async (event) => {
         event.preventDefault();
@@ -22,14 +21,15 @@ const Login = ({ history }) => {
         await Api
             .login(user)
             .then((res) => {
-                console.log(res.data);
-                Cookies.set('usn', res.data.usn);
+                Cookies.set('usn', res.data.session.usn);
                 Cookies.set('isLogged', true);
-                setIsLogged(true);
-                history.push('/main');
+                history.push('/main')
             })
-        
+
     }
+    useEffect(() => {
+
+    })
 
     return (
         <>

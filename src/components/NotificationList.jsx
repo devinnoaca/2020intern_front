@@ -64,7 +64,6 @@ const NotificationList = ({ anchor, toggleDrawer }) => {
             Api
                 .getNotification(userProfile.usn)
                 .then((res) => {
-                    console.log("마무리짓는단느낌으로", res.data.notification);
                     setNotificationList(res.data.notification);
                 })
         }
