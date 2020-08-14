@@ -33,7 +33,7 @@ const NotificationList = ({ anchor, toggleDrawer }) => {
             Api
                 .getNotification(userProfile.usn)
                 .then((res) => {
-                    console.log(res.data);
+                    console.log("마무리짓는단느낌으로",res.data);
                     setNotificationList(notificatonList);
                 })
         }

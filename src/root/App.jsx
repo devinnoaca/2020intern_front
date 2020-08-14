@@ -39,7 +39,6 @@ const App = () => {
     getUserProfile();
   }, [setUserProfile]);
 
-
   useEffect(() => {
     const getUserKeyword = async () => {
       await Api

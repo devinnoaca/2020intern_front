@@ -12,8 +12,8 @@ export default {
         return axios.post('/auth/login', data);
     },
 
-    getUserProfile(token) {
-        return axios.get(`/user/inform`, { headers: { 'x-access-token': token } });
+    getUserProfile(usn) {
+        return axios.get(`/user/inform/${usn}`);
     },
 
     editUserProfile(usn, data) {
@@ -45,7 +45,7 @@ export default {
     },
 
     getMentorList(data) {
-        return axios.post('/main/list', data);
+        return axios.post('/main/list',data);
     },
 
     createMatching(data) {
@@ -56,8 +56,8 @@ export default {
         return axios.put(`/matching/${matchingId}`, data);
     },
 
-    getNotification() {
-        return axios.get('/notification');
+    getNotification(usn){
+        return axios.get(`/notification/${usn}`);
     },
 
     getTotalPage(data) {
