@@ -31,6 +31,7 @@ function TabPanel(props) {
 
             getWaitMatchingList();
         }
+
     }, [tabValue, userProfile.usn, userProfile.type]);
 
     return (

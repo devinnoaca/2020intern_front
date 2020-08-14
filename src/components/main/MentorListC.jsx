@@ -25,23 +25,25 @@ const MentorListC = () => {
     }
 
     useEffect(() => {
-        const getTotalPage = async () => {
-            await Api
-                .getTotalPage({
-                    "keyword": recommendKeyword,
-                })
-                .then((res) => {
-                    let totalPage = (res.data.totalSearch) / 6;
-                    if (totalPage !== undefined) {
-                        if (((res.data.totalSearch) % 6) === 0) {
-                            setTotalPageNum(totalPage)
-                        } else {
-                            setTotalPageNum(totalPage + 1)
+        if (recommendKeyword.length!==0){
+            const getTotalPage = async () => {
+                await Api
+                    .getTotalPage({
+                        "keyword": recommendKeyword
+                    })
+                    .then((res) => {
+                        let totalPage = (res.data.totalSearch) / 6;
+                        if (totalPage !== undefined) {
+                            if (((res.data.totalSearch) % 6) === 0) {
+                                setTotalPageNum(totalPage)
+                            } else {
+                                setTotalPageNum(totalPage + 1)
+                            }
                         }
-                    }
-                })
+                    })
+            }
+            getTotalPage();
         }
-        getTotalPage();
     }, [recommendKeyword, setTotalPageNum])
 
     useEffect(() => {
