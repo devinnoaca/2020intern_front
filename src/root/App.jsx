@@ -17,7 +17,6 @@ const App = () => {
   const { setAllKeyword, setrecommendKeyword } = useContext(UserKeywordContext);
 
   useEffect(() => {
-    console.log(userProfile);
     const getUserProfile = async () => {
       await Api
         .getUserProfile(userProfile.usn)
@@ -37,7 +36,6 @@ const App = () => {
 
     getUserProfile();
   }, [setUserProfile, userProfile.usn]);
-
 
   useEffect(() => {
     const getUserKeyword = async () => {

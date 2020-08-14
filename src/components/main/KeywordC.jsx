@@ -7,6 +7,7 @@ import ChipsArray from "components/main/ChipsArray";
 import UserKeywordContext from 'context/UserKeywordContext';
 import KeywordContext from 'context/KeywordContext';
 import MentorListContext from 'context/MentorListContext';
+import PaginationContext from 'context/PaginationContext';
 
 import IconButton from '@material-ui/core/IconButton';
 import SearchIcon from '@material-ui/icons/Search';
@@ -15,17 +16,41 @@ const KeywordC = () => {
     const { recommendKeyword } = useContext(UserKeywordContext);
     const { setKeywordList, tempList, setTempList } = useContext(KeywordContext);
     const { setMentorList } = useContext(MentorListContext);
-    
-    const searchMentor = async () => {
+    const { setTotalPageNum } = useContext(PaginationContext);
+
+    useEffect(() => {
+        const getTotalPage = async () => {
             await Api
-                .getMentorList({
-                    keyword: tempList,
-                    pageNum:1,
+                .getTotalPage({
+                    "keyword": tempList,
                 })
                 .then((res) => {
-                    setMentorList(res.data.mentorList);
+                    console.log(res.data);
+                    let totalPage = (res.data.totalSearch) / 6;
+                    if (totalPage !== undefined) {
+                        if (((res.data.totalSearch) % 6) === 0) {
+                            setTotalPageNum(totalPage)
+                        } else {
+                            setTotalPageNum(totalPage + 1)
+                        }
+                    }
                 })
-        };
+        }
+        getTotalPage();
+    }, [tempList, setTotalPageNum])
+
+    const searchMentor = async () => {
+        await Api
+            .getMentorList({
+                keyword: tempList,
+                pageNum: 1,
+            })
+            .then((res) => {
+                console.log("띠용치",res.data);
+                
+                setMentorList(res.data.mentorList);
+            })
+    };
 
     useEffect(() => {
         const getKeyword = async () => {
