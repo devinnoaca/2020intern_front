@@ -1,12 +1,15 @@
-import React, { useRef } from 'react';
+import React, { useRef, useContext } from 'react';
 
 import 'style/SignUp.css';
 import Api from 'api/Api';
+import UserContext from 'context/UserContext';
+
 import Cookies from 'js-cookie';
 
 const Login = ({ history }) => {
     const id = useRef();
     const password = useRef();
+    const { setIsLogged } = useContext(UserContext); 
 
     const submitSignUp = async (event) => {
         event.preventDefault();
@@ -19,7 +22,10 @@ const Login = ({ history }) => {
         await Api
             .login(user)
             .then((res) => {
-                Cookies.set('token', res.data.token);
+                console.log(res.data);
+                Cookies.set('usn', res.data.usn);
+                Cookies.set('isLogged', true);
+                setIsLogged(true);
                 history.push('/main');
             })
         

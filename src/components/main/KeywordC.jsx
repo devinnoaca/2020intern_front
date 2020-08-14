@@ -5,9 +5,8 @@ import ChipsArray from "components/main/ChipsArray";
 import SearchKeywordB from 'components/main/SearchKeywordB';
 import VerticalTabs from 'components/main/VerticalTabs';
 import MentorListContext from 'context/MentorListContext';
-
-//import KeywordContext from 'context/KeywordContext';
-//import UserKeywordContext from 'context/UserKeywordContext';
+import KeywordContext from 'context/KeywordContext';
+import UserKeywordContext from 'context/UserKeywordContext';
 
 import PaginationContext from 'context/PaginationContext';
 
@@ -41,6 +40,7 @@ const KeywordC = () => {
                 })
         }
         getTotalPage();
+    });
 
     const searchMentor = async () => {
         await Api
