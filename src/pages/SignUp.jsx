@@ -1,22 +1,34 @@
 import React, { useRef } from 'react';
 
 import 'style/SignUp.css';
+import Api from 'api/Api';
 
 const SignUp = () => {
     const id = useRef();
     const password = useRef();
     const name = useRef();
     const email = useRef();
+    const company = useRef();
     const description = useRef();
 
-    const submitSignUp = (event) => {
+    const submitSignUp = async (event) => {
         event.preventDefault();
 
-        console.log(id.current.value);
-        console.log(password.current.value);
-        console.log(name.current.value);
-        console.log(email.current.value);
-        console.log(description.current.value);
+        const user = {
+            id: id.current.value,
+            password: password.current.value,
+            email: email.current.value,
+            description: description.current.value,
+            name: name.current.value, 
+            company: company.current.value,
+            imageURL: ''
+        }
+
+        await Api
+            .createUser(user)
+            .then((res) => {
+                console.log(res.data);
+            })
     }
 
     return (
@@ -49,6 +61,12 @@ const SignUp = () => {
                         이메일
                         <p className="input">
                             <input type="text" ref={email} maxLength="20" placeholder="" className="text" />
+                        </p>
+                    </label>
+                    <label>
+                        회사
+                        <p className="input">
+                            <textarea type="text" ref={company} maxLength="100" placeholder="" className="text" />
                         </p>
                     </label>
                     <label>

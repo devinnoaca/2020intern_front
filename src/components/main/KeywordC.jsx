@@ -1,12 +1,12 @@
-import React, { useEffect, useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 
 import Api from 'api/Api';
+import ChipsArray from "components/main/ChipsArray";
 import SearchKeywordB from 'components/main/SearchKeywordB';
 import VerticalTabs from 'components/main/VerticalTabs';
-import ChipsArray from "components/main/ChipsArray";
-import UserKeywordContext from 'context/UserKeywordContext';
-import KeywordContext from 'context/KeywordContext';
 import MentorListContext from 'context/MentorListContext';
+import KeywordContext from 'context/KeywordContext';
+import UserKeywordContext from 'context/UserKeywordContext';
 
 import IconButton from '@material-ui/core/IconButton';
 import SearchIcon from '@material-ui/icons/Search';
@@ -15,17 +15,17 @@ const KeywordC = () => {
     const { recommendKeyword } = useContext(UserKeywordContext);
     const { setKeywordList, tempList, setTempList } = useContext(KeywordContext);
     const { setMentorList } = useContext(MentorListContext);
-    
+
     const searchMentor = async () => {
-            await Api
-                .getMentorList({
-                    keyword: tempList,
-                    pageNum:1,
-                })
-                .then((res) => {
-                    setMentorList(res.data.mentorList);
-                })
-        };
+        await Api
+            .getMentorList({
+                keyword: tempList,
+                pageNum: 1,
+            })
+            .then((res) => {
+                setMentorList(res.data.mentorList);
+            });
+    };
 
     useEffect(() => {
         const getKeyword = async () => {

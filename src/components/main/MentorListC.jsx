@@ -32,9 +32,9 @@ const MentorListC = () => {
                     "keyword": recommendKeyword,
                 })
                 .then((res) => {
-                    console.log("토탈페이지 받아오냐?",res.data[0].totalSearch);
-                    let totalPage = (res.data[0].totalSearch) / 6;
-                    if (((res.data[0].totalSearch) % 6) === 0){
+                    console.log("토탈페이지 받아오냐?",res.data.totalSearch);
+                    let totalPage = (res.data.totalSearch) / 6;
+                    if (((res.data.totalSearch) % 6) === 0){
                         setTotalPageNum(totalPage)
                     } else {
                         setTotalPageNum(totalPage + 1)
@@ -42,7 +42,7 @@ const MentorListC = () => {
                 })
         }
         getTotalPage();
-    })
+    },[recommendKeyword])
   
     useEffect(() => {
         const getMentorList = async () => {

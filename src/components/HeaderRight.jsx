@@ -16,7 +16,7 @@ const HeaderRight = () => {
         bottom: false,
         right: false,
     });
-    
+
 
     const toggleDrawer = (anchor, open) => (event) => {
         if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
@@ -42,10 +42,6 @@ const HeaderRight = () => {
         }
     };
 
-    const list = (anchor) => (
-        <NotificationList toggleDrawer={toggleDrawer} anchor={anchor}/>
-    );
-
     return (
         <div className="headerRightWrap">
             <div className="dropdown">
@@ -65,12 +61,15 @@ const HeaderRight = () => {
                     <MailIcon className='notificationIcon' onClick={toggleDrawer("right", true)} />
                 </Badge>
                 <Drawer anchor="right" open={state["right"]} onClose={toggleDrawer("right", false)}>
-                    {list("right")}
+                    <NotificationList toggleDrawer={toggleDrawer} anchor={'right'} />
                 </Drawer>
-                {/* <div id="myDropdown1" className="dropdown-content1">
-                    <NotificationC />
-                </div> */}
             </div>
+            <button>
+                <Link to='/login'><div>로그인</div></Link>
+            </button>
+            <button>
+                <Link to='/signup'><div>회원가입</div></Link>
+            </button>
         </div>
     )
 }

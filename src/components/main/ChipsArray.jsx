@@ -36,8 +36,7 @@ const ChipsArray = () => {
             {tempList.map((data) => {
                 return (
                     <li key={data.keywordId}>
-                        <Chip
-                            label={data.keywordName}
+                        <Chip label={data.keywordName}
                             onDelete={handleDelete(data)}
                             className={classes.chip}
                         />
