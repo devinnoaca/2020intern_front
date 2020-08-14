@@ -1,13 +1,16 @@
-import React, { useEffect, useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 
 import Api from 'api/Api';
+import ChipsArray from "components/main/ChipsArray";
 import SearchKeywordB from 'components/main/SearchKeywordB';
 import VerticalTabs from 'components/main/VerticalTabs';
-import ChipsArray from "components/main/ChipsArray";
-import UserKeywordContext from 'context/UserKeywordContext';
-import KeywordContext from 'context/KeywordContext';
 import MentorListContext from 'context/MentorListContext';
+
+//import KeywordContext from 'context/KeywordContext';
+//import UserKeywordContext from 'context/UserKeywordContext';
+
 import PaginationContext from 'context/PaginationContext';
+
 
 import IconButton from '@material-ui/core/IconButton';
 import SearchIcon from '@material-ui/icons/Search';
@@ -16,6 +19,7 @@ const KeywordC = () => {
     const { recommendKeyword } = useContext(UserKeywordContext);
     const { setKeywordList, tempList, setTempList } = useContext(KeywordContext);
     const { setMentorList } = useContext(MentorListContext);
+  
     const { setTotalPageNum } = useContext(PaginationContext);
 
     useEffect(() => {
@@ -37,7 +41,6 @@ const KeywordC = () => {
                 })
         }
         getTotalPage();
-    }, [tempList, setTotalPageNum])
 
     const searchMentor = async () => {
         await Api
@@ -46,10 +49,9 @@ const KeywordC = () => {
                 pageNum: 1,
             })
             .then((res) => {
-                console.log("띠용치",res.data);
-                
                 setMentorList(res.data.mentorList);
-            })
+            });
+
     };
 
     useEffect(() => {

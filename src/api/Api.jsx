@@ -1,35 +1,42 @@
 import axios from 'axios';
 
-axios.defaults.baseURL = 'http://10.19.247.182:3001';
+axios.defaults.baseURL = 'http://10.19.247.175:3001';
 //axios.defaults.baseURL = 'http://localhost:3001';
 
 export default {
-    getUserProfile(usn) {
-        return axios.get(`/user/inform/${usn}`); 
+    createUser(data) {
+        return axios.post('/auth', data);
     },
 
-    editUserProfile(usn,data) {
-        console.log(data);
-        return axios.put(`/user/inform/${usn}`,data); 
+    login(data) {
+        return axios.post('/auth/login', data);
+    },
+
+    getUserProfile(usn) {
+        return axios.get(`/user/inform/${usn}`);
+    },
+
+    editUserProfile(usn, data) {
+        return axios.put(`/user/inform/${usn}`, data);
     },
 
     getUserCareer(usn) {
-        return axios.get(`/user/career/${usn}`); 
+        return axios.get(`/user/career/${usn}`);
     },
 
     editUserCareer(usn, data) {
-        return axios.post(`/user/career/${usn}`,data); 
+        return axios.post(`/user/career/${usn}`, data);
     },
 
-    getUserKeyword(usn){
-        return axios.get(`/user/keyword/${usn}`); 
+    getUserKeyword(usn) {
+        return axios.get(`/user/keyword/${usn}`);
     },
 
     editUserKeyword(where, data, usn) {
-        return axios.post(`/user/keyword/${where}/${usn}`,data); 
+        return axios.post(`/user/keyword/${where}/${usn}`, data);
     },
-      
-    getMatchingList(usn, userType, matchingType){
+
+    getMatchingList(usn, userType, matchingType) {
         return axios.get(`/user/${userType}/matching/${matchingType}/${usn}`);
     },
 
@@ -38,16 +45,14 @@ export default {
     },
 
     getMentorList(data) {
-        console.log("데이터뭐가", data);
-        
         return axios.post('/main/list',data);
     },
 
-    createMatching(data){
-        return axios.post('/matching',data);
+    createMatching(data) {
+        return axios.post('/matching', data);
     },
 
-    editMatching(matchingId,data){
+    editMatching(matchingId, data) {
         return axios.put(`/matching/${matchingId}`, data);
     },
 
@@ -55,7 +60,7 @@ export default {
         return axios.get(`/notification/${usn}`);
     },
 
-    getTotalPage(data){
+    getTotalPage(data) {
         return axios.post('/main/page', data);
     },
 };

@@ -1,16 +1,28 @@
 import React, { useRef } from 'react';
 
 import 'style/SignUp.css';
+import Api from 'api/Api';
+import Cookies from 'js-cookie';
 
-const Login = () => {
+const Login = ({ history }) => {
     const id = useRef();
     const password = useRef();
 
-    const submitSignUp = (event) => {
+    const submitSignUp = async (event) => {
         event.preventDefault();
 
-        console.log(id.current.value);
-        console.log(password.current.value);
+        const user = {
+            id: id.current.value,
+            password: password.current.value,
+        };
+
+        await Api
+            .login(user)
+            .then((res) => {
+                Cookies.set('token', res.data.token);
+                history.push('/main');
+            })
+        
     }
 
     return (
@@ -34,7 +46,7 @@ const Login = () => {
                         </p>
                     </label>
                     <p className="submit">
-                        <input type="submit" value="생성하기" className="text" />
+                        <input type="submit" value="로그인" className="text" />
                     </p>
                 </form>
             </div>
