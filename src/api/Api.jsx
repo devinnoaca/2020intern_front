@@ -38,6 +38,8 @@ export default {
     },
 
     getMentorList(data) {
+        console.log("데이터뭐가", data);
+        
         return axios.post('/main/list',data);
     },
 
@@ -49,8 +51,8 @@ export default {
         return axios.put(`/matching/${matchingId}`, data);
     },
 
-    getNotification(){
-        return axios.get('/notification');
+    getNotification(usn){
+        return axios.get(`/notification/${usn}`);
     },
 
     getTotalPage(data){

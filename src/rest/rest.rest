@@ -20,18 +20,7 @@ GET http://10.19.247.182:3001/user/career/1
 
 
 ### 메인페이지 페이지네이션
-POST http://10.19.247.182:3001/main/page
-Content-Type: application/json
-
-{
-    "keyword": [
-    {
-        "keywordId": 2,
-        "keywordName": "React.js", 
-        "categoryName": "개발/프로그래밍"   
-    }
-    ]
-}
+GET http://10.19.247.182:3001/notification/3
 
 ### 전체, 추천 모두
 GET http://10.19.247.182:3001/user/keyword/1
@@ -80,11 +69,10 @@ Content-Type: application/json
 {
     "keyword": [
     {
-        "keywordId": 2,
-        "keywordName": "React.js", 
-        "categoryName": "개발/프로그래밍"   
+        "keywordId": 2
     }
-    ]
+    ],
+    "pageNum":1
 }
 
 ### 매칭 생성(POST), 수정(PUT)
