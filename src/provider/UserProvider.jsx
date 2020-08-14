@@ -3,7 +3,7 @@ import UserContext from 'context/UserContext';
 
 const UserProvider = ({ children }) => {
     const [userProfile, setUserProfile] = useState({
-        usn: 2,
+        usn: '',
         name: '',
         email: '',
         password: '',
@@ -12,10 +12,12 @@ const UserProvider = ({ children }) => {
         type: '',
     });
     const [userCareer, setUserCareer] = useState([]);
+    const [isLogged, setIsLogged] = useState(false);
 
     const user = {
         userProfile, setUserProfile,
-        userCareer, setUserCareer
+        userCareer, setUserCareer,
+        isLogged, setIsLogged,
     };
 
     return (

@@ -21,7 +21,7 @@ const App = () => {
   useEffect(() => {
     const getUserProfile = async () => {
       await Api
-        .getUserProfile(userProfile.usn)
+        .getUserProfile(Cookies.get('usn'))
         .then((res) => {
           setUserProfile({
             usn: res.data.USN,
@@ -42,7 +42,7 @@ const App = () => {
   useEffect(() => {
     const getUserKeyword = async () => {
       await Api
-        .getUserKeyword(userProfile.usn)
+        .getUserKeyword(Cookies.get('usn'))
         .then((res) => {
           setAllKeyword(res.data.allKeyword);
           setrecommendKeyword(res.data.recommendKeyword);
@@ -54,10 +54,11 @@ const App = () => {
 
   return (
     <>
-      <Header />
+      
       <Container className="App">
         <KeywordProvider>
           <MentorListProvider>
+            <Header />
             <Route exact path='/' component={Intro} />
             <Route exact path='/main' component={Main} />
             <Route exact path='/mypage' component={MyPage} />
@@ -66,9 +67,7 @@ const App = () => {
             <Route exact path='/signup' component={SignUp} />
             <Route exact path='/login' component={Login} />
           </MentorListProvider>
-
         </KeywordProvider>
-
       </Container>
     </>
   );
