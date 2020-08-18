@@ -54,6 +54,7 @@ export default function MentorModal(props) {
                     }]
                 })
                 .then((res) => {
+                    console.log("멘토링 신청완료?",res.data);
                     alert("멘토링 신청이 완료되었습니다. 우측상단 프로필 버튼을 누르고 내 요청목록 탭에서 확인하세요");
                     rest.onHide();
                 })

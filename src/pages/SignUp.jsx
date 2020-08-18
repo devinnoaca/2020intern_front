@@ -3,7 +3,7 @@ import React, { useRef } from 'react';
 import 'style/SignUp.css';
 import Api from 'api/Api';
 
-const SignUp = () => {
+const SignUp = ({ history }) => {
     const id = useRef();
     const password = useRef();
     const name = useRef();
@@ -17,17 +17,18 @@ const SignUp = () => {
         const user = {
             id: id.current.value,
             password: password.current.value,
-            email: email.current.value,
-            description: description.current.value,
             name: name.current.value, 
+            email: email.current.value,
+            imageURL: '',
+            description: description.current.value,
             company: company.current.value,
-            imageURL: ''
         }
 
         await Api
             .createUser(user)
             .then((res) => {
                 console.log(res.data);
+                history.push('/login')
             })
     }
 

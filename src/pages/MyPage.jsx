@@ -1,15 +1,15 @@
-import React, { useContext } from 'react';
+import React from 'react';
 
 import 'style/MyPage.css';
 
 import MyKeywordC from 'components/mypage/MyKeywordC';
 import MyProfileC from 'components/mypage/MyProfileC';
-import UserContext from 'context/UserContext';
+//import UserContext from 'context/UserContext';
 
 import Cookies from 'js-cookie';
 
 const MyPage = () => {
-    const { isLogged } = useContext(UserContext);
+    //const { isLogged } = useContext(UserContext);
 
     return (
         (Cookies.get('isLogged'))

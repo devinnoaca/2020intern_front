@@ -1,6 +1,5 @@
-import React, { useEffect, useState, useContext } from 'react';
+import React, { useContext } from 'react';
 
-import Api from 'api/Api';
 import UserContext from 'context/UserContext';
 
 import clsx from 'clsx';
@@ -21,9 +20,9 @@ const useStyles = makeStyles({
     },
 });
 
-const NotificationList = ({ anchor, toggleDrawer }) => {
+const NotificationList = ({ anchor, toggleDrawer, notificatonList}) => {
     const classes = useStyles();
-    const [notificatonList, setNotificationList] = useState([]);
+    //const [notificatonList, setNotificationList] = useState([]);
     const { userProfile } = useContext(UserContext);
 
     const handleNoti = (noti) => {
@@ -59,17 +58,7 @@ const NotificationList = ({ anchor, toggleDrawer }) => {
         }
     }
 
-    useEffect(() => {
-        const getNotification = () => {
-            Api
-                .getNotification(userProfile.usn)
-                .then((res) => {
-                    setNotificationList(res.data.notification);
-                })
-        }
-
-        getNotification(userProfile.usn);
-    }, [userProfile.usn]);
+    
 
     return (
         <div

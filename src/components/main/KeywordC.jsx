@@ -44,15 +44,18 @@ const KeywordC = () => {
     })
 
     const searchMentor = async () => {
-        await Api
-            .getMentorList({
-                keyword: tempList,
-                pageNum: 1,
-            })
-            .then((res) => {
-                setMentorList(res.data.mentorList);
-            });
-
+        if (tempList.length === 0) {
+            alert("검색키워드를 한개 이상 선택해주세요");
+        } else {
+            await Api
+                .getMentorList({
+                    keyword: tempList,
+                    pageNum: 1,
+                })
+                .then((res) => {
+                    setMentorList(res.data.mentorList);
+                });
+        }
     };
 
     useEffect(() => {

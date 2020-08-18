@@ -4,6 +4,10 @@ axios.defaults.baseURL = 'http://10.19.247.182:3001';
 //axios.defaults.baseURL = 'http://localhost:3001';
 
 export default {
+    getImg(){
+        return axios.get('/images/3.jpg');
+    },
+    
     createUser(data) {
         return axios.post('/auth', data);
     },
@@ -33,10 +37,15 @@ export default {
     },
 
     editUserKeyword(where, data, usn) {
+        console.log("유저키워드 어디다가 저장함?",`/user/keyword/${where}/${usn}`);
+        console.log("그밑에",data);
+        
         return axios.post(`/user/keyword/${where}/${usn}`, data);
     },
 
     getMatchingList(usn, userType, matchingType) {
+        console.log("이거까지감??");
+        
         return axios.get(`/user/${userType}/matching/${matchingType}/${usn}`);
     },
 
@@ -45,10 +54,14 @@ export default {
     },
 
     getMentorList(data) {
+        console.log("겟멘토리스트api까지잘가냐?",data);
+        
         return axios.post('/main/list',data);
     },
 
     createMatching(data) {
+        console.log("매칭생성을 위한",data);
+        
         return axios.post('/matching', data);
     },
 
@@ -57,8 +70,7 @@ export default {
     },
 
     getNotification(usn){
-        console.log(usn);
-        
+        console.log("노티피케이션받아오냐?",`/notification/${usn}`);
         return axios.get(`/notification/${usn}`);
     },
 

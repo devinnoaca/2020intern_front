@@ -23,6 +23,7 @@ const App = () => {
         await Api
           .getUserProfile(Cookies.get('usn'))
           .then((res) => {
+            console.log("유저정보",res.data);
             setUserProfile({
               usn: res.data.USN,
               id: res.data.ID,
@@ -46,6 +47,7 @@ const App = () => {
         await Api
           .getUserKeyword(Cookies.get('usn'))
           .then((res) => {
+            console.log("유저키워드볼게요",res.data);
             setAllKeyword(res.data.allKeyword);
             setrecommendKeyword(res.data.recommendKeyword);
           });
