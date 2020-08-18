@@ -1,7 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react';
 
 import Api from 'api/Api';
-import image from 'style/logo192.png';
 import UserContext from 'context/UserContext';
 import Cookies from 'js-cookie';
 
@@ -133,7 +132,7 @@ const MyProfileC = () => {
     return (
         <div className="myProfileCW">
             <div className="userImage">
-                <img src={image} alt="" />
+                <img src={userProfile.image_url} alt="" />
             </div>
             <div className="userProfile">
                 {makeProfile()}

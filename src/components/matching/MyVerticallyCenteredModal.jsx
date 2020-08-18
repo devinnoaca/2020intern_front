@@ -101,6 +101,8 @@ function MyVerticallyCenteredModal(props) {
                     "mentorUsn": userProfile.usn,
                 })
                 .then((res) => {
+                    alert("처리되었습니다.")
+                    console.log("매챙수정하기",res.data);
                 })
             props.onHide();
         }
@@ -303,8 +305,8 @@ function MyVerticallyCenteredModal(props) {
                 {(value === 0 && userProfile.type === 1)
                     ? (
                         <>
-                            <Button variant="contained" className="applySubmit" onClick={() => editMatching(1)}>수락</Button>
-                            <Button variant="contained" className="applySubmit" onClick={() => editMatching(2)}>거절</Button>
+                            <Button variant="contained" className="applySubmit" onClick={() => {editMatching(1); setValue(1)}}>수락</Button>
+                            <Button variant="contained" className="applySubmit" onClick={() => {editMatching(2); setValue(2)}}>거절</Button>
                         </>
                     )
                     : (

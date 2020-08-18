@@ -9,7 +9,6 @@ import PaginationContext from 'context/PaginationContext';
 
 import Pagination from 'react-bootstrap/Pagination'
 
-
 const MentorListC = () => {
     const { setMentorList } = useContext(MentorListContext);
     const { recommendKeyword } = useContext(UserKeywordContext);
@@ -23,9 +22,21 @@ const MentorListC = () => {
             </Pagination.Item>,
         );
     }
+    // useEffect(() => {
+    //     const getImg = async () => {
+    //         Api
+    //             .getImg()
+    //             .then((res) => {
+    //                 setUserImg(res.config.url);
+    //                 console.log("이미지잘받아옴?",res.config.url);
+    //             })
+    //     }
+    //     getImg();
+    // })
 
     useEffect(() => {
-        if (recommendKeyword.length!==0){
+        console.log("추천키워드있음?", recommendKeyword);
+        if (recommendKeyword.length !== 0) {
             const getTotalPage = async () => {
                 await Api
                     .getTotalPage({
@@ -47,6 +58,9 @@ const MentorListC = () => {
     }, [recommendKeyword, setTotalPageNum])
 
     useEffect(() => {
+        console.log("멘토리스트띄울떄 추천키워드", recommendKeyword);
+        console.log("멘토리스트띄울떄 페이지넘", currentPageNum);
+
         const getMentorList = async () => {
             await Api
                 .getMentorList({
@@ -54,6 +68,8 @@ const MentorListC = () => {
                     pageNum: currentPageNum,
                 })
                 .then((res) => {
+                    console.log("잘불러옴?", res.data);
+
                     setMentorList(res.data.mentorList);
                 })
         };
@@ -72,8 +88,20 @@ const MentorListC = () => {
     return (
         <div className="mentorListCW">
             <div><h1>추천 멘토리스트</h1></div>
-            <MentorListB />
-            <Pagination>{items}</Pagination>
+            {(recommendKeyword.length !== 0)
+                ? (
+                    <>
+                        <MentorListB />
+                        <Pagination>{items}</Pagination>
+                    </>
+                )
+                : (
+                    <>
+                        <br />
+                        <div><h3>추천받을 키워드가 없습니다. 우측 상단 내 프로필에서 추천키워드를 설정해주세요.</h3></div>
+                    </>
+                )
+            }
         </div>
     );
 };

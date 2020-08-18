@@ -13,7 +13,7 @@ const UserProvider = ({ children }) => {
     });
     const [userCareer, setUserCareer] = useState([]);
     const [isLogged, setIsLogged] = useState(false);
-
+    
     const user = {
         userProfile, setUserProfile,
         userCareer, setUserCareer,

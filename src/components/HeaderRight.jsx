@@ -1,6 +1,7 @@
-import React, { useContext } from 'react';
+import React, { useState,useEffect,useContext } from 'react';
 import { Link } from 'react-router-dom';
 
+import Api from 'api/Api';
 import NotificationList from './NotificationList';
 import UserContext from 'context/UserContext';
 
@@ -13,6 +14,8 @@ import Drawer from '@material-ui/core/Drawer';
 
 const HeaderRight = () => {
     const { setIsLogged } = useContext(UserContext);
+    const [notificatonList, setNotificationList] = useState([]);
+    const { userProfile } = useContext(UserContext);
 
     const [state, setState] = React.useState({
         top: false,
@@ -45,6 +48,21 @@ const HeaderRight = () => {
         }
     };
 
+    useEffect(() => {
+        if (userProfile.usn) {
+            const getNotification = () => {
+                Api
+                    .getNotification(userProfile.usn)
+                    .then((res) => {
+                        console.log("알림리스트", res.data);
+                        setNotificationList(res.data.notification);
+                    })
+            }
+
+            getNotification(userProfile.usn);
+        }
+    }, [userProfile.usn]);
+
     const logout = () => {
         Cookies.remove('isLogged');
         Cookies.remove('usn');
@@ -72,20 +90,20 @@ const HeaderRight = () => {
                             <MailIcon className='notificationIcon' onClick={toggleDrawer("right", true)} />
                         </Badge>
                         <Drawer anchor="right" open={state["right"]} onClose={toggleDrawer("right", false)}>
-                            <NotificationList toggleDrawer={toggleDrawer} anchor={'right'} />
+                            <NotificationList notificatonList={notificatonList} toggleDrawer={toggleDrawer} anchor={'right'} />
                         </Drawer>
                     </div>
                 </div>
             )
             : (
-                <>
-                    <button>
-                        <Link to='/login'><div>로그인</div></Link>
-                    </button>
-                    <button>
-                        <Link to='/signup'><div>회원가입</div></Link>
-                    </button>
-                </>
+                <div className="headerRightWrap">
+                    <div>
+                        <Link to='/login'>로그인</Link>
+                    </div>
+                    <div>
+                        <Link to='/signup'>회원가입</Link>
+                    </div>
+                </div>
             )
     )
 

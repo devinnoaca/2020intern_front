@@ -1,4 +1,4 @@
-import React, { useRef, useContext } from 'react';
+import React, { useRef } from 'react';
 
 import 'style/SignUp.css';
 import Api from 'api/Api';
@@ -21,6 +21,8 @@ const Login = ({ history }) => {
         await Api
             .login(user)
             .then((res) => {
+                console.log("로그인후처리",res.data);
+                
                 Cookies.set('usn', res.data.session.usn);
                 Cookies.set('isLogged', true);
                 history.push('/main')

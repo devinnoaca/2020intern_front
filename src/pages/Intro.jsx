@@ -1,12 +1,9 @@
 import React from 'react';
-import {Link} from 'react-router-dom';
 
 const Intro = () => {
     return (
         <div>
-            <h2>인트로페이지 입니다.</h2>
-            <br/>
-            <Link to={'/main'} style={{border:'1px solid'}}>메인페이지 가기</Link>
+            <h2>인트로페이지 입니다. 이노베이션 아카데미에 대한 소개와 42서울에 대해서 소개를 합니다</h2>
         </div>
     )
 }
