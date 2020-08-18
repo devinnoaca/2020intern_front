@@ -23,7 +23,7 @@ const Login = ({ history }) => {
             .login(user)
             .then((res) => {
                 console.log(res.data);
-                Cookies.set('usn', res.data.usn);
+                Cookies.set('usn', res.data.session.usn);
                 Cookies.set('isLogged', true);
                 setIsLogged(true);
                 history.push('/main');
