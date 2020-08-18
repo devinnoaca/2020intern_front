@@ -9,7 +9,6 @@ export default {
     },
 
     login(data) {
-        console.log(data);
         return axios.post('/auth/login', data);
     },
 

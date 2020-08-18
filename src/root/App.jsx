@@ -11,50 +11,51 @@ import KeywordProvider from 'provider/KeywordProvider';
 import MentorListProvider from 'provider/MentorListProvider';
 
 import Cookies from 'js-cookie';
-
 import Container from '@material-ui/core/Container';
 
 const App = () => {
-  const { userProfile, setUserProfile } = useContext(UserContext);
+  const { userProfile, setUserProfile, isLogged } = useContext(UserContext);
   const { setAllKeyword, setrecommendKeyword } = useContext(UserKeywordContext);
 
   useEffect(() => {
-    const getUserProfile = async () => {
-      await Api
-        .getUserProfile(Cookies.get('usn'))
-        .then((res) => {
-          setUserProfile({
-            usn: res.data.USN,
-            id: res.data.ID,
-            name: res.data.name,
-            email: res.data.email,
-            description: res.data.description,
-            company: res.data.company,
-            image_url: res.data.image_url,
-            type: res.data.type,
+    if (isLogged !== false) {
+      const getUserProfile = async () => {
+        await Api
+          .getUserProfile(Cookies.get('usn'))
+          .then((res) => {
+            setUserProfile({
+              usn: res.data.USN,
+              id: res.data.ID,
+              name: res.data.name,
+              email: res.data.email,
+              description: res.data.description,
+              company: res.data.company,
+              image_url: res.data.image_url,
+              type: res.data.type,
+            });
           });
-        });
-    };
+      };
 
-    getUserProfile();
-  }, [setUserProfile, userProfile.usn]);
+      getUserProfile();
+    }
+  }, [setUserProfile, isLogged, userProfile.usn]);
 
   useEffect(() => {
-    const getUserKeyword = async () => {
-      await Api
-        .getUserKeyword(Cookies.get('usn'))
-        .then((res) => {
-          setAllKeyword(res.data.allKeyword);
-          setrecommendKeyword(res.data.recommendKeyword);
-        });
-    };
-    getUserKeyword();
-
-  }, [setAllKeyword, setrecommendKeyword, userProfile.usn]);
+    if (isLogged !== false) {
+      const getUserKeyword = async () => {
+        await Api
+          .getUserKeyword(Cookies.get('usn'))
+          .then((res) => {
+            setAllKeyword(res.data.allKeyword);
+            setrecommendKeyword(res.data.recommendKeyword);
+          });
+      };
+      getUserKeyword();
+    }
+  }, [setAllKeyword, setrecommendKeyword, isLogged, userProfile.usn]);
 
   return (
     <>
-      
       <Container className="App">
         <KeywordProvider>
           <MentorListProvider>

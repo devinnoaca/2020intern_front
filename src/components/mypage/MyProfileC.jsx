@@ -104,7 +104,6 @@ const MyProfileC = () => {
         } else {
             return (
                 userCareer.map((career, index) => {
-                    console.log(index);
                     if (career.type !== 2) {
                         return (
                             <div key={index}>{career.content}</div>
