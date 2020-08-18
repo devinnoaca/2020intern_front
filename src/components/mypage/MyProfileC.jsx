@@ -49,6 +49,8 @@ const MyProfileC = () => {
     }
 
     const makeProfile = () => {
+        //console.log(userProfile);
+        
         if (editProfile) {
             return (
                 <>

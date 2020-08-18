@@ -57,6 +57,8 @@ export default {
     },
 
     getNotification(usn){
+        console.log(usn);
+        
         return axios.get(`/notification/${usn}`);
     },
 
