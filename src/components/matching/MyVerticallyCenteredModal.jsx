@@ -86,15 +86,12 @@ function MyVerticallyCenteredModal(props) {
     }, [other.matchinglist.oppositeUsn, other.matchingList]);
 
     const editMatching = async (matchingState) => {
-        console.log(value);
-        setValue(0);
-        console.log(value);
         if (refuseValue.trim() === '') {
             alert("사유를 입력해주세요");
         } else {
             setValue(matchingState);
             await Api
-                .editMatching(matchingList.matchingId, {
+                .editMatchigitng(matchingList.matchingId, {
                     "resMessage": refuseValue,
                     "state": matchingState,
                     "menteeUsn": matchingList.oppositeUsn,
