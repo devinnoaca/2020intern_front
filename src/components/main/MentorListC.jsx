@@ -10,7 +10,7 @@ import PaginationContext from 'context/PaginationContext';
 import Pagination from 'react-bootstrap/Pagination'
 
 const MentorListC = () => {
-    const { setMentorList } = useContext(MentorListContext);
+    const { mentorList, setMentorList } = useContext(MentorListContext);
     const { recommendKeyword } = useContext(UserKeywordContext);
     const { totalPageNum, setTotalPageNum, currentPageNum, setCurrentPageNum } = useContext(PaginationContext);
 
@@ -22,17 +22,9 @@ const MentorListC = () => {
             </Pagination.Item>,
         );
     }
-    // useEffect(() => {
-    //     const getImg = async () => {
-    //         Api
-    //             .getImg()
-    //             .then((res) => {
-    //                 setUserImg(res.config.url);
-    //                 console.log("이미지잘받아옴?",res.config.url);
-    //             })
-    //     }
-    //     getImg();
-    // })
+    useEffect(() => {
+        setMentorList([]);
+    },[])
 
     useEffect(() => {
         console.log("추천키워드있음?", recommendKeyword);
@@ -79,26 +71,32 @@ const MentorListC = () => {
         }
     }, [recommendKeyword, setMentorList, currentPageNum]);
 
-    // useEffect(() => {
-    //     if (mentorList[0]) {
-    //         setTotalPageNum(mentorList[0].totalPage)
-    //     };
-    // }, [mentorList]);
-
     return (
         <div className="mentorListCW">
             <div><h1>추천 멘토리스트</h1></div>
-            {(recommendKeyword.length !== 0)
+            {(recommendKeyword.length === 0 )
                 ? (
                     <>
-                        <MentorListB />
-                        <Pagination>{items}</Pagination>
+                    {(mentorList.length ===0)
+                        ? (
+                            <>
+                                <br />
+                                <div><h3>추천받을 키워드가 없습니다. 우측 상단 '내 프로필'에서 추천키워드를 설정해주세요.</h3></div>
+                            </>
+                        )
+                        : (
+                            <>
+                                <MentorListB />
+                                <Pagination>{items}</Pagination>
+                            </>
+                        )
+                    }
                     </>
                 )
                 : (
                     <>
-                        <br />
-                        <div><h3>추천받을 키워드가 없습니다. 우측 상단 내 프로필에서 추천키워드를 설정해주세요.</h3></div>
+                        <MentorListB />
+                        <Pagination>{items}</Pagination>
                     </>
                 )
             }
