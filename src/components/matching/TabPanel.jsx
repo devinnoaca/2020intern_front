@@ -6,22 +6,18 @@ import MyVerticallyCenteredModal from 'components/matching/MyVerticallyCenteredM
 import UserContext from 'context/UserContext';
 
 function TabPanel(props) {
-    const { value, index, state, ...other } = props;
-    const [tabValue, setTabValue] = useState(0);
+    const { value, setValue, index, state, ...other } = props;
     const [modalShow, setModalShow] = useState(false);
     const [matchingList, setMatchingList] = useState([]);
     const [pickedMatchingList, setPickedMatchingList] = useState([]);
     const { userProfile } = useContext(UserContext);
 
     useEffect(() => {
-        setTabValue(value);
-    }, [value])
-
-    useEffect(() => {
+        console.log(value);
         if ((userProfile.type !== '')) {
             const getWaitMatchingList = async () => {
                 await Api
-                    .getMatchingList(userProfile.usn, userProfile.type, tabValue)
+                    .getMatchingList(userProfile.usn, userProfile.type, value)
                     .then((res) => {
                         if (res.data.matchingList !== undefined) {
                             setMatchingList(res.data.matchingList);
@@ -32,17 +28,17 @@ function TabPanel(props) {
             getWaitMatchingList();
         }
 
-    }, [tabValue, userProfile.usn, userProfile.type]);
+    }, [value, userProfile.usn, userProfile.type]);
 
     return (
         <div
             role="tabpanel"
-            hidden={tabValue !== index}
+            hidden={value !== index}
             id={`simple-tabpanel-${index}`}
             aria-labelledby={`simple-tab-${index}`}
             {...other}>
             <h1>{state.matchingType} 멘토링 요청</h1>
-            {tabValue === index && (
+            {value === index && (
                 <>
                     {matchingList.map((matching) => {
                         return (
@@ -64,7 +60,8 @@ function TabPanel(props) {
                         );
                     })}
                     <MyVerticallyCenteredModal
-                        value={tabValue}
+                        value={value}
+                        setValue={setValue}
                         matchinglist={pickedMatchingList}
                         show={modalShow}
                         onHide={() => setModalShow(false)}

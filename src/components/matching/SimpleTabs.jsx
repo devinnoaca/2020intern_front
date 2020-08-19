@@ -51,19 +51,19 @@ export default function SimpleTabs() {
                     matchingType: "처리되지 않은",
                     time: "요청"
                 }
-            } value={value} index={0} />
+            } value={value} setValue={setValue} index={0} />
             <TabPanel state={
                 {
                     matchingType: "수락",
                     time: "수락"
                 }
-            } value={value} index={1} />
+            } value={value} setValue={setValue} index={1} />
             <TabPanel state={
                 {
                     matchingType: "거절",
                     time: "거절"
                 }
-            } value={value} index={2} />
+            } value={value} setValue={setValue} index={2} />
         </div>
     );
 }
