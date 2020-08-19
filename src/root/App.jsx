@@ -14,11 +14,11 @@ import Cookies from 'js-cookie';
 import Container from '@material-ui/core/Container';
 
 const App = () => {
-  const { userProfile, setUserProfile, isLogged } = useContext(UserContext);
+  const { userProfile, setUserProfile } = useContext(UserContext);
   const { setAllKeyword, setrecommendKeyword } = useContext(UserKeywordContext);
 
   useEffect(() => {
-    if (isLogged !== false) {
+    if (Cookies.get('isLogged') === 'true') {
       const getUserProfile = async () => {
         await Api
           .getUserProfile(Cookies.get('usn'))
@@ -38,10 +38,10 @@ const App = () => {
 
       getUserProfile();
     }
-  }, [setUserProfile, isLogged, userProfile.usn]);
+  }, [setUserProfile, userProfile.usn]);
 
   useEffect(() => {
-    if (isLogged !== false) {
+    if (Cookies.get('isLogged') === 'true') {
       const getUserKeyword = async () => {
         await Api
           .getUserKeyword(Cookies.get('usn'))
@@ -52,7 +52,7 @@ const App = () => {
       };
       getUserKeyword();
     }
-  }, [setAllKeyword, setrecommendKeyword, isLogged, userProfile.usn]);
+  }, [setAllKeyword, setrecommendKeyword, userProfile.usn]);
 
   return (
     <>
