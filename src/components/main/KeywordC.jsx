@@ -53,6 +53,8 @@ const KeywordC = () => {
                     pageNum: 1,
                 })
                 .then((res) => {
+                    console.log("검색 했을떄 나오냐??",res.data);
+                    
                     setMentorList(res.data.mentorList);
                 });
         }
