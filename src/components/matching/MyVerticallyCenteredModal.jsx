@@ -11,7 +11,7 @@ import TextField from '@material-ui/core/TextField';
 import Paper from '@material-ui/core/Paper';
 
 function MyVerticallyCenteredModal(props) {
-    const [value, setValue] = useState();
+    const { value, setValue, ...other } = props;
     const [mentorProfile, setMentorProfile] = useState({
         usn: '',
         name: '',
@@ -27,18 +27,14 @@ function MyVerticallyCenteredModal(props) {
     const { userProfile } = useContext(UserContext);
 
     useEffect(() => {
-        setValue(props.value);
-    }, [props.value]);
+        setMatchingList(other.matchinglist);
+    }, [other.matchinglist]);
 
     useEffect(() => {
-        setMatchingList(props.matchinglist);
-    }, [props.matchinglist]);
-
-    useEffect(() => {
-        if (props.matchingList !== undefined) {
+        if (other.matchingList !== undefined) {
             const getMentorProfile = async () => {
                 await Api
-                    .getUserProfile(props.matchinglist.oppositeUsn)
+                    .getUserProfile(other.matchinglist.oppositeUsn)
                     .then((res) => {
                         setMentorProfile({
                             usn: res.data.USN,
@@ -55,13 +51,13 @@ function MyVerticallyCenteredModal(props) {
 
             getMentorProfile();
         }
-    }, [props.matchinglist.oppositeUsn, props.matchingList]);
+    }, [other.matchinglist.oppositeUsn, other.matchingList]);
 
     useEffect(() => {
-        if (props.matchingList !== undefined) {
+        if (other.matchingList !== undefined) {
             const getMentorCareer = async () => {
                 await Api
-                    .getUserCareer(props.matchinglist.oppositeUsn)
+                    .getUserCareer(other.matchinglist.oppositeUsn)
                     .then((res) => {
                         if (res.data.career !== undefined) {
                             setMentorCareer(res.data.career);
@@ -71,13 +67,13 @@ function MyVerticallyCenteredModal(props) {
 
             getMentorCareer();
         }
-    }, [props.matchinglist.oppositeUsn, props.matchingList]);
+    }, [other.matchinglist.oppositeUsn, other.matchingList]);
 
     useEffect(() => {
-        if (props.matchingList !== undefined) {
+        if (other.matchingList !== undefined) {
             const getMentorKeyword = async () => {
                 await Api
-                    .getUserKeyword(props.matchinglist.oppositeUsn)
+                    .getUserKeyword(other.matchinglist.oppositeUsn)
                     .then((res) => {
                         if (res.data.allKeyword !== undefined) {
                             setMentorKeyword(res.data.allKeyword);
@@ -87,12 +83,16 @@ function MyVerticallyCenteredModal(props) {
 
             getMentorKeyword();
         }
-    }, [props.matchinglist.oppositeUsn, props.matchingList]);
+    }, [other.matchinglist.oppositeUsn, other.matchingList]);
 
     const editMatching = async (matchingState) => {
+        console.log(value);
+        setValue(0);
+        console.log(value);
         if (refuseValue.trim() === '') {
             alert("사유를 입력해주세요");
         } else {
+            setValue(matchingState);
             await Api
                 .editMatching(matchingList.matchingId, {
                     "resMessage": refuseValue,
@@ -104,7 +104,7 @@ function MyVerticallyCenteredModal(props) {
                     alert("처리되었습니다.")
                     console.log("매챙수정하기",res.data);
                 })
-            props.onHide();
+            other.onHide();
         }
     }
 
@@ -117,7 +117,7 @@ function MyVerticallyCenteredModal(props) {
     return (
 
         <Modal
-            {...props}
+            {...other}
             size="lg"
             aria-labelledby="contained-modal-title-vcenter"
             centered
@@ -305,12 +305,12 @@ function MyVerticallyCenteredModal(props) {
                 {(value === 0 && userProfile.type === 1)
                     ? (
                         <>
-                            <Button variant="contained" className="applySubmit" onClick={() => {editMatching(1); setValue(1)}}>수락</Button>
-                            <Button variant="contained" className="applySubmit" onClick={() => {editMatching(2); setValue(2)}}>거절</Button>
+                            <Button variant="contained" className="applySubmit" onClick={() => {editMatching(1)}}>수락</Button>
+                            <Button variant="contained" className="applySubmit" onClick={() => {editMatching(2)}}>거절</Button>
                         </>
                     )
                     : (
-                        <Button onClick={props.onHide}>Close</Button>
+                        <Button onClick={other.onHide}>Close</Button>
                     )}
             </Modal.Footer>
         </Modal>
