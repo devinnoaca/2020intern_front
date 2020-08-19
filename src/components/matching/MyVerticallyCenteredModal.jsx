@@ -91,7 +91,7 @@ function MyVerticallyCenteredModal(props) {
         } else {
             setValue(matchingState);
             await Api
-                .editMatchigitng(matchingList.matchingId, {
+                .editMatching(matchingList.matchingId, {
                     "resMessage": refuseValue,
                     "state": matchingState,
                     "menteeUsn": matchingList.oppositeUsn,
