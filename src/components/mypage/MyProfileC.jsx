@@ -19,6 +19,7 @@ const MyProfileC = () => {
         }
         setUserCareer([...userCareer]);
     }
+    console.log("씨발먼데",userProfile.image_url);
 
     const changeEditProfileMode = async (event) => {
         if (editProfile === false) {
@@ -130,9 +131,11 @@ const MyProfileC = () => {
     }, [setUserCareer, userProfile.usn]);
 
     return (
+        
+        
         <div className="myProfileCW">
             <div className="userImage">
-                <img src={userProfile.image_url} alt="" />
+                <img src= {userProfile.image_url}style={{width:'300px',height:'400px'}} alt="" />
             </div>
             <div className="userProfile">
                 {makeProfile()}

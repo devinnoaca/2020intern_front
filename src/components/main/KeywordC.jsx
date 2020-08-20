@@ -18,8 +18,7 @@ const KeywordC = () => {
     const { recommendKeyword } = useContext(UserKeywordContext);
     const { setKeywordList, tempList, setTempList } = useContext(KeywordContext);
     const { setMentorList } = useContext(MentorListContext);
-
-    const { setTotalPageNum } = useContext(PaginationContext);
+    const { currentPageNum, setTotalPageNum, setCurrentPageNum } = useContext(PaginationContext);
 
     useEffect(() => {
         if (tempList.length !== 0) {
@@ -43,6 +42,10 @@ const KeywordC = () => {
         }
     })
 
+    useEffect(()=> {
+        setCurrentPageNum(currentPageNum);
+    }, [currentPageNum])
+
     const searchMentor = async () => {
         if (tempList.length === 0) {
             alert("검색키워드를 한개 이상 선택해주세요");
@@ -50,7 +53,7 @@ const KeywordC = () => {
             await Api
                 .getMentorList({
                     keyword: tempList,
-                    pageNum: 1,
+                    pageNum: currentPageNum,
                 })
                 .then((res) => {
                     console.log("검색 했을떄 나오냐??",res.data);

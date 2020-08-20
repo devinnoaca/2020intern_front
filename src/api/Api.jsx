@@ -4,9 +4,6 @@ axios.defaults.baseURL = 'http://10.19.247.182:3001';
 //axios.defaults.baseURL = 'http://localhost:3001';
 
 export default {
-    getImg(){
-        return axios.get('/images/3.jpg');
-    },
     
     createUser(data) {
         return axios.post('/auth', data);

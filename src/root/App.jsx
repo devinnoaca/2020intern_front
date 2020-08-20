@@ -23,7 +23,7 @@ const App = () => {
         await Api
           .getUserProfile(Cookies.get('usn'))
           .then((res) => {
-            console.log("유저정보",res.data);
+            console.log("유저정보",res);
             setUserProfile({
               usn: res.data.USN,
               id: res.data.ID,

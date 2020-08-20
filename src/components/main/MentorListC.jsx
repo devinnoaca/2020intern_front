@@ -6,6 +6,7 @@ import MentorListB from 'components/main/MentorListB';
 import MentorListContext from 'context/MentorListContext';
 import UserKeywordContext from 'context/UserKeywordContext';
 import PaginationContext from 'context/PaginationContext';
+import KeywordContext from 'context/KeywordContext';
 
 import Pagination from 'react-bootstrap/Pagination'
 
@@ -13,6 +14,7 @@ const MentorListC = () => {
     const { mentorList, setMentorList } = useContext(MentorListContext);
     const { recommendKeyword } = useContext(UserKeywordContext);
     const { totalPageNum, setTotalPageNum, currentPageNum, setCurrentPageNum } = useContext(PaginationContext);
+    const { tempList, setTempList } = useContext(KeywordContext);
 
     let items = [];
     for (let number = 1; number <= Number(totalPageNum); number++) {
@@ -22,9 +24,19 @@ const MentorListC = () => {
             </Pagination.Item>,
         );
     }
+    const paginationClick = () => {
+        
+    }
+    
     useEffect(() => {
         setMentorList([]);
     },[])
+
+    useEffect(()=> {
+        setTempList(recommendKeyword);
+    },[])
+    
+
 
     useEffect(() => {
         console.log("추천키워드있음?", recommendKeyword);
