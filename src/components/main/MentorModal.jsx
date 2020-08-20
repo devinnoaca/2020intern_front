@@ -1,7 +1,5 @@
 import React, { useState, useContext, useEffect } from 'react';
 
-import image from 'style/logo192.png';
-
 import Api from 'api/Api';
 import ChipsArray from "components/main/ChipsArray";
 import VerticalTabs from 'components/main/VerticalTabs';
@@ -104,7 +102,7 @@ export default function MentorModal(props) {
                             <div>멘토 상세 정보</div>
                             <div className="mentorB">
                                 <div className="mentorBL">
-                                    <img src={image} alt="" />
+                                    <img src={rest.pickedmentor.imageUrl} style ={{width:'200px', height:'270px'}}alt="" />
                                     <h3>{rest.pickedmentor.name}</h3>
                                     <h6>{rest.pickedmentor.email}</h6>
                                     <h6>{rest.pickedmentor.company}</h6>

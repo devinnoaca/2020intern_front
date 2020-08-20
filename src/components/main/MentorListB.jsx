@@ -2,7 +2,6 @@ import React, { useState, useContext } from 'react';
 
 import 'style/Main.css';
 import MentorListContext from 'context/MentorListContext';
-import image from 'style/logo192.png';
 import MentorModal from 'components/main/MentorModal';
 
 import Grid from '@material-ui/core/Grid';
@@ -51,7 +50,7 @@ const MentorListB = () => {
                                 <CardActionArea>
                                     <CardMedia
                                         className={classes.media}
-                                        image={image}
+                                        image={mentor.imageUrl}
                                         title="mentorImage" />
                                     <CardContent>
                                         <Typography gutterBottom variant="h5" component="h2">
