@@ -65,6 +65,7 @@ const KeywordC = () => {
             await Api
                 .getKeyword()
                 .then((res) => {
+                    console.log(res.data);
                     setKeywordList(res.data.allCategory);
                 });
         };

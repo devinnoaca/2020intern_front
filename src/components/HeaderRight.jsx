@@ -16,6 +16,7 @@ const HeaderRight = () => {
     const { setIsLogged } = useContext(UserContext);
     const [notificatonList, setNotificationList] = useState([]);
     const { userProfile } = useContext(UserContext);
+    const [logoutValue, setLogoutValue] = useState(false);
 
     const [state, setState] = React.useState({
         top: false,
@@ -67,6 +68,11 @@ const HeaderRight = () => {
         Cookies.remove('isLogged');
         Cookies.remove('usn');
         setIsLogged(false);
+        if(logoutValue === false) {
+            setLogoutValue(true);
+        } else {
+            setLogoutValue(false);
+        }
     }
 
     return (

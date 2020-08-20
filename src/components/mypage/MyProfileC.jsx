@@ -4,6 +4,8 @@ import Api from 'api/Api';
 import UserContext from 'context/UserContext';
 import Cookies from 'js-cookie';
 
+import Button from '@material-ui/core/Button';
+
 const MyProfileC = () => {
     const { userProfile, setUserProfile, userCareer, setUserCareer } = useContext(UserContext);
     const [editProfile, setEditProfile] = useState(false);
@@ -140,7 +142,7 @@ const MyProfileC = () => {
             <div className="userCareer">
                 {makeCareer()}
             </div>
-            <p><button onClick={changeEditProfileMode}>프로필 수정</button></p>
+            <p><Button variant="contained" color="primary" onClick={changeEditProfileMode}>프로필 수정</Button></p>
         </div>
     );
 };
