@@ -49,9 +49,15 @@
 }
 
 .myKeywordBW {
-    height: 50%;
+    width: 80%;
 }
 
-.eidtKeywordButton {
+.myKeywordContent {
+    height: 200px;
+}
+
+.editKeywordButton {
+    float: right;
+    margin-right: 50px;
 }
 

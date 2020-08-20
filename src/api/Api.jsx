@@ -9,10 +9,12 @@ export default {
     },
     
     createUser(data) {
+        console.log(data);
         return axios.post('/auth', data);
     },
 
     login(data) {
+        console.log(data);
         return axios.post('/auth/login', data);
     },
 

@@ -1,9 +1,11 @@
 import React, { useEffect, useContext, useState } from 'react';
 
 import Api from 'api/Api';
+import 'style/MyPage.css'
 import KeywordContext from 'context/KeywordContext';
 import MyVerticallyCenteredModal1 from 'components/mypage/MyVerticallyCenteredModal1';
 
+import Button from '@material-ui/core/Button';
 import Chip from '@material-ui/core/Chip';
 
 const MyKeywordB = ({ list, setList, where }) => {
@@ -15,7 +17,7 @@ const MyKeywordB = ({ list, setList, where }) => {
             return (
                 list.map((keyword, index) => {
                     return (
-                        <Chip key={index} label={keyword.keywordName} variant="outlined" />
+                        <Chip key={index} label={keyword.keywordName} variant="outlined" style={{margin: "5px"}} />
                     );
                 })
             );
@@ -43,8 +45,10 @@ const MyKeywordB = ({ list, setList, where }) => {
 
     return (
         <div className="myKeywordBW">
+            <div className="myKeywordContent">
             {makeKeyword()}
-            <button className="eidtKeywordButton" onClick={editKeyword}>수정</button>
+            </div>
+            <Button variant="contained" color="primary" className="editKeywordButton" onClick={editKeyword}>수정</Button>
             <MyVerticallyCenteredModal1
                 show={modalShow}
                 onHide={() => setModalShow(false)}
